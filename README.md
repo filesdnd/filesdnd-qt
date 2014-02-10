@@ -34,8 +34,8 @@ Files Drag & Drop uses the Apple Bonjour protocole.
  - Bonjour is under license Apache 2.0. See [Bonjour licensing][8].
 
 ## Credits
-Thomas Coulange ([nitrog42@gmail.com][9])
-Kevin Renella ([kevin.renella@gmail.com][10])
+ - Thomas Coulange ([nitrog42@gmail.com][9]) 
+ - Kevin Renella ([kevin.renella@gmail.com][10])
 
 ## License
 Files Drag & Drop is released under [LGPL v2.1][11] license. See the bundled LICENSE file for details.
