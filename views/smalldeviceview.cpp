@@ -42,8 +42,8 @@ SmallDeviceView::SmallDeviceView(const QString &name, const QString &uid, Device
     setWindowOpacity(WIDGET_OPACITY);
 
 #if defined(Q_OS_LINUX) || defined(__linux__)
-    if(x11info()->isCompositingManagerRunning()) // TODO
-        setAttribute(Qt::WA_TranslucentBackground);
+    //if(x11info()->isCompositingManagerRunning()) // TODO
+    //    setAttribute(Qt::WA_TranslucentBackground);
 #else
     setAttribute(Qt::WA_TranslucentBackground);
 #endif
