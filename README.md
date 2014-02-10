@@ -1,9 +1,9 @@
 Files Drag & Drop - Qt Version
 ===========
 
-Files Drag & Drop is allow a simpler file transfer between your devices and your computer.
-You now can transfer your data on all your Android devices, quickly, simply and without any required knowledge. Your device is detected, and there is no interaction needed. Any kind of data can be transfered : a file, a folder, a link or text.
-You don't need an Android device in order to use Files Drag & Drop because you can also transfer your data between two computer.
+Files Drag & Drop allows an easier file transfer between your devices and your computer.
+You now can transfer your data on all your devices, quickly, simply and without any required knowledge. Your device is detected, and there is no interaction needed. Any kind of data can be transfered : a file, a folder, a link or text.
+Files Drag & Drop allows the transfer between multiple computer or Android devices.
 
 When connected to a Wi-Fi network, your device announce itself on the network in order to be detected by a distant computer. Thereby, you need only to be connected to a local wifi network, without any internet connection.
 
@@ -13,10 +13,16 @@ Visit our [website][1] for more details
 
 #### Desktop client
 Files Drag & Drop is created with modern and portable technology which work on every famous operating system, like Windows, Linux, and Mac OS X.
-Find the release you need on the [download page of the website][2].
+Find the release you need on the [download page of the website][2]. For Linux, you will need to use the GitHub repository.
 
 #### Android application
 Download the [Android application][3] in order to fully use Files Drag & Drop and transfer your files on your devices.
+
+## Build the Linux version
+Download Qt 5.1 at least on http://qt-project.org/
+Install the required lib libavahi
+Download/fork the repo, and open the .pro in the source folder.
+Use the flag -ldnd_sd to build the application on your Linux/Unix system.
 
 ## User interface
 You will be able to find many screenshots on the [Files Drag & Drop gallery][4].
