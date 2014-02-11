@@ -55,8 +55,10 @@ Files Drag & Drop uses the Apple Bonjour protocole.
  - Thomas Coulange ([nitrog42@gmail.com][10]) 
  - Kevin Renella ([kevin.renella@gmail.com][11])
 
+Thanks to our graphist  ([Alexandre Mottet][12])
+
 ## License
-Files Drag & Drop is released under [LGPL v2.1][12] license. See the bundled LICENSE file for details.
+Files Drag & Drop is released under [LGPL v2.1][13] license. See the bundled LICENSE file for details.
 
 
   [1]: http://www.filesdnd.com/
@@ -70,4 +72,5 @@ Files Drag & Drop is released under [LGPL v2.1][12] license. See the bundled LIC
   [9]: https://developer.apple.com/softwarelicensing/agreements/bonjour.php
   [10]: mailto:nitrog42@gmail.com
   [11]: mailto:kevin.renella@gmail.com
-  [12]: http://www.gnu.org/licenses/lgpl-2.1.html
+  [12]: https://github.com/Aleanar
+  [13]: http://www.gnu.org/licenses/lgpl-2.1.html
