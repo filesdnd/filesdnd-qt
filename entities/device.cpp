@@ -479,34 +479,46 @@ void Device::sendFile()
 {
     QByteArray data;
     QDataStream stream(&data, QIODevice::WriteOnly);
-    QFile file(_data._string);
-    qint64 sent = 0;
-    qint64 size = 0;
 
-    if (!file.open(QIODevice::ReadOnly))
+
+    _currentFile.setFileName(_data._string);
+    _bytesSent = 0;
+    _fileSize = 0;
+
+    if (!_currentFile.open(QIODevice::ReadOnly))
     {
         onTransfertFail();
-        LogManager::appendLine("[Server] ERROR - Cannot open file " + file.fileName());
+        LogManager::appendLine("[Server] ERROR - Cannot open file " + _currentFile.fileName());
 
         return;
     }
 
-    size = file.size();
+    _fileSize = _currentFile.size();
 
     // File size
-    stream << size;
+    stream << _fileSize;
     // File name
-    stream << file.fileName().split('/').last();
+    stream << _currentFile.fileName().split('/').last();
+
+    connect(&_tcpSocket, SIGNAL(bytesWritten(qint64)), this, SLOT(onBytesWritten(qint64)));
 
     _tcpSocket.write(data);
-    while(sent < size)
+}
+
+void Device::onBytesWritten(qint64 bytes)
+{
+    QByteArray data;
+
+    if (_bytesSent == _fileSize || !_tcpSocket.isOpen())
     {
-        if (!_tcpSocket.isOpen())
-            return;
-        data = file.read(READ_FILE_BUFFER);
-        qint64 wrote = _tcpSocket.write(data);
-        sent += wrote;
+        disconnect(&_tcpSocket, SIGNAL(bytesWritten(qint64)), this, SLOT(onBytesWritten(qint64)));
+        _currentFile.close();
+
+        return;
     }
+
+    data = _currentFile.read(READ_FILE_BUFFER);
+    _bytesSent += _tcpSocket.write(data);
 }
 
 void Device::setDataStruct(const DataStruct &dataStruct)

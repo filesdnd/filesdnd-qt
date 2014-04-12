@@ -338,6 +338,11 @@ public slots:
      */
     void onPingTimerOut();
 
+    /**
+     * On file bytes written on the socket
+     */
+    void onBytesWritten(qint64 bytes);
+
 signals:
     /**
       * Notify the view of the unavailability of the device
@@ -414,6 +419,13 @@ private:
     DeviceThread _thread;
     /// Bonjour record associated to the bonjour detection, may not be setted
     BonjourRecord _bonjourRecord;
+
+    /// Current file size
+    qint64 _fileSize;
+    /// Bytes sent to the socket for the current file
+    qint64 _bytesSent;
+    /// Current file that is uploaded
+    QFile _currentFile;
 
     /**
      * Handle the device construction, initialize it
