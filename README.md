@@ -1,6 +1,8 @@
 Files Drag & Drop - Qt Version
 ===========
 
+[![Build Status](https://travis-ci.org/filesdnd/filesdnd-qt.svg?branch=master)](https://travis-ci.org/filesdnd/filesdnd-qt)
+
 Files Drag & Drop allows an easier file transfer between your devices and your computer.
 You now can transfer your data on all your devices, quickly, simply and without any required knowledge. Your device is detected, and there is no interaction needed. Any kind of data can be transfered : a file, a folder, a link or text.
 Files Drag & Drop allows the transfer between multiple computer or Android devices.
