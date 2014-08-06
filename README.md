@@ -29,7 +29,7 @@ Download the [Android application][3] in order to fully use Files Drag & Drop an
  4. Build your Linux app !
 
 ### Windows version
- 1. Download the Windows version of  Qt 5.1 at least on the [Qt website][4]. **Take care to choose the VS 2010 compiler !**
+ 1. Download the Windows version of  Qt 5.1 at least on the [Qt website][4]. **Take care to choose the VS (2010 or higher) compiler !**
  3. Download/fork the repo, and open the .pro in the source folder. 
  4. Build your Windows app !
 
@@ -43,7 +43,7 @@ You will be able to find many screenshots on the [Files Drag & Drop gallery][5].
 
 ## Dependencies
 
-This project is built with **Qt 5.1** and MSVC 2010 compiler.
+This project is built with **Qt 5** and MSVC (2010 or higher) compiler.
 
  - Qt is under LGPL v2.1 license. See [Qt licensing][6].
  - You can find the Qt 5.1 documentation [there][7].
