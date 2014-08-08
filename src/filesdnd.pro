@@ -6,7 +6,7 @@
 
 QT += core gui network widgets
 
-TARGET = "files"
+TARGET = "files-drag-and-drop"
 TEMPLATE = app
 CONFIG -= console
 
