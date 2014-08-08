@@ -5,6 +5,6 @@ SOURCES += \
 HEADERS += \
     $$PWD/../tests/modeltest.cpp
 
-debug {
-    QT += testlib
+CONFIG(debug) {
+    #QT += testlib
 }

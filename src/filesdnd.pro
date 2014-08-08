@@ -4,7 +4,9 @@
 #
 #-------------------------------------------------
 
-QT += core gui network widgets
+QT += core gui network
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = "files-drag-and-drop"
 TEMPLATE = app
