@@ -31,7 +31,6 @@ class ModelTest : public QObject
 
 private slots:
     void initTestCase();
-    void getDeviceByUID();
     void cleanupTestCase();
 };
 

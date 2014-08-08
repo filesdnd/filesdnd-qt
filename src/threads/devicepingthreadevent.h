@@ -18,14 +18,26 @@
 **
 **************************************************************************************/
 
-#include "modeltest.h"
+#ifndef DEVICEPINGTHREADEVENT_H
+#define DEVICEPINGTHREADEVENT_H
 
-void ModelTest::initTestCase()
+#include <QEvent>
+
+#include "udp/udpdiscovery.h"
+
+/**
+  * @class DevicePingThreadEvent
+  */
+class DevicePingThreadEvent : public QEvent
 {
+public:
+    /**
+     * Constructor
+     */
+    DevicePingThreadEvent(UdpDiscovery *udpComponent);
 
-}
+    /// Component for udp discovery
+    UdpDiscovery *UdpComponent;
+};
 
-void ModelTest::cleanupTestCase()
-{
-
-}
+#endif // DEVICEPINGTHREADEVENT_H
