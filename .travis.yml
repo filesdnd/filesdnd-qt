@@ -5,7 +5,7 @@ before_install:
     - sudo apt-get install libavahi-compat-libdnssd-dev
 
 script:
-	- cd src
+    - cd src
     - qmake -qt=qt5 -v
     - qmake -qt=qt5
     - make
