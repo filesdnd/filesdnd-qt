@@ -23,7 +23,7 @@
 
 #include <QObject>
 
-#include "QtSingleApplication/singleapplication/qtsingleapplication.h"
+#include "qtsingleapplication/singleapplication/qtsingleapplication.h"
 
 /**
  * Application class that will allow to control system event
