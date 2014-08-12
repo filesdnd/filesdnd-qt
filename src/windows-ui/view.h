@@ -18,8 +18,8 @@
 **
 **************************************************************************************/
 
-#ifndef VIEW_H
-#define VIEW_H
+#ifndef WINDOWS_VIEW_H
+#define WINDOWS_VIEW_H
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -571,4 +571,4 @@ private:
     void manageFileHistoryContextMenu(HistoryElementView *historyElement);
 };
 
-#endif // VIEW_H
+#endif // WINDOWS_VIEW_H

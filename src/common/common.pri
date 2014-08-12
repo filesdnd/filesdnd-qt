@@ -46,4 +46,5 @@ HEADERS += \
     common/helpers/folderzipper.h \
     common/helpers/settingsmanager.h \
     common/helpers/servicehelper.h \
-    common/udp/udpdiscovery.h
+    common/udp/udpdiscovery.h \
+    common/view.h

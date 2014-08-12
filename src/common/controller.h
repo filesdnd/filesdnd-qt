@@ -31,13 +31,13 @@
 #include "zeroconf/bonjourservicereconfirmer.h"
 #include "zeroconf/bonjourrecord.h"
 #include "helpers/servicehelper.h"
-#include "views/view.h"
 #include "entities/service.h"
 #include "model.h"
 #include "udp/udpdiscovery.h"
 #include "threads/servicethread.h"
 #include "threads/devicethread.h"
 #include "updatemanager.h"
+#include "common/view.h"
 
 /**
   * @class Controller
