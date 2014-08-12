@@ -7,4 +7,5 @@ HEADERS += \
 
 CONFIG(debug) {
     #QT += testlib
+    #QMAKE_CXXFLAGS += -DVERBOSE -DRUN_TESTS
 }
