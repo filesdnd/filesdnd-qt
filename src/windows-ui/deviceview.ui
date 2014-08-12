@@ -59,10 +59,7 @@
    <item>
     <widget class="QFrame" name="backgroundContainer">
      <property name="styleSheet">
-      <string notr="true">#backgroundContainer
-{	
-	background: url(:/images/android_icon_large.png) no-repeat right top;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -89,12 +86,7 @@
       <item>
        <widget class="QFrame" name="borderContainer">
         <property name="styleSheet">
-         <string notr="true">#borderContainer
-{
-	border: 3px solid darkgreen;
-	border-radius: 10px;
-}
-</string>
+         <string notr="true"/>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>

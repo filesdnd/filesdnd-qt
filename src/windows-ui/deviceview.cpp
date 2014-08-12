@@ -41,6 +41,12 @@ DeviceView::DeviceView(const QString &name, const QString &uid, DeviceType type,
 
     switch (type)
     {
+    case TYPE_ANDROID:
+        ui->backgroundContainer->setStyleSheet("#backgroundContainer"
+                                               "{\n"
+                                                  "background: url(:/images/android_icon_large.png) no-repeat right top;\n"
+                                               "}\n");
+        break;
     case TYPE_WINDOWS:
         ui->backgroundContainer->setStyleSheet("#backgroundContainer"
                                                "{\n"
