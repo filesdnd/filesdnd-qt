@@ -62,10 +62,7 @@ QProgressBar {
    <item>
     <widget class="QFrame" name="backgroundContainer">
      <property name="styleSheet">
-      <string notr="true">#backgroundContainer
-{
-	background: url(:/images/android_icon_small.png) no-repeat right top;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -93,6 +90,8 @@ QProgressBar {
 {
 	border: 2px solid darkgreen;
 	border-radius: 7px;
+	background: url(:/images/android_icon_small.png) no-repeat right top;
+
 }
 </string>
         </property>
