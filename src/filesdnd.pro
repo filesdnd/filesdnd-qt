@@ -55,6 +55,12 @@ INCLUDEPATH += \
 SOURCES += \
     main.cpp
 
+OTHER_FILES += \
+    $$PWD/../.travis.yml \
+    $$PWD/../LICENSE \
+    $$PWD/../.gitignore \
+    $$PWD/../README.md
+
 mac:LIBS += /usr/lib/libobjc.dylib
 !mac:unix:LIBS += -ldns_sd
 win32: LIBS += \
