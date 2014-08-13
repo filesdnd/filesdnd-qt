@@ -6,7 +6,7 @@
 
 QT += core gui network
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets gui-private
 
 TARGET = "files-drag-and-drop"
 TEMPLATE = app
@@ -34,8 +34,7 @@ INCLUDEPATH += \
     "$$PWD/zeroconf/"
 
 # QtSingleApplication
-include("qtsingleapplication/singleapplication/singleapplication.pri")
-include("qtsingleapplication/lockedfile/lockedfile.pri")
+include("qtsingleapplication/qtsingleapplication.pri")
 
 # Common
 include("common/common.pri")
@@ -45,12 +44,18 @@ INCLUDEPATH += \
     "$$PWD/common/entities/" \
     "$$PWD/common/helpers/" \
     "$$PWD/common/threads/" \
-    "$$PWD/common/udp/"
+    "$$PWD/common/udp/" \
+    "$$PWD/common/view/"
 
-# Common
+# Windows UI
 include("windows-ui/windows-ui.pri")
 INCLUDEPATH += \
     "$$PWD/windows-ui/"
+
+# Windows UI
+include("linux-ui/linux-ui.pri")
+INCLUDEPATH += \
+    "$$PWD/linux-ui/"
 
 SOURCES += \
     main.cpp
@@ -72,5 +77,6 @@ INCLUDEPATH += \
     "$$PWD" \
     "$$PWD/../include/"
 
-RESOURCES += resources.qrc
+RESOURCES += resources.qrc \
+    common/resources.qrc
 RC_FILE = icon.rc

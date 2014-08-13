@@ -44,8 +44,7 @@ View::View(Model *model) :
     _transfertsRunning(0),
     _infoWidget(0),
     _lastBonjourState(BONJOUR_SERVICE_OK),
-    _trayTimer(this),
-    _progressIndicator(this)
+    _trayTimer(this)
 {
     ui->setupUi(this);
 
@@ -56,11 +55,6 @@ View::View(Model *model) :
     setFocus(Qt::ActiveWindowFocusReason);
 
     setWindowIcon(QIcon(CONFIG_APP_ICON));
-    ui->mainToolBar->setVisible(false);
-    ui->statusBar->setVisible(false);
-
-    // Manage status bar
-    initStatusbar();
 
     // Manage history
     ui->historyButtonWidget->layout()->addWidget(&_historyGripButton);
@@ -158,10 +152,7 @@ void View::manageFonts()
             "QToolButton#openDownloadFolderButton "
             "{"
                 "background-color: white ;"
-                "border-right : 1px solid lightgray;"
-                "border-left : 1px solid gray;"
-                "border-bottom : 1px solid gray;"
-                "border-top: 0px;"
+                "border: 0px;"
                 "height: 25px;"
                 "#FONT_TEMPLATE#"
             "}"
@@ -186,23 +177,6 @@ void View::manageFonts()
 #if defined(Q_OS_MACX)
     ui->historyView->setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
-}
-
-void View::initStatusbar()
-{
-    QFont font = _statusText.font();
-
-    _gif.setFileName(LOADING_ICON);
-    _statusLabel.setMovie(&_gif);
-    _statusLabel.setStyleSheet("margin-bottom: 5px; margin-left: 15px; margin-right : 15px;");
-//    ui->statusBar->insertPermanentWidget(0, &_statusLabel, 0); // Old gif animation
-    ui->statusBar->insertPermanentWidget(0, &_progressIndicator, 0); // New prodedural animation
-    font.setBold(true);
-    _statusText.setFont(font);
-    _statusText.setStyleSheet("margin-bottom: 5px; margin-left: 15px;");
-    _statusText.setText(tr("Sauvegarde terminé"));
-    ui->statusBar->insertPermanentWidget(1, &_statusText, 2);
-    ui->statusBar->adjustSize();
 }
 
 void View::onHistoryViewContextMenuRequested(const QPoint &pos)
@@ -631,7 +605,6 @@ void View::updateDevices()
     }
 
     manageWidgetVisibility();
-    updateStatusBar();
     updateTrayTooltip();
     updateTrayIcon();
 }
@@ -733,22 +706,6 @@ void View::updateTrayTooltip()
      _trayIcon->setToolTip(tooltip);
 }
 
-void View::updateStatusBar()
-{
-    _transfertsRunning = 0;
-
-    foreach(DeviceView *device, _devices)
-    {
-        if (!device->isAvailable() && device->lastState() != DIFVERSION)
-            ++_transfertsRunning;
-    }
-
-    if (_transfertsRunning == 0)
-        disableStatusBar();
-    else
-        enableStatusBar();
-}
-
 void View::onSendFile(const QString &uid, const QList<QUrl> &urls, DataType type)
 {
     emit sendFile(uid, urls, type);
@@ -770,25 +727,9 @@ void View::onDeviceUnavailable(const QString &uid, TransfertState state)
         if (state == CONNECTING)
         {
             ++_transfertsRunning;
-            enableStatusBar();
         }
     }
     _widget->setDeviceUnavailable(uid);
-}
-
-void View::enableStatusBar()
-{
-//    _gif.start();
-    _progressIndicator.startAnimation();
-    _statusText.setText(QString::number(_transfertsRunning) + tr(" transfert(s) en cours ..."));
-    ui->statusBar->setVisible(true);
-}
-
-void View::disableStatusBar()
-{
-//    _gif.stop();
-    _progressIndicator.stopAnimation();
-    ui->statusBar->setVisible(false);
 }
 
 void View::onServiceNameChanged()
@@ -828,9 +769,7 @@ void View::onDeviceAvailable(const QString &uid, TransfertState state)
     if (device)
     {
         device->setAvailable(true, state);
-
-        if (--_transfertsRunning == 0)
-            disableStatusBar();
+        _transfertsRunning;
     }
 
     _widget->setDeviceAvailable(uid);
@@ -1053,10 +992,12 @@ void View::onShow()
 {
     if (SettingsManager::isWidgetEnabled())
         _widget->hideWidgets();
-    showNormal();
+
     _widget->canBeShown();
     activateWindow();
     QApplication::alert(this);
+
+    emit showWindow();
 }
 
 void View::on_action_propos_Qt_triggered()

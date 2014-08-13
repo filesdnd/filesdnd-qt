@@ -61,8 +61,8 @@ int main(int argc, char *argv[])
         message.append(QString::number(argc));
         for (int i = 0; i < argc; ++i)
         {
-             message.append(";");
-             message.append(argv[i]);
+            message.append(";");
+            message.append(argv[i]);
         }
 
         app.sendMessage(message);
@@ -71,15 +71,13 @@ int main(int argc, char *argv[])
     }
 
     SettingsManager::loadSettingsFile();
-
     Controller controller;
-
     QApplication::setOrganizationName("Files Drag & Drop");
 
     QObject::connect(&app, SIGNAL(messageReceived(QString)), &controller, SLOT(onOtherInstance(QString)));
     QObject::connect(&app, SIGNAL(dockClicked()), &controller, SLOT(onDockClicked()));
 
-    controller.startView();
+    controller.startView(&app);
 
     return app.exec();
 }

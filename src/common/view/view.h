@@ -18,8 +18,8 @@
 **
 **************************************************************************************/
 
-#ifndef WINDOWS_VIEW_H
-#define WINDOWS_VIEW_H
+#ifndef VIEW_H
+#define VIEW_H
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -56,7 +56,7 @@ class View;
   *
   * MVC main view
   */
-class View : public QMainWindow
+class View : public QWidget
 {
     Q_OBJECT
     
@@ -111,18 +111,6 @@ public:
       */
     void createTrayIcon();
     /**
-      * Update the status bar, recount all the devices unavailable for fill the transferts running
-      */
-    void updateStatusBar();
-    /**
-      * Enable the status bar and fill the text properly
-      */
-    void enableStatusBar();
-    /**
-      * Disable the status bar (mean 0 transferts running)
-      */
-    void disableStatusBar();
-    /**
       * Try to open a file or a link from an history item
       *
       * @param item History Item
@@ -146,10 +134,6 @@ public:
       * Delete the central information widget if needed
       */
     void clearCenterInfoWidget();
-    /**
-     * Init the status
-     */
-    void initStatusbar();
     /**
       * Display the corresponding error for the bonjour service
       */
@@ -218,6 +202,8 @@ signals:
       * Notify the controller that the window is focused to ask for new records
       */
     void focused();
+
+    void showWindow();
 
 public slots:
     /**
@@ -501,12 +487,6 @@ private:
     SettingsDialog _settingsDialog;
     /// Update dialog
     UpdateDialog _updateDialog;
-    /// Labl for animated icon the status bar
-    QLabel _statusLabel;
-    /// Animated icon of the status bar
-    QMovie _gif;
-    /// Text of the status bar
-    QLabel _statusText;
     /// Context menu of the history view
     QMenu _contextMenu;
     /// History element correponding to the right click on the history view
@@ -545,8 +525,6 @@ private:
     OverlayMessageDisplay *_overlayMessageDisplay;
     /// Timer for tray message
     QTimer _trayTimer;
-    /// Procedural animation for the status bar
-    ProgressIndicator _progressIndicator;
 
     /**
      * Manage the font for the various OS
@@ -571,4 +549,4 @@ private:
     void manageFileHistoryContextMenu(HistoryElementView *historyElement);
 };
 
-#endif // WINDOWS_VIEW_H
+#endif // VIEW_H

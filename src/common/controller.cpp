@@ -21,6 +21,7 @@
 #include <QDebug>
 #include <QDateTime>
 #include <QCoreApplication>
+#include <QDesktopWidget>
 
 #include "controller.h"
 #include "device.h"
@@ -33,6 +34,14 @@
 #include "threads/devicepingthreadevent.h"
 #include "threads/devicepongthreadevent.h"
 #include "threads/devicecanceltransfertthreadevent.h"
+
+#if defined(Q_OS_WIN)
+#include "borderlesswindow.h"
+#elif defined(Q_OS_LINUX)
+
+#elif defined(Q_OS_OSX)
+
+#endif
 
 Controller::Controller() :
     _deviceNeedResolve(0),
@@ -137,14 +146,46 @@ void Controller::checkForBonjourState()
     _view->setBonjourState(_bonjourState);
 }
 
-void Controller::startView()
+void Controller::startView(QApplication *application)
 {
     if (SettingsManager::isSearchUpdateAtLaunch())
         _updater.checkForUpdate();
     if (SettingsManager::isServiceStartedAtlaunch())
         _view->startService();
+
+    QFont mainFont = application->font();
+    mainFont.setStyleStrategy(QFont::PreferAntialias);
+    application->setFont(mainFont);
+
+#if defined(Q_OS_WIN)
+    // Stylesheet
+    QFile stylesheet(":/css/windows-ui/application.css");
+    if (stylesheet.open(QFile::ReadOnly)) {
+        QString styleSheet = stylesheet.readAll();
+        application->setStyleSheet( styleSheet );
+    }
+
+    // Background color
+    HBRUSH windowBackground = CreateSolidBrush(RGB(255, 255, 255));
+
+    // Create window
+    QRect geometry = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenNumber(_view));
+    QSize size(775, 425);
+    BorderlessWindow *window = new BorderlessWindow(application,
+                                                    windowBackground,
+                                                    (geometry.width() - size.width()) / 2,
+                                                    (geometry.height() - size.height()) / 2,
+                                                    size.width(), size.height(), _view);
+    window->setMinimumSize(size.width(), size.height());
     if(!SettingsManager::isStartMinimizedAtlaunch())
-        _view->show();
+        window->show();
+
+#elif defined(Q_OS_LINUX)
+
+#elif defined(Q_OS_OSX)
+
+#endif
+
 }
 
 void Controller::updateRecords(const QList<BonjourRecord> &list)

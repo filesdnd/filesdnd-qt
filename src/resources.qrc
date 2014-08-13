@@ -56,4 +56,17 @@
         <file>images/arrow-out_white.png</file>
         <file>images/crosses-small.png</file>
     </qresource>
+    <qresource prefix="/borderless">
+        <file>images/borderless-close.png</file>
+        <file>images/borderless-close-hover.png</file>
+        <file>images/borderless-maximize.png</file>
+        <file>images/borderless-maximize-hover.png</file>
+        <file>images/borderless-minimize.png</file>
+        <file>images/borderless-minimize-hover.png</file>
+        <file>images/borderless-restore.png</file>
+        <file>images/borderless-restore-restore.png</file>
+    </qresource>
+    <qresource prefix="/css">
+        <file>windows-ui/application.css</file>
+    </qresource>
 </RCC>

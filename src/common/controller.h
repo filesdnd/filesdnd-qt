@@ -37,7 +37,7 @@
 #include "threads/servicethread.h"
 #include "threads/devicethread.h"
 #include "updatemanager.h"
-#include "common/view.h"
+#include "common/view/view.h"
 
 /**
   * @class Controller
@@ -60,7 +60,7 @@ public:
     /**
       * Show the main view
       */
-    void startView();
+    void startView(QApplication *application);
     /**
       * Get the numbers of devices registred in the model
       * Principaly for unit tests
