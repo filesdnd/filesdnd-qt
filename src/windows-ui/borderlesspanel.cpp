@@ -82,67 +82,71 @@ BorderlessPanel::BorderlessPanel(HWND hWnd , View *view) :
 
 // Button events
 void BorderlessPanel::pushButtonMinimizeClicked() {
-    ShowWindow( parentWindow(), SW_MINIMIZE );
+    ShowWindow(parentWindow(), SW_MINIMIZE);
 }
 
 void BorderlessPanel::pushButtonMaximizeClicked() {
     WINDOWPLACEMENT wp;
-    wp.length = sizeof( WINDOWPLACEMENT );
-    GetWindowPlacement( parentWindow(), &wp );
-    if ( wp.showCmd == SW_MAXIMIZE ) {
-        ShowWindow( parentWindow(), SW_RESTORE );
+    wp.length = sizeof(WINDOWPLACEMENT);
+    GetWindowPlacement(parentWindow(), &wp);
+
+    if (wp.showCmd == SW_MAXIMIZE) {
+        ShowWindow(parentWindow(), SW_RESTORE);
     } else {
-        ShowWindow( parentWindow(), SW_MAXIMIZE );
+        ShowWindow(parentWindow(), SW_MAXIMIZE);
     }
 }
 
 void BorderlessPanel::pushButtonCloseClicked() {
-    PostQuitMessage( 0 );
+    PostQuitMessage(0);
 }
 
 #if QT_VERSION >= 0x050000
-bool BorderlessPanel::nativeEvent( const QByteArray &, void *msg, long * ) {
+bool BorderlessPanel::nativeEvent(const QByteArray &, void *msg, long *) {
 #else
-bool BorderlessPanel::winEvent( MSG *message, long * ) {
+bool BorderlessPanel::winEvent(MSG *message, long *) {
 #endif
 #if QT_VERSION >= 0x050000
-    MSG *message = ( MSG * )msg;
+    MSG *message = (MSG *)msg;
 #endif
-    switch( message->message ) {
-    case WM_SYSKEYDOWN: {
-        if ( message->wParam == VK_SPACE ) {
-            RECT winrect;
-            GetWindowRect( _windowHandle, &winrect );
-            TrackPopupMenu( GetSystemMenu( _windowHandle, false ), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, _windowHandle, NULL);
-            break;
+    switch(message->message) {
+        case WM_SYSKEYDOWN: {
+            if (message->wParam == VK_SPACE) {
+                RECT winrect;
+                GetWindowRect(_windowHandle, &winrect);
+                TrackPopupMenu(GetSystemMenu(_windowHandle, false), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, _windowHandle, NULL);
+                break;
+            }
         }
-    }
-    case WM_KEYDOWN: {
-        if ( message->wParam == VK_F5 ||
-             message->wParam == VK_F6 ||
-             message->wParam == VK_F7
-             ) {
-            SendMessage( _windowHandle, WM_KEYDOWN, message->wParam, message->lParam );
-            break;
+        case WM_KEYDOWN: {
+            if (message->wParam == VK_F5 ||
+                 message->wParam == VK_F6 ||
+                 message->wParam == VK_F7)
+            {
+                SendMessage(_windowHandle, WM_KEYDOWN, message->wParam, message->lParam);
+                break;
+            }
         }
-    }
     }
 
     return false;
 }
 
-void BorderlessPanel::mousePressEvent( QMouseEvent *event ) {
-    if ( event->button() == Qt::LeftButton ) {
+void BorderlessPanel::mousePressEvent(QMouseEvent *event) {
+    if (event->button() == Qt::LeftButton)
+    {
         ReleaseCapture();
-        SendMessage( _windowHandle, WM_NCLBUTTONDOWN, HTCAPTION, 0 );
+        SendMessage(_windowHandle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
     }
 
-    if ( event->type() == QEvent::MouseButtonDblClick ) {
-        if (event -> button() == Qt::LeftButton) {
+    if (event->type() == QEvent::MouseButtonDblClick)
+    {
+        if (event -> button() == Qt::LeftButton)
+        {
             WINDOWPLACEMENT wp;
-            wp.length = sizeof( WINDOWPLACEMENT );
+            wp.length = sizeof( WINDOWPLACEMENT);
             GetWindowPlacement( parentWindow(), &wp );
-            if ( wp.showCmd == SW_MAXIMIZE ) {
+            if (wp.showCmd == SW_MAXIMIZE) {
                 ShowWindow( parentWindow(), SW_RESTORE );
             } else {
                 ShowWindow( parentWindow(), SW_MAXIMIZE );

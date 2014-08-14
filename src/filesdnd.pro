@@ -50,9 +50,13 @@ INCLUDEPATH += \
 win32:include("windows-ui/windows-ui.pri")
 win32:INCLUDEPATH += "$$PWD/windows-ui/"
 
-# Windows UI
+# Linux UI
 !mac:unix:include("linux-ui/linux-ui.pri")
 !mac:unix:INCLUDEPATH += "$$PWD/linux-ui/"
+
+# Mac UI
+mac:include("mac-ui/mac-ui.pri")
+mac:INCLUDEPATH += "$$PWD/mac-ui/"
 
 SOURCES += main.cpp
 
@@ -65,9 +69,9 @@ OTHER_FILES += \
 mac:LIBS += /usr/lib/libobjc.dylib
 !mac:unix:LIBS += -ldns_sd
 win32: LIBS += \
+    $$PWD/../lib/AdvAPI32.lib \
     $$PWD/../lib/dnssd.lib \
     /NoDefaultLib:LIBCMT
-win32: LIBS += $$PWD/../lib/AdvAPI32.lib
 
 INCLUDEPATH += \
     "$$PWD" \

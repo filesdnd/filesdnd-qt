@@ -38,7 +38,7 @@ View::View(Model *model) :
     ui(new Ui::View),
     _model(model),
     _aboutDialog(this),
-    _settingsDialog(this),
+    _settingsDialog(0),
     _updateDialog(this),
     _historyGripButton(this),
     _transfertsRunning(0),

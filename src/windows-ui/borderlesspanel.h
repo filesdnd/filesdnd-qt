@@ -1,5 +1,5 @@
-#ifndef QMAINPANEL_H
-#define QMAINPANEL_H
+#ifndef BORDERLESSPANEL_H
+#define BORDERLESSPANEL_H
 
 #include <QMouseEvent>
 
@@ -25,9 +25,6 @@ public slots:
 
 private:
     HWND _windowHandle;
-
-protected:
-
 };
 
-#endif // QMAINPANEL_H
+#endif // BORDERLESSPANEL_H

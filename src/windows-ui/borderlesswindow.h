@@ -1,3 +1,6 @@
+#ifndef BORDERLESSWINDOW_H
+#define BORDERLESSWINDOW_H
+
 #include <windows.h>
 
 #include "borderlesspanel.h"
@@ -67,3 +70,5 @@ private:
     sizeType minimumSize;
     sizeType maximumSize;
 };
+
+#endif // BORDERLESSWINDOW_H
