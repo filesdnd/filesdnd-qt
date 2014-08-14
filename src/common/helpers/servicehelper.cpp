@@ -31,7 +31,7 @@ BonjourServiceState ServiceHelper::getBonjourServiceState()
 {
     BonjourServiceState serviceState = BONJOUR_SERVICE_OK;
 
-#if defined(Q_OS_WIN) || defined(Q_OS_WIN32)
+#if defined(Q_OS_WIN)
     serviceState = windowsServiceBonjourState();
 #elif defined(Q_OS_LINUX) || defined(__linux__)
     serviceState = linuxServiceBonjourState();
@@ -60,7 +60,7 @@ BonjourServiceState ServiceHelper::linuxServiceBonjourState()
 
 #endif
 
-#if defined(Q_OS_WIN) || defined(Q_OS_WIN32)
+#if defined(Q_OS_WIN)
 BonjourServiceState ServiceHelper::windowsServiceBonjourState()
 {
     BonjourServiceState serviceState = BONJOUR_SERVICE_OK;

@@ -14,8 +14,7 @@
 BorderlessPanel::BorderlessPanel(HWND hWnd , View *view) :
     QWinWidget(hWnd)
 {
-    windowHandle = hWnd;
-
+    _windowHandle = hWnd;
     setObjectName("mainPanel");
 
     // Horizontal layout
@@ -30,6 +29,7 @@ BorderlessPanel::BorderlessPanel(HWND hWnd , View *view) :
     windowTitle->setStyleSheet("font-size: 16px; color: #444444;");
     windowTitle->setAttribute(Qt::WA_TransparentForMouseEvents);
 
+    // Center window title
     horizontalLayout->addStretch();
     horizontalLayout->addSpacing(70);
     horizontalLayout->addWidget(windowTitle);
@@ -71,7 +71,6 @@ BorderlessPanel::BorderlessPanel(HWND hWnd , View *view) :
     verticalLayout->setMargin(0);
     verticalLayout->setAlignment(Qt::AlignHCenter);
     verticalLayout->addLayout(horizontalLayout);
-
     verticalLayout->addWidget(view);
 
     // Show
@@ -113,8 +112,8 @@ bool BorderlessPanel::winEvent( MSG *message, long * ) {
     case WM_SYSKEYDOWN: {
         if ( message->wParam == VK_SPACE ) {
             RECT winrect;
-            GetWindowRect( windowHandle, &winrect );
-            TrackPopupMenu( GetSystemMenu( windowHandle, false ), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, windowHandle, NULL);
+            GetWindowRect( _windowHandle, &winrect );
+            TrackPopupMenu( GetSystemMenu( _windowHandle, false ), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, _windowHandle, NULL);
             break;
         }
     }
@@ -123,7 +122,7 @@ bool BorderlessPanel::winEvent( MSG *message, long * ) {
              message->wParam == VK_F6 ||
              message->wParam == VK_F7
              ) {
-            SendMessage( windowHandle, WM_KEYDOWN, message->wParam, message->lParam );
+            SendMessage( _windowHandle, WM_KEYDOWN, message->wParam, message->lParam );
             break;
         }
     }
@@ -135,7 +134,7 @@ bool BorderlessPanel::winEvent( MSG *message, long * ) {
 void BorderlessPanel::mousePressEvent( QMouseEvent *event ) {
     if ( event->button() == Qt::LeftButton ) {
         ReleaseCapture();
-        SendMessage( windowHandle, WM_NCLBUTTONDOWN, HTCAPTION, 0 );
+        SendMessage( _windowHandle, WM_NCLBUTTONDOWN, HTCAPTION, 0 );
     }
 
     if ( event->type() == QEvent::MouseButtonDblClick ) {

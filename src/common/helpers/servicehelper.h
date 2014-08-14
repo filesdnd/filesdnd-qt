@@ -76,7 +76,7 @@ private:
      */
     static BonjourServiceState linuxServiceBonjourState();
 #endif
-#if defined(Q_OS_WIN) || defined(Q_OS_WIN32)
+#if defined(Q_OS_WIN)
     /**
       * Find the bonjour service in a complete list of windows services
       *

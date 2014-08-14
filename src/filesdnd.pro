@@ -12,7 +12,8 @@ TARGET = "files-drag-and-drop"
 TEMPLATE = app
 CONFIG -= console
 
-TRANSLATIONS = $$PWD/../filesdnd_fr.ts \
+TRANSLATIONS = \
+    $$PWD/../filesdnd_fr.ts \
     $$PWD/../filesdnd_en.ts
 
 CODECFORTR = UTF-8
@@ -25,13 +26,11 @@ unix: QMAKE_CXXFLAGS += -Wall
 
 # Tests
 include("$PWD/../../tests/tests.pri")
-INCLUDEPATH += \
-    "$$PWD/../tests/"
+INCLUDEPATH += "$$PWD/../tests/"
 
 # Zeroconf lib
 include("zeroconf/zeroconf.pri")
-INCLUDEPATH += \
-    "$$PWD/zeroconf/"
+INCLUDEPATH += "$$PWD/zeroconf/"
 
 # QtSingleApplication
 include("qtsingleapplication/qtsingleapplication.pri")
@@ -48,17 +47,14 @@ INCLUDEPATH += \
     "$$PWD/common/view/"
 
 # Windows UI
-include("windows-ui/windows-ui.pri")
-INCLUDEPATH += \
-    "$$PWD/windows-ui/"
+win32:include("windows-ui/windows-ui.pri")
+win32:INCLUDEPATH += "$$PWD/windows-ui/"
 
 # Windows UI
-include("linux-ui/linux-ui.pri")
-INCLUDEPATH += \
-    "$$PWD/linux-ui/"
+!mac:unix:include("linux-ui/linux-ui.pri")
+!mac:unix:INCLUDEPATH += "$$PWD/linux-ui/"
 
-SOURCES += \
-    main.cpp
+SOURCES += main.cpp
 
 OTHER_FILES += \
     $$PWD/../.travis.yml \

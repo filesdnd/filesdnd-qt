@@ -16,7 +16,7 @@ public:
 #else
     bool winEvent(MSG *message, long *result);
 #endif
-    void mousePressEvent( QMouseEvent *event );
+    void mousePressEvent(QMouseEvent *event);
 
 public slots:
     void pushButtonMinimizeClicked();
@@ -24,7 +24,7 @@ public slots:
     void pushButtonCloseClicked();
 
 private:
-    HWND windowHandle;
+    HWND _windowHandle;
 
 protected:
 
