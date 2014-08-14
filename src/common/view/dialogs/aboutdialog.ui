@@ -17,7 +17,7 @@
    <string>À propos</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../resources.qrc">
+   <iconset resource="../../../resources.qrc">
     <normaloff>:/images/information-octagon.png</normaloff>:/images/information-octagon.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -78,7 +78,7 @@ border-bottom: 1px solid lightgray;</string>
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../../resources.qrc">:/images/logo_ads_blue.png</pixmap>
+             <pixmap resource="../../../resources.qrc">:/images/logo_ads_blue.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -186,7 +186,7 @@ border-bottom: 1px solid lightgray;</string>
   </layout>
  </widget>
  <resources>
-  <include location="../../resources.qrc"/>
+  <include location="../../../resources.qrc"/>
  </resources>
  <connections>
   <connection>

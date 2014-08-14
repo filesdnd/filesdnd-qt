@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-QT += core gui network
+QT += core gui network gui-private
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets gui-private
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = "files-drag-and-drop"
 TEMPLATE = app
@@ -77,6 +77,6 @@ INCLUDEPATH += \
     "$$PWD" \
     "$$PWD/../include/"
 
-RESOURCES += resources.qrc \
-    common/resources.qrc
+RESOURCES += resources.qrc
+
 RC_FILE = icon.rc
