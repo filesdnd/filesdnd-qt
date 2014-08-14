@@ -386,23 +386,24 @@ void View::slideHistory()
         _slideAnimation->start();
 
         QTimer::singleShot(20, this, SLOT(showSlidingWidget()));
-
     }
 }
 
 void View::showSlidingWidget()
 {
-    ui->slidingWidget->setVisible(true);
+    layout()->setEnabled(false);
+    ui->slidingWidget->show();
 }
 
 void View::onLeftAnimationFinished()
 {
-    ui->slidingWidget->setVisible(false);
+    ui->slidingWidget->hide();
     ui->historyButtonWidget->setEnabled(true);
 }
 
 void View::onRightAnimationFinished()
 {
+    layout()->setEnabled(true);
     ui->historyButtonWidget->setEnabled(true);
 }
 
