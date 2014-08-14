@@ -26,7 +26,6 @@ BorderlessPanel::BorderlessPanel(HWND hWnd , View *view) :
     QLabel *windowTitle = new QLabel(this);
     windowTitle->setObjectName("windowTitle");
     windowTitle->setText("Files Drag & Drop");
-    windowTitle->setStyleSheet("font-size: 16px; color: #444444;");
     windowTitle->setAttribute(Qt::WA_TransparentForMouseEvents);
 
     // Center window title

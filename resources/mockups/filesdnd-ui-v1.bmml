@@ -1,0 +1,78 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="965" measuredH="359" mockupW="580" mockupH="347">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::TitleWindow" x="385" y="12" w="580" h="347" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Files%20Drag%20%26%20Drop%20v1</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::VRule" x="523" y="44" w="-1" h="287" measuredW="10" measuredH="100" zOrder="2" locked="false" isInGroup="-1"/>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Icon" x="394" y="307" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>DownloadIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="424" y="311" w="-1" h="-1" measuredW="95" measuredH="21" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Download%20folder</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="433" y="44" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <text>History</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Icon" x="401" y="338" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>ReloadIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="430" y="336" w="-1" h="-1" measuredW="75" measuredH="21" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>2%20downloads</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="511" y="62" w="-1" h="245" measuredW="16" measuredH="100" zOrder="8" locked="false" isInGroup="-1"/>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::MultilineButton" x="655" y="95" w="-1" h="-1" measuredW="166" measuredH="66" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>ContactIcon%7Csmall</icon>
+        <text>Android</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::MultilineButton" x="566" y="201" w="166" h="66" measuredW="111" measuredH="66" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>ContactIcon%7Csmall</icon>
+        <text>Android</text>
+      </controlProperties>
+    </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::MultilineButton" x="747" y="201" w="166" h="66" measuredW="111" measuredH="66" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>ContactIcon%7Csmall</icon>
+        <text>Android</text>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Label" x="394" y="80" w="105" h="-1" measuredW="37" measuredH="21" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Item%201</text>
+      </controlProperties>
+    </control>
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::Label" x="394" y="106" w="105" h="-1" measuredW="40" measuredH="21" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Item%202</text>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::Label" x="394" y="133" w="105" h="-1" measuredW="39" measuredH="21" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Item%203</text>
+      </controlProperties>
+    </control>
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::RoundButton" x="512" y="171" w="36" h="36" measuredW="36" measuredH="36" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>DoubleArrowIcon%7Cmedium</icon>
+        <rotation>180</rotation>
+        <shape>circle</shape>
+        <text/>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

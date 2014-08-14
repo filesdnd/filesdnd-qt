@@ -1,26 +1,31 @@
 #mainPanel {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 #systemPanel {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 #centralWidget {
-  background: #fff; /* Window background color */
+    background: #fff;
+}
+
+#windowTitle {
+    font-size: 15px;
+    color: #444444;
 }
 
 #mainPanelScrollArea {
-  border: none;
+    border: none;
 }
 
 /* System buttons */
 #pushButtonMaximize, #pushButtonMinimize, #pushButtonClose {
-  border: none;
-  width: 14px;
-  height: 14px;
+    border: none;
+    width: 14px;
+    height: 14px;
 }
 
 #pushButtonMaximize {
@@ -28,33 +33,33 @@
 }
 
 #pushButtonMinimize {
-  padding: 0 7px 0 0;
+    padding: 0 7px 0 0;
 }
 
 #pushButtonClose {
-  padding: 0 0 0 7px;
+    padding: 0 0 0 7px;
 }
 
 #pushButtonMaximize {
-  image: url(:/borderless/images/borderless-maximize.png);
+    image: url(:/borderless/images/borderless-maximize.png);
 }
 
 #pushButtonMaximize:hover {
-  image: url(:/borderless/images/borderless-maximize-hover.png);
+    image: url(:/borderless/images/borderless-maximize-hover.png);
 }
 
 #pushButtonMinimize {
-  image: url(:/borderless/images/borderless-minimize.png);
+    image: url(:/borderless/images/borderless-minimize.png);
 }
 
 #pushButtonMinimize:hover {
-  image: url(:/borderless/images/borderless-minimize-hover.png);
+    image: url(:/borderless/images/borderless-minimize-hover.png);
 }
 
 #pushButtonClose {
-  image: url(:/borderless/images/borderless-close.png);
+    image: url(:/borderless/images/borderless-close.png);
 }
 
 #pushButtonClose:hover {
-  image: url(:/borderless/images/borderless-close-hover.png);
+    image: url(:/borderless/images/borderless-close-hover.png);
 }
