@@ -64,7 +64,7 @@
         <file>images/borderless-minimize.png</file>
         <file>images/borderless-minimize-hover.png</file>
         <file>images/borderless-restore.png</file>
-        <file>images/borderless-restore-restore.png</file>
+        <file>images/borderless-restore-hover.png</file>
     </qresource>
     <qresource prefix="/css">
         <file>windows-ui/application.css</file>

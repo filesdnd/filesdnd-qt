@@ -14,17 +14,17 @@ QApplication *BorderlessWindow::a;
 
 BorderlessWindow::BorderlessWindow(QApplication *app, HBRUSH windowBackground, const int x, const int y, const int width, const int height, View *view) :
     hWnd(0),
-    hInstance( GetModuleHandle( NULL ) ),
-    borderless( false ),
-    borderlessResizeable( true ),
-    aeroShadow( false ),
-    closed( false ),
-    visible( true )
+    hInstance(GetModuleHandle(NULL)),
+    borderless(false),
+    borderlessResizeable(true),
+    aeroShadow(false),
+    closed(false),
+    visible(true)
 {
     connect(view, SIGNAL(showWindow()), this, SLOT(show()));
 
     WNDCLASSEX wcx = { 0 };
-    wcx.cbSize = sizeof( WNDCLASSEX );
+    wcx.cbSize = sizeof(WNDCLASSEX);
     wcx.style = CS_HREDRAW | CS_VREDRAW;
     wcx.hInstance = hInstance;
     wcx.lpfnWndProc = WndProc;
@@ -32,12 +32,12 @@ BorderlessWindow::BorderlessWindow(QApplication *app, HBRUSH windowBackground, c
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = L"WindowClass";
     wcx.hbrBackground = windowBackground;
-    wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
-    RegisterClassEx( &wcx );
+    wcx.hCursor = LoadCursor(hInstance, IDC_ARROW);
+    RegisterClassEx(&wcx);
     if (FAILED(RegisterClassEx(&wcx)))
         throw std::runtime_error("Couldn't register window class");
 
-    hWnd = CreateWindow( L"WindowClass", L"Files Drag & Drop", static_cast<DWORD>( Style::windowed ), x, y, width, height, 0, 0, hInstance, nullptr);
+    hWnd = CreateWindow(L"WindowClass", L"Files Drag & Drop", static_cast<DWORD>(Style::windowed), x, y, width, height, 0, 0, hInstance, nullptr);
 
     if (!hWnd)
         throw std::runtime_error("Couldn't create window because of reasons");
@@ -65,12 +65,15 @@ PAINTSTRUCT ps;
 LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     BorderlessWindow *window = reinterpret_cast<BorderlessWindow*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+    const LONG borderWidth = 8; //in pixels
+
     if (!window)
         return DefWindowProc(hWnd, message, wParam, lParam);
 
     switch (message) {
         case WM_KEYDOWN: {
-            switch ( wParam ) {
+            /*
+            switch (wParam) {
                 case VK_F5: {
                     window->borderlessResizeable = !window->borderlessResizeable;
                     break;
@@ -78,7 +81,7 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
                 case VK_F6: {
                     window->toggleShadow();
                     window->toggleBorderless();
-                    SetFocus( winId );
+                    SetFocus(winId);
                     break;
                 }
                 case VK_F7: {
@@ -86,22 +89,24 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
                     break;
                 }
             }
+            */
 
-            if ( wParam != VK_TAB ) return DefWindowProc( hWnd, message, wParam, lParam );
+            if (wParam != VK_TAB)
+                return DefWindowProc(hWnd, message, wParam, lParam);
 
-            SetFocus( winId );
+            SetFocus(winId);
             break;
         }
 
         // ALT + SPACE or F10 system menu
         case WM_SYSCOMMAND: {
-            if ( wParam == SC_KEYMENU ) {
+            if (wParam == SC_KEYMENU) {
                 RECT winrect;
-                GetWindowRect( hWnd, &winrect );
-                TrackPopupMenu( GetSystemMenu( hWnd, false ), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, hWnd, NULL);
+                GetWindowRect(hWnd, &winrect);
+                TrackPopupMenu(GetSystemMenu(hWnd, true), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, hWnd, NULL);
                 break;
             } else {
-                return DefWindowProc( hWnd, message, wParam, lParam );
+                return DefWindowProc(hWnd, message, wParam, lParam);
             }
         }
 
@@ -128,57 +133,56 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
         }
 
         case WM_NCHITTEST: {
-            if ( window->borderless )
+            if (window->borderless)
             {
-                if ( window->borderlessResizeable )
+                if (window->borderlessResizeable)
                 {
-                    const LONG borderWidth = 8; //in pixels
                     RECT winrect;
-                    GetWindowRect( hWnd, &winrect );
-                    long x = GET_X_LPARAM( lParam );
-                    long y = GET_Y_LPARAM( lParam );
+                    GetWindowRect(hWnd, &winrect);
+                    long x = GET_X_LPARAM(lParam);
+                    long y = GET_Y_LPARAM(lParam);
 
                     //bottom left corner
-                    if ( x >= winrect.left && x < winrect.left + borderWidth &&
-                         y < winrect.bottom && y >= winrect.bottom - borderWidth )
+                    if (x >= winrect.left && x < winrect.left + borderWidth &&
+                         y < winrect.bottom && y >= winrect.bottom - borderWidth)
                     {
                         return HTBOTTOMLEFT;
                     }
                     //bottom right corner
-                    if ( x < winrect.right && x >= winrect.right - borderWidth &&
-                         y < winrect.bottom && y >= winrect.bottom - borderWidth )
+                    if (x < winrect.right && x >= winrect.right - borderWidth &&
+                         y < winrect.bottom && y >= winrect.bottom - borderWidth)
                     {
                         return HTBOTTOMRIGHT;
                     }
                     //top left corner
-                    if ( x >= winrect.left && x < winrect.left + borderWidth &&
-                         y >= winrect.top && y < winrect.top + borderWidth )
+                    if (x >= winrect.left && x < winrect.left + borderWidth &&
+                         y >= winrect.top && y < winrect.top + borderWidth)
                     {
                         return HTTOPLEFT;
                     }
                     //top right corner
-                    if ( x < winrect.right && x >= winrect.right - borderWidth &&
-                         y >= winrect.top && y < winrect.top + borderWidth )
+                    if (x < winrect.right && x >= winrect.right - borderWidth &&
+                         y >= winrect.top && y < winrect.top + borderWidth)
                     {
                         return HTTOPRIGHT;
                     }
                     //left border
-                    if ( x >= winrect.left && x < winrect.left + borderWidth )
+                    if (x >= winrect.left && x < winrect.left + borderWidth)
                     {
                         return HTLEFT;
                     }
                     //right border
-                    if ( x < winrect.right && x >= winrect.right - borderWidth )
+                    if (x < winrect.right && x >= winrect.right - borderWidth)
                     {
                         return HTRIGHT;
                     }
                     //bottom border
-                    if ( y < winrect.bottom && y >= winrect.bottom - borderWidth )
+                    if (y < winrect.bottom && y >= winrect.bottom - borderWidth)
                     {
                         return HTBOTTOM;
                     }
                     //top border
-                    if ( y >= winrect.top && y < winrect.top + borderWidth )
+                    if (y >= winrect.top && y < winrect.top + borderWidth)
                     {
                         return HTTOP;
                     }
@@ -191,31 +195,31 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
 
         case WM_SIZE: {
             RECT winrect;
-            GetClientRect( hWnd, &winrect );
+            GetClientRect(hWnd, &winrect);
 
             WINDOWPLACEMENT wp;
-            wp.length = sizeof( WINDOWPLACEMENT );
-            GetWindowPlacement( hWnd, &wp );
-            if ( wp.showCmd == SW_MAXIMIZE ) {
-                QPushButton* pushButtonMaximize = mainPanel->findChild<QPushButton*>( "pushButtonMaximize" );
-                pushButtonMaximize->setStyleSheet( "#pushButtonMaximize {image: url(:/borderless/images/borderless-restore.png);} #pushButtonMaximize:hover { image: url(:/borderless/images/borderless-restore-hover.png); }" );
-                mainPanel->setGeometry( 16, 16, winrect.right - 32, winrect.bottom - 32 );
+            wp.length = sizeof(WINDOWPLACEMENT);
+            GetWindowPlacement(hWnd, &wp);
+            if (wp.showCmd == SW_MAXIMIZE) {
+                QPushButton* pushButtonMaximize = mainPanel->findChild<QPushButton*>("pushButtonMaximize");
+                pushButtonMaximize->setStyleSheet("#pushButtonMaximize {image: url(:/borderless/images/borderless-restore.png);} #pushButtonMaximize:hover { image: url(:/borderless/images/borderless-restore-hover.png); }");
+                mainPanel->setGeometry(borderWidth, borderWidth, winrect.right - borderWidth * 2, winrect.bottom - borderWidth * 2);
             } else {
-                QPushButton* pushButtonMaximize = mainPanel->findChild<QPushButton*>( "pushButtonMaximize" );
-                pushButtonMaximize->setStyleSheet( "#pushButtonMaximize {image: url(:/borderless/images/borderless-maximize.png);} #pushButtonMaximize:hover { image: url(:/borderless/images/borderless-maximize-hover.png); }" );
-                mainPanel->setGeometry( 8, 8, winrect.right - 16, winrect.bottom - 16 );
+                QPushButton* pushButtonMaximize = mainPanel->findChild<QPushButton*>("pushButtonMaximize");
+                pushButtonMaximize->setStyleSheet("#pushButtonMaximize {image: url(:/borderless/images/borderless-maximize.png);} #pushButtonMaximize:hover { image: url(:/borderless/images/borderless-maximize-hover.png); }");
+                mainPanel->setGeometry(borderWidth, borderWidth, winrect.right - borderWidth * 2, winrect.bottom - borderWidth * 2);
             }
             break;
         }
 
         case WM_GETMINMAXINFO: {
-            MINMAXINFO* minMaxInfo = ( MINMAXINFO* )lParam;
-            if ( window->minimumSize.required ) {
+            MINMAXINFO* minMaxInfo = (MINMAXINFO*)lParam;
+            if (window->minimumSize.required) {
                 minMaxInfo->ptMinTrackSize.x = window->getMinimumWidth();;
                 minMaxInfo->ptMinTrackSize.y = window->getMinimumHeight();
             }
 
-            if ( window->maximumSize.required ) {
+            if (window->maximumSize.required) {
                 minMaxInfo->ptMaxTrackSize.x = window->getMaximumWidth();
                 minMaxInfo->ptMaxTrackSize.y = window->getMaximumHeight();
             }
@@ -226,27 +230,27 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
 }
 
 void BorderlessWindow::toggleBorderless() {
-    if ( visible )
+    if (visible)
     {
-        Style newStyle = ( borderless ) ? Style::windowed : Style::aero_borderless;
-        SetWindowLongPtr( hWnd, GWL_STYLE, static_cast<LONG>( newStyle ) );
+        Style newStyle = (borderless) ? Style::windowed : Style::aero_borderless;
+        SetWindowLongPtr(hWnd, GWL_STYLE, static_cast<LONG>(newStyle));
 
         borderless = !borderless;
-        if ( newStyle == Style::aero_borderless ) {
+        if (newStyle == Style::aero_borderless) {
             toggleShadow();
         }
         //redraw frame
-        SetWindowPos( hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE );
+        SetWindowPos(hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
         //show();
     }
 }
 
 void BorderlessWindow::toggleShadow() {
-    if ( borderless ) {
+    if (borderless) {
         aeroShadow = !aeroShadow;
         const MARGINS shadow_on = { 1, 1, 1, 1 };
         const MARGINS shadow_off = { 0, 0, 0, 0 };
-        DwmExtendFrameIntoClientArea( hWnd, ( aeroShadow ) ? ( &shadow_on ) : ( &shadow_off ) );
+        DwmExtendFrameIntoClientArea(hWnd, (aeroShadow) ? (&shadow_on) : (&shadow_off));
     }
 }
 
@@ -259,12 +263,12 @@ bool BorderlessWindow::isResizeable() {
 }
 
 void BorderlessWindow::show() {
-    ShowWindow( hWnd, SW_SHOW );
+    ShowWindow(hWnd, SW_SHOW);
     visible = true;
 }
 
 void BorderlessWindow::hide() {
-    ShowWindow( hWnd, SW_HIDE );
+    ShowWindow(hWnd, SW_HIDE);
     visible = false;
 }
 
@@ -273,7 +277,7 @@ bool BorderlessWindow::isVisible() {
 }
 
 // Minimum size
-void BorderlessWindow::setMinimumSize( const int width, const int height ) {
+void BorderlessWindow::setMinimumSize(const int width, const int height) {
     this->minimumSize.required = true;
     this->minimumSize.width = width;
     this->minimumSize.height = height;
@@ -298,7 +302,7 @@ int BorderlessWindow::getMinimumHeight() {
 }
 
 // Maximum size
-void BorderlessWindow::setMaximumSize( const int width, const int height ) {
+void BorderlessWindow::setMaximumSize(const int width, const int height) {
     this->maximumSize.required = true;
     this->maximumSize.width = width;
     this->maximumSize.height = height;

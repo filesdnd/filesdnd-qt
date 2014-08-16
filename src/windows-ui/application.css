@@ -24,20 +24,8 @@
 /* System buttons */
 #pushButtonMaximize, #pushButtonMinimize, #pushButtonClose {
     border: none;
-    width: 14px;
-    height: 14px;
-}
-
-#pushButtonMaximize {
-    padding: 0 8px 0 8px;
-}
-
-#pushButtonMinimize {
-    padding: 0 7px 0 0;
-}
-
-#pushButtonClose {
-    padding: 0 0 0 7px;
+    width: 30px;
+    height: 26px;
 }
 
 #pushButtonMaximize {
