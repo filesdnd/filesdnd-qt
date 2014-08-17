@@ -11,10 +11,12 @@ HWND winId = 0;
 
 BorderlessPanel *BorderlessWindow::mainPanel;
 QApplication *BorderlessWindow::a;
+LONG BorderlessWindow::borderWidth = 8;
+HINSTANCE BorderlessWindow::hInstance = GetModuleHandle(NULL);
+bool BorderlessWindow::focus = true;
 
-BorderlessWindow::BorderlessWindow(QApplication *app, HBRUSH windowBackground, const int x, const int y, const int width, const int height, View *view) :
+BorderlessWindow::BorderlessWindow(QApplication *app, const int x, const int y, const int width, const int height, View *view) :
     hWnd(0),
-    hInstance(GetModuleHandle(NULL)),
     borderless(false),
     borderlessResizeable(true),
     aeroShadow(false),
@@ -31,7 +33,7 @@ BorderlessWindow::BorderlessWindow(QApplication *app, HBRUSH windowBackground, c
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = L"WindowClass";
-    wcx.hbrBackground = windowBackground;
+    wcx.hbrBackground = CreateSolidBrush(RGB(255, 255, 255));
     wcx.hCursor = LoadCursor(hInstance, IDC_ARROW);
     RegisterClassEx(&wcx);
     if (FAILED(RegisterClassEx(&wcx)))
@@ -65,7 +67,6 @@ PAINTSTRUCT ps;
 LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     BorderlessWindow *window = reinterpret_cast<BorderlessWindow*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
-    const LONG borderWidth = 8; //in pixels
 
     if (!window)
         return DefWindowProc(hWnd, message, wParam, lParam);
@@ -111,6 +112,8 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
         }
 
         case WM_SETFOCUS: {
+            focus = true;
+            RedrawWindow(hWnd, 0, 0, RDW_INVALIDATE);
             break;
         }
 
@@ -124,12 +127,36 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
         }
 
         case WM_KILLFOCUS: {
+            focus = false;
+            RedrawWindow(hWnd, 0, 0, RDW_INVALIDATE);
             break;
         }
 
         case WM_DESTROY: {
             PostQuitMessage(0);
             break;
+        }
+
+        case WM_PAINT:
+        {
+            PAINTSTRUCT ps;
+            HDC hdcPaint = BeginPaint(hWnd, &ps);
+            HBRUSH brush = CreateSolidBrush(RGB(255, 255, 255));
+            RECT r;
+
+            GetClientRect(hWnd, &r);
+            FillRect(hdcPaint, &r, brush);
+
+            SelectObject(hdcPaint, GetStockObject(DC_PEN));
+            SetDCPenColor(hdcPaint, RGB(150, 150, 150));
+            if (!focus && GetFocus() == 0)
+                Rectangle(hdcPaint, r.left + 1, r.top + 1, r.right - 1, r.bottom - 1);
+
+
+            DeleteObject(brush);
+            EndPaint(hWnd, &ps);
+
+            return 0;
         }
 
         case WM_NCHITTEST: {
@@ -215,7 +242,7 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
         case WM_GETMINMAXINFO: {
             MINMAXINFO* minMaxInfo = (MINMAXINFO*)lParam;
             if (window->minimumSize.required) {
-                minMaxInfo->ptMinTrackSize.x = window->getMinimumWidth();;
+                minMaxInfo->ptMinTrackSize.x = window->getMinimumWidth();
                 minMaxInfo->ptMinTrackSize.y = window->getMinimumHeight();
             }
 

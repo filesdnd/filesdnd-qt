@@ -169,7 +169,6 @@ void Controller::startView(QApplication *application)
     QRect geometry = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenNumber(_view));
     QSize size(775, 425);
     BorderlessWindow *window = new BorderlessWindow(application,
-                                                    CreateSolidBrush(RGB(255, 255, 255)),
                                                     (geometry.width() - size.width()) / 2,
                                                     (geometry.height() - size.height()) / 2,
                                                     size.width(), size.height(), _view);

@@ -21,9 +21,10 @@ class BorderlessWindow : public QObject
 
 public:
     HWND hWnd;
-    HINSTANCE hInstance;
+    static HINSTANCE hInstance;
+    static bool focus;
 
-    BorderlessWindow(QApplication *app, HBRUSH windowBackground, const int x, const int y, const int width, const int height, View *view);
+    BorderlessWindow(QApplication *app, const int x, const int y, const int width, const int height, View *view);
     ~BorderlessWindow();
     static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
     bool isVisible();
@@ -61,13 +62,14 @@ private:
     bool borderlessResizeable;
 
     struct sizeType {
-        sizeType() : required( false ), width( 0 ), height( 0 ) {}
+        sizeType() : required(false), width(0), height(0) {}
         bool required;
         int width;
         int height;
     };
 
     sizeType minimumSize;
+    static LONG borderWidth;
     sizeType maximumSize;
 };
 

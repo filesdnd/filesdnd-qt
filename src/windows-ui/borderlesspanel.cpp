@@ -8,6 +8,7 @@
 #include <QSpacerItem>
 
 #include "borderlesspanel.h"
+#include "borderlesswindow.h"
 
 #include <windowsx.h>
 
