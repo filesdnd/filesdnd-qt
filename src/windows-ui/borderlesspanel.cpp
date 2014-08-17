@@ -144,12 +144,12 @@ void BorderlessPanel::mousePressEvent(QMouseEvent *event) {
         if (event -> button() == Qt::LeftButton)
         {
             WINDOWPLACEMENT wp;
-            wp.length = sizeof( WINDOWPLACEMENT);
-            GetWindowPlacement( parentWindow(), &wp );
+            wp.length = sizeof(WINDOWPLACEMENT);
+            GetWindowPlacement(parentWindow(), &wp);
             if (wp.showCmd == SW_MAXIMIZE) {
-                ShowWindow( parentWindow(), SW_RESTORE );
+                ShowWindow(parentWindow(), SW_RESTORE);
             } else {
-                ShowWindow( parentWindow(), SW_MAXIMIZE );
+                ShowWindow(parentWindow(), SW_MAXIMIZE);
             }
         }
     }

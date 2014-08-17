@@ -83,10 +83,6 @@ Controller::Controller() :
     connect(_view, SIGNAL(cancelIncomingTransfert()),
             &_service, SLOT(deleteFileReset()));
 
-    connect(&_service, SIGNAL(historyChanged(const QList<HistoryElement>&)),
-            _view, SLOT(onHistoryChanged(const QList<HistoryElement>&)));
-    connect(&_service, SIGNAL(historyElementProgressUpdated(unsigned)),
-            _view, SLOT(historyElementProgressUpdated(unsigned)));
     connect(&_service, SIGNAL(serviceError(ServiceErrorState,bool)),
             _view, SLOT(onServiceError(ServiceErrorState,bool)));
     connect(&_service, SIGNAL(receivingFile(const QString&,int)),
@@ -108,7 +104,7 @@ Controller::Controller() :
 
     checkForBonjourState();
     _view->updateDevices();
-    _view->onHistoryChanged(_service.getHistory());
+    // TODO _view->onHistoryChanged(_service.getHistory());
 
     _bonjourBrowser->browseForServiceType(QLatin1String("_fdnd._tcp."));
 
@@ -159,10 +155,10 @@ void Controller::startView(QApplication *application)
 
 #if defined(Q_OS_WIN)
     // Stylesheet
-    QFile stylesheet(":/css/windows-ui/application.css");
-    if (stylesheet.open(QFile::ReadOnly)) {
-        QString styleSheet = stylesheet.readAll();
-        application->setStyleSheet( styleSheet );
+    QFile stylesheetFile(":/css/windows-ui/application.css");
+    if (stylesheetFile.open(QFile::ReadOnly)) {
+        QString stylesheet = stylesheetFile.readAll();
+        application->setStyleSheet(stylesheet);
     }
 
     // Create window

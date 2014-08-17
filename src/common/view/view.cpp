@@ -40,8 +40,6 @@ View::View(Model *model) :
     _aboutDialog(this),
     _settingsDialog(0),
     _updateDialog(this),
-    _historyGripButton(this),
-    _transfertsRunning(0),
     _infoWidget(0),
     _lastBonjourState(BONJOUR_SERVICE_OK),
     _trayTimer(this)
@@ -55,11 +53,6 @@ View::View(Model *model) :
     setFocus(Qt::ActiveWindowFocusReason);
 
     setWindowIcon(QIcon(CONFIG_APP_ICON));
-
-    // Manage history
-    ui->historyButtonWidget->layout()->addWidget(&_historyGripButton);
-    connect(&_historyGripButton, SIGNAL(clicked()), this, SLOT(slideHistory()));
-
     // Manage widget
     _widget = new Widget(this);
     connect(_widget, SIGNAL(normalSizeRequested()),
@@ -74,19 +67,11 @@ View::View(Model *model) :
     // Manage tray icon
     createTrayActions();
     createTrayIcon();
-    createContextMenuActions();
 
     // Manage font compatibility
     manageFonts();
 
-    // Context menu
-    ui->historyView->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(ui->historyView, SIGNAL(customContextMenuRequested(const QPoint&)),
-            this, SLOT(onHistoryViewContextMenuRequested(const QPoint&)));
-
     // Manage settings dialog
-    connect(&_settingsDialog, SIGNAL(historyPolicyChanged()),
-            this, SLOT(refreshHistoryView()));
     connect(&_settingsDialog, SIGNAL(refreshDevicesAvailability()),
             this, SLOT(onRefreshDevicesAvailability()));
     connect(&_settingsDialog, SIGNAL(serviceNameChanged()),
@@ -95,22 +80,11 @@ View::View(Model *model) :
             _widget, SLOT(updateWindowFlags()));
 
     _overlayMessageDisplay = new OverlayMessageDisplay(ui->devicesView);
-
-    refreshHistoryView();
-    initAnimations();
-
-    // On mac, the font size is bigger, and graphics problems happens
-#if defined(Q_OS_MACX)
-    ui->historyView->setMaximumWidth(ui->historyView->maximumWidth() + 15);
-    ui->historyView->setMinimumWidth(ui->historyView->minimumWidth() + 15);
-#endif
 }
 
 View::~View()
 {
     clearGrid();
-    clearHistory();  
-    clearAnimations();
 
     delete _overlayMessageDisplay;
 
@@ -121,14 +95,6 @@ View::~View()
     delete _serviceAction;
     delete _trayIconMenu;
     delete _trayIcon;
-
-    delete _historyInfo;
-    delete _historyOpenAction;
-    delete _deleteFromHistory;
-    delete _deleteFromDisk;
-    delete _clearHistory;
-    delete _historyClipboardCopy;
-    delete _historyOpenDownloadFolder;
 
     delete _widget;
     delete ui;
@@ -172,323 +138,6 @@ void View::manageFonts()
 #endif
 
     historyButtonTemplate.replace("#FONT_TEMPLATE#", fontStyle);
-    ui->openDownloadFolderButton->setStyleSheet(historyButtonTemplate);
-
-#if defined(Q_OS_MACX)
-    ui->historyView->setAttribute(Qt::WA_MacShowFocusRect, false);
-#endif
-}
-
-void View::onHistoryViewContextMenuRequested(const QPoint &pos)
-{
-    QListWidgetItem *item = ui->historyView->itemAt(pos);
-
-    if (item)
-    {
-        HistoryElementView *historyElement = qobject_cast<HistoryElementView *>(ui->historyView->itemWidget(item));
-        _rightClickHistoryElement = item;
-
-        switch (historyElement->getType())
-        {
-        case HISTORY_FILE_FOLDER_TYPE:
-            manageFileHistoryContextMenu(historyElement);
-            break;
-        default:
-            manageTextUrlHistoryContextMenu(historyElement);
-            break;
-        }
-
-        _contextMenu.exec(ui->historyView->mapToGlobal(pos));
-    }
-}
-
-void View::manageTextUrlHistoryContextMenu(HistoryElementView *historyElement)
-{
-    QString historyInfoString;
-    int maxCharDisplayed = 50;
-
-    _historyOpenAction->setEnabled(true);
-    _historyOpenDownloadFolder->setVisible(false);
-    _deleteFromDisk->setVisible(false);
-    _historyClipboardCopy->setVisible(true);
-
-    _deleteFromHistory->setEnabled(true);
-
-    if (historyElement->getType() == HISTORY_URL_TYPE)
-    {
-        _historyOpenAction->setVisible(true);
-        _historyOpenAction->setText(tr("Ouvrir le lien"));
-        _historyInfo->setIcon(QIcon(LINK_ICON));
-    }
-    else
-    {
-        _historyOpenAction->setVisible(false);
-        _historyInfo->setIcon(QIcon(TEXT_ICON));
-    }
-
-    historyInfoString = historyElement->getText().left(maxCharDisplayed);
-    if (historyElement->getText().size() > maxCharDisplayed)
-        historyInfoString.append(" ...");
-
-    _historyInfo->setText(historyInfoString);
-}
-
-void View::manageFileHistoryContextMenu(HistoryElementView *historyElement)
-{
-    QString info = historyElement->getText();
-    QFileInfo file(SettingsManager::getDestinationFolder() + "/" + info);
-    bool enabled;
-
-    _historyOpenDownloadFolder->setVisible(true);
-    _historyOpenAction->setVisible(true);
-    _deleteFromDisk->setVisible(true);
-    _historyClipboardCopy->setVisible(false);
-
-    if (file.isDir())
-    {
-        _historyOpenAction->setIcon(QIcon(FOLDER_ICON));
-        _historyOpenAction->setText(tr("Ouvrir le dossier"));
-        _historyInfo->setIcon(QIcon(FOLDER_ICON));
-    }
-    else
-    {
-        _historyOpenAction->setIcon(QIcon(HISTORY_LAUNCH_ICON));
-        _historyOpenAction->setText(tr("Ouvrir le fichier"));
-        _historyInfo->setIcon(QIcon(FILE_ICON));
-    }
-    info.append(" (").append(historyElement->getFileSize()).append(")");
-    _historyInfo->setText(info);
-    _deleteFromHistory->setEnabled(!historyElement->isDownloading());
-
-    enabled = (historyElement->isDownloading()
-               || !FileHelper::exists(historyElement->getText()));
-    _historyOpenAction->setEnabled(!enabled);
-    _deleteFromDisk->setEnabled(!enabled);
-}
-
-void View::historyElementProgressUpdated(unsigned progress)
-{
-    if (ui->historyView->count() > 0)
-    {
-        QListWidgetItem *item = ui->historyView->item(0);
-        HistoryElementView *elt = qobject_cast<HistoryElementView *>(ui->historyView->itemWidget(item));
-
-        if (elt->getType() == HISTORY_FILE_FOLDER_TYPE)
-        {
-            if (progress == 100)
-                refreshAllHistory();
-            else
-            {
-                elt->setProgress(progress);
-                item->setSizeHint(QSize(0, elt->sizeHint().height()));
-            }
-        }
-    }
-}
-
-void View::clearAnimations()
-{
-    delete _slidingWidgetAnimation;
-    delete _HistoryButtonAnimation;
-    delete _devicesViewAnimation;
-    delete _slideAnimation;
-}
-
-void View::initAnimations()
-{
-    _slidingWidgetAnimation = new QPropertyAnimation(ui->slidingWidget, "geometry");
-    _slidingWidgetAnimation->setDuration(HISTORY_ANIMATION_TIMER);
-
-    _HistoryButtonAnimation = new QPropertyAnimation(ui->historyButtonWidget, "geometry");
-    _HistoryButtonAnimation->setDuration(HISTORY_ANIMATION_TIMER);
-
-    _devicesViewAnimation = new QPropertyAnimation(ui->devicesView, "geometry");
-    _devicesViewAnimation->setDuration(HISTORY_ANIMATION_TIMER);
-
-    _slideAnimation = new QParallelAnimationGroup();
-    _slideAnimation->addAnimation(_slidingWidgetAnimation);
-    _slideAnimation->addAnimation(_HistoryButtonAnimation);
-    _slideAnimation->addAnimation(_devicesViewAnimation);
-
-    _slidingWidgetAnimation->setEasingCurve(QEasingCurve::OutQuint);
-    _HistoryButtonAnimation->setEasingCurve(QEasingCurve::OutQuint);
-    _devicesViewAnimation->setEasingCurve(QEasingCurve::OutQuint);
-}
-
-void View::resetLeftSlidePositions()
-{
-    _slidingWidgetAnimation->setStartValue(ui->slidingWidget->geometry());
-    _slidingWidgetAnimation->setEndValue(QRect(-(ui->slidingWidget->width()),
-                         0,
-                         ui->slidingWidget->width(),
-                         ui->slidingWidget->height()));
-    _HistoryButtonAnimation->setStartValue(ui->historyButtonWidget->geometry());
-    _HistoryButtonAnimation->setEndValue(QRect(0,
-                                  0,
-                                  ui->historyButtonWidget->width(),
-                                  ui->historyButtonWidget->height()));
-    _devicesViewAnimation->setStartValue(ui->devicesView->geometry());
-    _devicesViewAnimation->setEndValue(QRect(ui->historyButtonWidget->width(),
-                                  0,
-                                  width() - ui->historyButtonWidget->width() ,
-                                  ui->devicesView->height()));
-}
-
-void View::resetRightSlidePositions()
-{
-    _slidingWidgetAnimation->setStartValue(ui->slidingWidget->geometry());
-    _slidingWidgetAnimation->setEndValue(QRect(0,
-                         0,
-                         ui->slidingWidget->width(),
-                         ui->slidingWidget->height()));
-    _HistoryButtonAnimation->setStartValue(QRect(0,
-                                  0,
-                                  ui->historyButtonWidget->width(),
-                                  ui->historyButtonWidget->height()));
-    _HistoryButtonAnimation->setEndValue(QRect(ui->historyView->width(),
-                                  0,
-                                  ui->historyButtonWidget->width(),
-                                  ui->historyButtonWidget->height()));
-    _devicesViewAnimation->setStartValue(QRect(ui->historyButtonWidget->width(),
-                                  0,
-                                  width() - ui->historyButtonWidget->width() ,
-                                  ui->devicesView->height()));
-    _devicesViewAnimation->setEndValue(QRect(ui->historyButtonWidget->width() + ui->historyView->width(),
-                                  0,
-                                  width() - ui->historyButtonWidget->width() - ui->historyView->width(),
-                                  ui->devicesView->height()));
-}
-
-void View::slideHistory()
-{
-    _slideAnimation->disconnect(this);
-    if (_historyGripButton.leftState())
-    {
-        _historyGripButton.rightArrow();
-        ui->historyButtonWidget->setEnabled(false);
-
-        connect(_slideAnimation, SIGNAL(finished()), this, SLOT(onLeftAnimationFinished()));
-
-        resetLeftSlidePositions();
-        _slideAnimation->setDirection(QAbstractAnimation::Forward);
-        _slideAnimation->start();
-
-    }
-    else
-    {
-        _historyGripButton.leftArrow();
-        ui->historyButtonWidget->setEnabled(false);
-
-        connect(_slideAnimation, SIGNAL(finished()), this, SLOT(onRightAnimationFinished()));
-
-        resetRightSlidePositions();
-        _slideAnimation->setDirection(QAbstractAnimation::Forward);
-        _slideAnimation->start();
-
-        QTimer::singleShot(20, this, SLOT(showSlidingWidget()));
-    }
-}
-
-void View::showSlidingWidget()
-{
-    layout()->setEnabled(false);
-    ui->slidingWidget->show();
-}
-
-void View::onLeftAnimationFinished()
-{
-    ui->slidingWidget->hide();
-    ui->historyButtonWidget->setEnabled(true);
-}
-
-void View::onRightAnimationFinished()
-{
-    layout()->setEnabled(true);
-    ui->historyButtonWidget->setEnabled(true);
-}
-
-void View::refreshHistoryView()
-{
-    bool enabled;
-    switch (SettingsManager::getHistoryDisplayPolicy())
-    {
-    case ON_SERVICE_ENABLED:
-        enabled = ui->actionService->isChecked();
-        break;
-    case ALWAYS:
-        enabled = true;
-        break;
-    case NEVER:
-        enabled = false;
-        break;
-    }
-
-    if (!enabled)
-    {
-        ui->devicesView->setStyleSheet("#devicesView"
-                                       "{"
-                                           "background-color: white;"
-                                           "border-left: 1px solid gray;"
-                                           "border-right: 1px solid gray;"
-                                           "border-bottom: 1px solid gray;"
-                                           "border-top: 1px solid gray;"
-                                       "}");
-    }
-    else
-    {
-        ui->devicesView->setStyleSheet("#devicesView"
-                                       "{"
-                                           "background-color: white;"
-                                           "border-right: 1px solid gray;"
-                                           "border-bottom: 1px solid gray;"
-                                           "border-top: 1px solid gray;"
-                                       "}");
-    }
-
-    ui->slidingWidget->setVisible(enabled);
-    ui->historyButtonWidget->setVisible(enabled);
-    _historyGripButton.leftArrow();
-}
-
-void View::refreshAllHistory()
-{
-    for (int i = 0; i < ui->historyView->count(); ++i)
-    {
-        QListWidgetItem *item = ui->historyView->item(i);
-        HistoryElementView *elt = qobject_cast<HistoryElementView *>(ui->historyView->itemWidget(item));
-
-        elt->refresh();
-        item->setSizeHint(QSize(0, elt->sizeHint().height()));
-    }
-}
-
-void View::onHistoryChanged(const QList<HistoryElement> &history)
-{
-    clearHistory();
-    foreach(HistoryElement elt, history)
-    {
-        HistoryElementView *historyViewElement = new HistoryElementView(elt.getDateTime("dd/MM - hh:mm"), elt.getText(), elt.getType());
-        QListWidgetItem *item = new QListWidgetItem();
-
-        connect(historyViewElement, SIGNAL(cancelIncomingTransfert()),
-                this, SLOT(onCancelIncomingTransfert()));
-
-        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height()));
-        ui->historyView->addItem(item);
-        ui->historyView->setItemWidget(item, historyViewElement);
-    }
-}
-
-void View::clearHistory()
-{
-    QListWidgetItem *item;
-
-    while (ui->historyView->count() != 0)
-    {
-         item = ui->historyView->takeItem(0);
-
-        delete item;
-    }
 }
 
 void View::clearGrid()
@@ -506,11 +155,6 @@ void View::clearCenterInfoWidget()
         delete _infoWidget;
         _infoWidget = 0;
     }
-}
-
-void View::on_actionQuitter_triggered()
-{
-    qApp->quit();
 }
 
 QList<QPair<unsigned, unsigned> > View::getPosition(unsigned size)
@@ -724,11 +368,6 @@ void View::onDeviceUnavailable(const QString &uid, TransfertState state)
     if (device)
     {
         device->setAvailable(false, state);
-
-        if (state == CONNECTING)
-        {
-            ++_transfertsRunning;
-        }
     }
     _widget->setDeviceUnavailable(uid);
 }
@@ -770,7 +409,6 @@ void View::onDeviceAvailable(const QString &uid, TransfertState state)
     if (device)
     {
         device->setAvailable(true, state);
-        _transfertsRunning;
     }
 
     _widget->setDeviceAvailable(uid);
@@ -796,84 +434,6 @@ DeviceView* View::getDeviceByUID(const QString& uid) const
         }
     }
     return NULL;
-}
-
-void View::createContextMenuActions()
-{
-    _historyOpenAction = new QAction(QIcon(HISTORY_LAUNCH_ICON), tr("Ouvrir le fichier"), &_contextMenu);
-    connect(_historyOpenAction, SIGNAL(triggered()), this, SLOT(onHistoryOpenActionTriggered()));
-
-    _deleteFromHistory = new QAction(QIcon(HISTORY_REMOVE_ICON), tr("Supprimer de l'historique"), &_contextMenu);
-    connect(_deleteFromHistory, SIGNAL(triggered()), this, SLOT(onDeleteFromHistoryTriggered()));
-
-    _deleteFromDisk = new QAction(QIcon(HISTORY_DELETE_FILE_ICON), tr("Supprimer le fichier du disque"), &_contextMenu);
-    connect(_deleteFromDisk, SIGNAL(triggered()), this, SLOT(onDeleteFromDiskTriggered()));
-
-    _clearHistory = new QAction(QIcon(HISTORY_CLEAR_HISTORY_ICON), tr("Vider l'historique"), &_contextMenu);
-    connect(_clearHistory, SIGNAL(triggered()), this, SLOT(onClearHistoryTriggered()));
-
-    _historyClipboardCopy = new QAction(QIcon(CLIPBOARD_ICON), tr("Copier dans le presse papier"), &_contextMenu);
-    connect(_historyClipboardCopy, SIGNAL(triggered()), this, SLOT(onClipboardActionTriggered()));
-
-    _historyInfo = new QAction(&_contextMenu);
-    _historyInfo->setEnabled(false);
-
-    _historyOpenDownloadFolder = new QAction(QIcon(FOLDER_ICON), tr("Ouvrir le dossier de téléchargement"), &_contextMenu);
-    connect(_historyOpenDownloadFolder, SIGNAL(triggered()), this, SLOT(onOpenDownloadFolderTriggered()));
-
-    _contextMenu.addAction(_historyInfo);
-    _contextMenu.addSeparator();
-    _contextMenu.addAction(_historyClipboardCopy);
-    _contextMenu.addAction(_historyOpenAction);
-    _contextMenu.addAction(_deleteFromHistory);
-    _contextMenu.addAction(_deleteFromDisk);
-    _contextMenu.addSeparator();
-    _contextMenu.addAction(_historyOpenDownloadFolder);
-    _contextMenu.addAction(_clearHistory);
-}
-
-void View::onClearHistoryTriggered()
-{
-    emit clearHistoryTriggered();
-    clearHistory();
-}
-
-void View::onOpenDownloadFolderTriggered()
-{
-    QDir dlDir;
-
-    dlDir.mkpath(SettingsManager::getDestinationFolder());
-    FileHelper::openURL("file:///" + QDir::toNativeSeparators(SettingsManager::getDestinationFolder()));
-}
-
-void View::onDeleteFromDiskTriggered()
-{
-    HistoryElementView *element = qobject_cast<HistoryElementView *>(ui->historyView->itemWidget(_rightClickHistoryElement));
-
-    FileHelper::deleteFileFromDisk(element->getText());
-    onDeleteFromHistoryTriggered();
-}
-
-void View::onDeleteFromHistoryTriggered()
-{
-    int row = ui->historyView->row(_rightClickHistoryElement);
-    QListWidgetItem *item = ui->historyView->takeItem(row);
-
-    delete item;
-
-    emit deleteFromHistory(row);
-}
-
-void View::onClipboardActionTriggered()
-{
-    HistoryElementView *elementView = qobject_cast<HistoryElementView *>(ui->historyView->itemWidget(_rightClickHistoryElement));
-
-    FileHelper::saveToClipboard(elementView->getText());
-}
-
-void View::onHistoryOpenActionTriggered()
-{
-    openActionHistoryItem(_rightClickHistoryElement);
 }
 
 void View::createTrayActions()
@@ -918,8 +478,6 @@ void View::createTrayActions()
 
 void View::onSettingsActionTriggered()
 {
-//    show();
-//    _widget->startFadeOut();
     _settingsDialog.show();
 }
 
@@ -1001,42 +559,14 @@ void View::onShow()
     emit showWindow();
 }
 
-void View::on_action_propos_Qt_triggered()
-{
-    qApp->aboutQt();
-}
-
-void View::on_action_propos_triggered()
-{
-    _aboutDialog.showAbout();
-}
-
-void View::on_actionParam_tres_triggered()
-{
-    _settingsDialog.show();
-}
-
 void View::onServiceTriggered()
 {
     if (!_serviceAction->isChecked())
     {
-        ui->actionService->setChecked(false);
         stopService();
     }
     else
     {
-        startService();
-        ui->actionService->setChecked(true);
-    }
-}
-
-void View::on_actionService_triggered()
-{
-    if (!ui->actionService->isChecked())
-        stopService();
-    else
-    {
-        _serviceAction->setChecked(true);
         startService();
     }
 }
@@ -1064,13 +594,9 @@ void View::onServiceError(ServiceErrorState error, bool isCritical)
 
 void View::stopService()
 {
-    ui->actionService->setToolTip(tr("Activer la réception"));
-    ui->actionService->setChecked(false);
-
     _serviceAction->setToolTip(tr("Activer la réception"));
     _serviceAction->setChecked(false);
 
-    refreshHistoryView();
     updateTrayTooltip();
 
     emit unregisterService();
@@ -1080,13 +606,9 @@ void View::startService()
 {
     showTrayMessage(tr("Files Drag & Drop est actif"));
 
-    ui->actionService->setToolTip(tr("Arrêter la réception"));
-    ui->actionService->setChecked(true);
-
     _serviceAction->setToolTip(tr("Arrêter la réception"));
     _serviceAction->setChecked(true);
 
-    refreshHistoryView();
     updateTrayTooltip();
 
     emit registerService();
@@ -1097,25 +619,6 @@ void View::onFileTooBig()
     QMessageBox::warning(this, tr("Echec de l'envoi"), tr("Le fichier est trop volumineux pour le périphérique."));
 }
 
-void View::openActionHistoryItem(QListWidgetItem *item)
-{
-    QFileInfo fileInfo;
-    HistoryElementView *elementView = qobject_cast<HistoryElementView *>(ui->historyView->itemWidget(item));
-
-    switch (elementView->getType())
-    {
-    case HISTORY_FILE_FOLDER_TYPE:
-        fileInfo = QFileInfo(SettingsManager::getDestinationFolder() + "/" + elementView->getText());
-
-        if (fileInfo.exists())
-            FileHelper::openURL("file:///" + fileInfo.absoluteFilePath());
-        break;
-    case HISTORY_URL_TYPE:
-        FileHelper::openURL(elementView->getText());
-        break;
-    }
-}
-
 void View::onUpdateNeeded(const QString &version, const QString &note)
 {
     _updateDialog.updateAndShow(version, note);
@@ -1124,11 +627,6 @@ void View::onUpdateNeeded(const QString &version, const QString &note)
 void View::onCancelIncomingTransfert()
 {
     emit cancelIncomingTransfert();
-}
-
-void View::on_historyView_itemDoubleClicked(QListWidgetItem *item)
-{
-    openActionHistoryItem(item);
 }
 
 void View::focusInEvent(QFocusEvent *)
@@ -1172,9 +670,4 @@ void View::onReceivingText(const QString &text)
 {
     if (!isVisible() || isMinimized())
         showTrayMessage(tr("Réception d'un texte : ") + text);
-}
-
-void View::on_openDownloadFolderButton_clicked()
-{
-    onOpenDownloadFolderTriggered();
 }

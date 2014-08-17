@@ -33,131 +33,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QWidget" name="slidingWidget" native="true">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QLabel" name="historyLabel">
-        <property name="styleSheet">
-         <string notr="true">background-color: white;
-padding : 5px 1px 5px 1px;</string>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Historique&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QListWidget" name="historyView">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>180</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>180</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QListWidget
-{
-	border: 0px;
-}</string>
-        </property>
-        <property name="alternatingRowColors">
-         <bool>true</bool>
-        </property>
-        <property name="verticalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <property name="horizontalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="openDownloadFolderButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Tahoma</family>
-          <pointsize>7</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="text">
-         <string>Dossier de téléchargement</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../../resources.qrc">
-          <normaloff>:/images/drive-download.png</normaloff>:/images/drive-download.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QWidget" name="historyButtonWidget" native="true">
-     <property name="styleSheet">
-      <string notr="true">background-color: white;</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-     </layout>
-    </widget>
+    <widget class="ConfigPanel" name="configPanel" native="true"/>
    </item>
    <item>
     <widget class="QWidget" name="devicesView" native="true">
@@ -254,72 +130,16 @@ padding : 5px 1px 5px 1px;</string>
     </widget>
    </item>
   </layout>
-  <action name="actionQuitter">
-   <property name="icon">
-    <iconset resource="../../resources.qrc">
-     <normaloff>:/images/control-power.png</normaloff>:/images/control-power.png</iconset>
-   </property>
-   <property name="text">
-    <string>Quitter</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::NoRole</enum>
-   </property>
-  </action>
-  <action name="action_propos">
-   <property name="icon">
-    <iconset resource="../../resources.qrc">
-     <normaloff>:/images/information-octagon.png</normaloff>:/images/information-octagon.png</iconset>
-   </property>
-   <property name="text">
-    <string>À propos</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::NoRole</enum>
-   </property>
-  </action>
-  <action name="actionParam_tres">
-   <property name="icon">
-    <iconset resource="../../resources.qrc">
-     <normaloff>:/images/wrench.png</normaloff>:/images/wrench.png</iconset>
-   </property>
-   <property name="text">
-    <string>Paramètres</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::NoRole</enum>
-   </property>
-  </action>
-  <action name="action_propos_Qt">
-   <property name="icon">
-    <iconset resource="../../resources.qrc">
-     <normaloff>:/images/qticon.png</normaloff>:/images/qticon.png</iconset>
-   </property>
-   <property name="text">
-    <string>À propos Qt</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::NoRole</enum>
-   </property>
-  </action>
-  <action name="actionService">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Réception</string>
-   </property>
-   <property name="toolTip">
-    <string>Démarrer le service</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::NoRole</enum>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="../../resources.qrc"/>
- </resources>
+ <customwidgets>
+  <customwidget>
+   <class>ConfigPanel</class>
+   <extends>QWidget</extends>
+   <header>configpanel.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
  <connections/>
 </ui>
