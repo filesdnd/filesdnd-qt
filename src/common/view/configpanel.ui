@@ -85,8 +85,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../resources.qrc">
-         <normaloff>:/images/arrow-circle-double.png</normaloff>:/images/arrow-circle-double.png</iconset>
+        <iconset>
+         <normaloff>:/images/refresh-blue-arrows.png</normaloff>:/images/refresh-blue-arrows.png</iconset>
        </property>
        <property name="flat">
         <bool>true</bool>
@@ -161,10 +161,6 @@
         <property name="text">
          <string>Download Folder</string>
         </property>
-        <property name="icon">
-         <iconset resource="../../resources.qrc">
-          <normaloff>:/images/drive-download.png</normaloff>:/images/drive-download.png</iconset>
-        </property>
         <property name="flat">
          <bool>true</bool>
         </property>
@@ -206,10 +202,6 @@
        <widget class="QPushButton" name="settingsButton">
         <property name="text">
          <string>Settings</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../../resources.qrc">
-          <normaloff>:/images/wrench.png</normaloff>:/images/wrench.png</iconset>
         </property>
         <property name="flat">
          <bool>true</bool>
@@ -259,10 +251,6 @@
         <property name="text">
          <string>About</string>
         </property>
-        <property name="icon">
-         <iconset resource="../../resources.qrc">
-          <normaloff>:/images/information-octagon.png</normaloff>:/images/information-octagon.png</iconset>
-        </property>
         <property name="flat">
          <bool>true</bool>
         </property>
@@ -286,8 +274,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -1,60 +1,56 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/control-power.png</file>
-        <file>images/information-octagon.png</file>
-        <file>images/wrench.png</file>
-        <file>images/android_icon_large.png</file>
-        <file>images/windows_icon_large.png</file>
-        <file>images/apple_icon_large_2.png</file>
-        <file>images/cross_gray.png</file>
-        <file>images/cross_gray_red.png</file>
-        <file>images/cross_red.png</file>
-        <file>images/apple_icon_small.png</file>
-        <file>images/windows_icon_small.png</file>
-        <file>images/android_icon_small.png</file>
-        <file>images/arrow-out_red.png</file>
-        <file>images/arrow-out.png</file>
-        <file>images/arrow-out_gray.png</file>
-        <file>images/qticon.png</file>
-        <file>images/ajax-loader.gif</file>
-        <file>images/colors_settings.png</file>
-        <file>images/general_settings.png</file>
-        <file alias="loading">images/ajax-loader_bis.gif</file>
-        <file>images/prompt.png</file>
-        <file>images/arrow-circle-double.png</file>
-        <file>images/folder-horizontal-open.png</file>
-        <file>images/alert.png</file>
-        <file alias="fileIcon">images/document.png</file>
-        <file alias="icon_tray">images/icon_tray.png</file>
-        <file>images/clear_history.png</file>
-        <file>images/launch_file.png</file>
-        <file>images/remove_history.png</file>
-        <file>images/bonjour_logo.png</file>
-        <file>images/nodevice_logo.png</file>
-        <file>images/historyArrowBitmap.jpg</file>
-        <file>images/historyArrowLeft.png</file>
-        <file>images/historyArrowRight.png</file>
-        <file alias="icon_pc">images/icon_pc.png</file>
-        <file alias="ic_launcher">images/ic_launcher.png</file>
-        <file>images/update_icon.png</file>
-        <file>images/logo_ads.png</file>
-        <file>images/widgetIcon.png</file>
-        <file>images/logo_ads_blue.png</file>
-        <file>images/exclamation.png</file>
-        <file>images/terminal.png</file>
-        <file>images/drive-download.png</file>
-        <file>images/ic_launcher_hd.icns</file>
-        <file>images/linux_icon_large.png</file>
-        <file>images/linux_icon_small.png</file>
-        <file alias="ic_launcher_grey">images/ic_launcher_grey.png</file>
-        <file alias="ic_launcher_black_white">images/ic_launcher_black_white.png</file>
-        <file alias="ic_launcher_white_black">images/ic_launcher_white_black.png</file>
-        <file alias="ic_launcher_grey_white">images/ic_launcher_grey_white.png</file>
-        <file>images/script-text.png</file>
-        <file>images/link.png</file>
-        <file>images/clipboard-paste.png</file>
-        <file>images/arrow-out_white.png</file>
-        <file>images/crosses-small.png</file>
+        <file>images/flat/download-folder-flat.png</file>
+        <file>images/flat/download-folder-flat-hover.png</file>
+        <file>images/devices/android_icon_large.png</file>
+        <file>images/devices/android_icon_small.png</file>
+        <file>images/devices/apple_icon_large_2.png</file>
+        <file>images/devices/apple_icon_small.png</file>
+        <file>images/devices/linux_icon_large.png</file>
+        <file>images/devices/linux_icon_small.png</file>
+        <file>images/devices/windows_icon_large.png</file>
+        <file>images/devices/windows_icon_small.png</file>
+        <file>images/icons/alert.png</file>
+        <file>images/icons/arrow-circle-double.png</file>
+        <file>images/icons/arrow-out.png</file>
+        <file>images/icons/arrow-out_gray.png</file>
+        <file>images/icons/arrow-out_red.png</file>
+        <file>images/icons/arrow-out_white.png</file>
+        <file>images/icons/clear_history.png</file>
+        <file>images/icons/clipboard-paste.png</file>
+        <file>images/icons/control-power.png</file>
+        <file>images/icons/cross_gray.png</file>
+        <file>images/icons/cross_gray_red.png</file>
+        <file>images/icons/cross_red.png</file>
+        <file>images/icons/crosses-small.png</file>
+        <file alias="fileIcon">images/icons/document.png</file>
+        <file>images/icons/drive-download.png</file>
+        <file>images/icons/exclamation.png</file>
+        <file>images/icons/folder-horizontal-open.png</file>
+        <file>images/icons/information-octagon.png</file>
+        <file>images/icons/launch_file.png</file>
+        <file>images/icons/link.png</file>
+        <file>images/icons/qticon.png</file>
+        <file>images/icons/remove_history.png</file>
+        <file>images/icons/script-text.png</file>
+        <file>images/icons/terminal.png</file>
+        <file>images/icons/update_icon.png</file>
+        <file>images/icons/wrench.png</file>
+        <file alias="ic_launcher">images/logo/ic_launcher.png</file>
+        <file alias="ic_launcher_black_white">images/logo/ic_launcher_black_white.png</file>
+        <file alias="ic_launcher_grey">images/logo/ic_launcher_grey.png</file>
+        <file alias="ic_launcher_grey_white">images/logo/ic_launcher_grey_white.png</file>
+        <file>images/logo/ic_launcher_hd.icns</file>
+        <file>images/logo/ic_launcher_hd.png</file>
+        <file alias="ic_launcher_white_black">images/logo/ic_launcher_white_black.png</file>
+        <file>images/logo/logo_ads.png</file>
+        <file>images/logo/logo_ads_blue.png</file>
+        <file>images/other/bonjour_logo.png</file>
+        <file>images/other/colors_settings.png</file>
+        <file>images/other/general_settings.png</file>
+        <file>images/other/nodevice_logo.png</file>
+        <file>images/other/prompt.png</file>
+        <file>images/other/widgetIcon.png</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>

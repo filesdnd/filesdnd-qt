@@ -19,7 +19,7 @@ TRANSLATIONS = \
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
 
-ICON = "$$PWD/images/ic_launcher_hd.icns"
+ICON = "$$PWD/images/logo/ic_launcher_hd.icns"
 
 win32: QMAKE_CXXFLAGS += -W4 -DNOMINMAX
 unix: QMAKE_CXXFLAGS += -Wall
@@ -44,7 +44,8 @@ INCLUDEPATH += \
     "$$PWD/common/helpers/" \
     "$$PWD/common/threads/" \
     "$$PWD/common/udp/" \
-    "$$PWD/common/view/"
+    "$$PWD/common/view/" \
+    "$$PWD/common/other/"
 
 # Windows UI
 win32:include("windows-ui/windows-ui.pri")

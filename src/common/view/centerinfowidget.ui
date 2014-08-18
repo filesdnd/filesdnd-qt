@@ -35,7 +35,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../resources.qrc">:/images/nodevice_logo.png</pixmap>
+        <pixmap resource="../../resources.qrc">:/images/other/nodevice_logo.png</pixmap>
        </property>
       </widget>
      </item>

@@ -2,6 +2,7 @@
 #define CONFIGPANEL_H
 
 #include <QWidget>
+#include <QMouseEvent>
 
 namespace Ui {
 class ConfigPanel;

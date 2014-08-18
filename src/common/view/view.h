@@ -38,7 +38,6 @@
 #include "historyelement.h"
 #include "historyelementview.h"
 #include "dialogs/aboutdialog.h"
-#include "historygripbutton.h"
 #include "centerinfowidget.h"
 #include "model.h"
 #include "helpers/servicehelper.h"

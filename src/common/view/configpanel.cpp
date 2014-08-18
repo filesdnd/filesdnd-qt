@@ -1,7 +1,9 @@
 #include "configpanel.h"
 #include "ui_configpanel.h"
+#include "appconfig.h"
 
 #include <QFile>
+#include <QDebug>
 
 ConfigPanel::ConfigPanel(QWidget *parent) :
     QWidget(parent),
@@ -10,7 +12,7 @@ ConfigPanel::ConfigPanel(QWidget *parent) :
     ui->setupUi(this);
 
     // Stylesheet
-    QFile stylesheetFile(":/css/common/css/configpanel.css");
+    QFile stylesheetFile(CONFIG_PANEL_CSS);
     if (stylesheetFile.open(QFile::ReadOnly)) {
         QString stylesheet = stylesheetFile.readAll();
         setStyleSheet(stylesheet);

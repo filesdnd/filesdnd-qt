@@ -155,7 +155,7 @@ void Controller::startView(QApplication *application)
 
 #if defined(Q_OS_WIN)
     // Stylesheet
-    QFile stylesheetFile(":/css/windows-ui/application.css");
+    QFile stylesheetFile(WINDOWS_APP_CSS);
     if (stylesheetFile.open(QFile::ReadOnly)) {
         QString stylesheet = stylesheetFile.readAll();
         application->setStyleSheet(stylesheet);

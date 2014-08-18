@@ -1,8 +1,8 @@
 SOURCES += \
-    common/controller.cpp \
-    common/model.cpp \
-    common/fdndapplication.cpp \
-    common/updatemanager.cpp \
+    common/other/controller.cpp \
+    common/other/model.cpp \
+    common/other/fdndapplication.cpp \
+    common/other/updatemanager.cpp \
     common/config/appconfig.cpp \
     common/entities/device.cpp \
     common/entities/datastruct.cpp \
@@ -29,7 +29,6 @@ SOURCES += \
     common/view/dialogs/settingsdialog.cpp \
     common/view/historyelementview.cpp \
     common/view/centerinfowidget.cpp \
-    common/view/historygripbutton.cpp \
     common/view/dialogs/updatedialog.cpp \
     common/view/widget.cpp \
     common/view/overlaymessagedisplay.cpp \
@@ -38,10 +37,10 @@ SOURCES += \
     common/view/configpanel.cpp
 
 HEADERS += \
-    common/controller.h \
-    common/model.h \
-    common/fdndapplication.h \
-    common/updatemanager.h \
+    common/other/controller.h \
+    common/other/model.h \
+    common/other/fdndapplication.h \
+    common/other/updatemanager.h \
     common/config/appconfig.h \
     common/entities/device.h \
     common/entities/datastruct.h \
@@ -68,7 +67,6 @@ HEADERS += \
     common/view/dialogs/settingsdialog.h \
     common/view/historyelementview.h \
     common/view/centerinfowidget.h \
-    common/view/historygripbutton.h \
     common/view/dialogs/updatedialog.h \
     common/view/widget.h \
     common/view/overlaymessagedisplay.h \
@@ -89,4 +87,4 @@ FORMS += \
     common/view/configpanel.ui
 
 OTHER_FILES += \
-    common/css/configpanel.css
+    common/configpanel.css
