@@ -66,6 +66,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="refreshButton">
+        <property name="statusTip">
+         <string>Refresh devices</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -156,7 +159,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../resources.qrc">:/images/flat/download-flat.png</pixmap>
+         <pixmap resource="../../resources.qrc">:/images/flat/download-flat-v3.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>

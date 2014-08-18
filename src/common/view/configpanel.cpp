@@ -7,6 +7,7 @@
 
 ConfigPanel::ConfigPanel(QWidget *parent) :
     QWidget(parent),
+    _refreshMovie(ANIMATED_REFRESH_ICON),
     ui(new Ui::ConfigPanel)
 {
     ui->setupUi(this);
@@ -17,9 +18,28 @@ ConfigPanel::ConfigPanel(QWidget *parent) :
         QString stylesheet = stylesheetFile.readAll();
         setStyleSheet(stylesheet);
     }
+
+    connect(&_refreshMovie, SIGNAL(frameChanged(int)), this, SLOT(updateRefreshFrame(int)));
 }
 
 ConfigPanel::~ConfigPanel()
 {
     delete ui;
+}
+
+void ConfigPanel::on_refreshButton_clicked()
+{
+    if (_refreshMovie.state() == QMovie::Running) {
+        _refreshMovie.setPaused(true);
+    } else if (_refreshMovie.state() == QMovie::Paused) {
+        _refreshMovie.setPaused(false);
+    } else {
+        _refreshMovie.start();
+    }
+}
+
+void ConfigPanel::updateRefreshFrame(int frame)
+{
+    Q_UNUSED(frame);
+    ui->refreshButton->setIcon(QIcon(_refreshMovie.currentPixmap()));
 }

@@ -53,6 +53,9 @@
         <file>images/flat/download-flat.png</file>
         <file>images/flat/refresh-circle-flat.png</file>
         <file>images/flat/settings-flat.png</file>
+        <file>images/flat/download-flat-v2.png</file>
+        <file>images/flat/refresh-circle-flat-animated.gif</file>
+        <file>images/flat/download-flat-v3.png</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>
