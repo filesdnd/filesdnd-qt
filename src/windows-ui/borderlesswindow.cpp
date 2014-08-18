@@ -118,8 +118,7 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
         }
 
         case WM_NCCALCSIZE: {
-            //this kills the window frame and title bar we added with
-            //WS_THICKFRAME and WS_CAPTION
+            //this kills the window frame and title bar we added with WS_THICKFRAME and WS_CAPTION
             if (window->borderless) {
                 return 0;
             }
@@ -149,7 +148,7 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
 
             SelectObject(hdcPaint, GetStockObject(DC_PEN));
             SetDCPenColor(hdcPaint, RGB(150, 150, 150));
-            if (!focus && GetFocus() == 0)
+            if (QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS8 && !focus && GetFocus() == 0)
                 Rectangle(hdcPaint, r.left + 1, r.top + 1, r.right - 1, r.bottom - 1);
 
 
@@ -227,10 +226,11 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
             WINDOWPLACEMENT wp;
             wp.length = sizeof(WINDOWPLACEMENT);
             GetWindowPlacement(hWnd, &wp);
+
             if (wp.showCmd == SW_MAXIMIZE) {
                 QPushButton* pushButtonMaximize = mainPanel->findChild<QPushButton*>("pushButtonMaximize");
                 pushButtonMaximize->setStyleSheet("#pushButtonMaximize {image: url(:/borderless/windows-ui/images/borderless-restore.png);} #pushButtonMaximize:hover { image: url(:/borderless/windows-ui/images/borderless-restore-hover.png); }");
-                mainPanel->setGeometry(borderWidth, borderWidth, winrect.right - borderWidth * 2, winrect.bottom - borderWidth * 2);
+                mainPanel->setGeometry(borderWidth * 2, borderWidth * 2, winrect.right - borderWidth * 4, winrect.bottom - borderWidth * 4);
             } else {
                 QPushButton* pushButtonMaximize = mainPanel->findChild<QPushButton*>("pushButtonMaximize");
                 pushButtonMaximize->setStyleSheet("#pushButtonMaximize {image: url(:/borderless/windows-ui/images/borderless-maximize.png);} #pushButtonMaximize:hover { image: url(:/borderless/windows-ui/images/borderless-maximize-hover.png); }");
@@ -266,9 +266,6 @@ void BorderlessWindow::toggleBorderless() {
         if (newStyle == Style::aero_borderless) {
             toggleShadow();
         }
-        //redraw frame
-        SetWindowPos(hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
-        //show();
     }
 }
 
@@ -292,6 +289,9 @@ bool BorderlessWindow::isResizeable() {
 void BorderlessWindow::show() {
     ShowWindow(hWnd, SW_SHOW);
     visible = true;
+
+    // Redraw frame & Update borderless state
+    SetWindowPos(hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
 }
 
 void BorderlessWindow::hide() {
