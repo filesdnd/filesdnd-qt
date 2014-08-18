@@ -2,31 +2,19 @@
     border-right: 1px solid qlineargradient(spread:reflect, x1:0.498, y1:0.00568182, x2:1, y2:0.00568182, stop:0.321608 rgba(150, 150, 150, 150), stop:1 rgba(255, 255, 255, 150));
 }
 
-#historyLabel, #downloadFolderButton, #configLabel, #aboutButton, #settingsButton {
+#downloadFolderLabel, #configLabel, #aboutLabel, #settingsLabel {
     color: #333333;
-}
-
-#downloadFolderButton {
-    qproperty-icon: url(:/images/flat/download-folder-flat-hover.png);
-    qproperty-iconSize: 24px 24px;
-}
-
-#downloadFolderButton:pressed {
-    qproperty-icon: url(:/images/flat/download-folder-flat.png);
-    qproperty-iconSize: 24px 24px;
-    background-color: transparent;
-    border: none;
 }
 
 #downloadFolderWidget:hover, #settingsWidget:hover, #aboutWidget:hover {
     background-color: qlineargradient(spread:reflect, x1:0.498, y1:0.00568182, x2:1, y2:0.00568182, stop:0.321608 rgba(150, 150, 150, 50), stop:1 rgba(255, 255, 255, 50));
 }
 
-#downloadFolderWidget, #historyLabel {
+#downloadFolderWidget {
     border-top: 1px solid qlineargradient(spread:reflect, x1:0.498, y1:0.00568182, x2:1, y2:0.00568182, stop:0.321608 rgba(150, 150, 150, 150), stop:1 rgba(255, 255, 255, 150));
 }
 
-#settingsWidget, #aboutWidget, #downloadFolderWidget {
+#settingsWidget, #aboutWidget, #downloadFolderWidget, #configWidget {
     border-bottom: 1px solid qlineargradient(spread:reflect, x1:0.498, y1:0.00568182, x2:1, y2:0.00568182, stop:0.321608 rgba(150, 150, 150, 150), stop:1 rgba(255, 255, 255, 150));
 }
 

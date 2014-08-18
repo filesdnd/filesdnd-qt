@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/flat/download-folder-flat.png</file>
-        <file>images/flat/download-folder-flat-hover.png</file>
         <file>images/devices/android_icon_large.png</file>
         <file>images/devices/android_icon_small.png</file>
         <file>images/devices/apple_icon_large_2.png</file>
@@ -51,6 +49,10 @@
         <file>images/other/nodevice_logo.png</file>
         <file>images/other/prompt.png</file>
         <file>images/other/widgetIcon.png</file>
+        <file>images/flat/contact-flat.png</file>
+        <file>images/flat/download-flat.png</file>
+        <file>images/flat/refresh-circle-flat.png</file>
+        <file>images/flat/settings-flat.png</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>
