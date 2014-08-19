@@ -108,6 +108,7 @@ Controller::Controller() :
 
     _bonjourBrowser->browseForServiceType(QLatin1String("_fdnd._tcp."));
 
+    // TODO manage focused event on new view
     connect(_view, SIGNAL(focused()), this, SLOT(onWindowFocused()));
     connect(&_udpDiscoveryTimer, SIGNAL(timeout()), &_udpDiscovery, SLOT(startDiscovery()));
     _udpDiscoveryTimer.start(UDP_DISCOVERY_INTERVAL);
