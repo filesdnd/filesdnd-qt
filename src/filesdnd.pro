@@ -45,6 +45,7 @@ INCLUDEPATH += \
     "$$PWD/common/threads/" \
     "$$PWD/common/udp/" \
     "$$PWD/common/view/" \
+    "$$PWD/common/view/configpanel" \
     "$$PWD/common/other/"
 
 # Windows UI

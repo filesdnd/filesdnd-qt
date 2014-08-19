@@ -16,7 +16,6 @@
 }
 
 #configLabel {
-    color: #333333;
     font-weight: bold;
 }
 
@@ -29,23 +28,19 @@
 }
 
 #historyListWidget QScrollBar:vertical {
-    background:white;
-    width: 7px;
+    background: transparent;
+    width: 0px;
 }
 
 #historyListWidget QScrollBar::handle:vertical {
-    background: rgba(159, 159, 159, 50);
+    background: transparent;
     min-height: 0px;
 }
 
 #historyListWidget QScrollBar::add-line:vertical {
     height: 0px;
-    subcontrol-position: bottom;
-    subcontrol-origin: margin;
 }
 
 #historyListWidget QScrollBar::sub-line:vertical {
     height: 0px;
-    subcontrol-position: top;
-    subcontrol-origin: margin;
 }

@@ -34,8 +34,10 @@ SOURCES += \
     common/view/overlaymessagedisplay.cpp \
     common/view/progressindicator.cpp \
     common/view/view.cpp \
-    common/view/configpanel.cpp \
-    common/helpers/fonthelper.cpp
+    common/view/configpanel/configpanel.cpp \
+    common/helpers/fonthelper.cpp \
+    common/view/configpanel/transparentscrollbar.cpp \
+    common/view/configpanel/transparentscrollbutton.cpp
 
 HEADERS += \
     common/other/controller.h \
@@ -73,8 +75,10 @@ HEADERS += \
     common/view/overlaymessagedisplay.h \
     common/view/progressindicator.h \
     common/view/view.h \
-    common/view/configpanel.h \
-    common/helpers/fonthelper.h
+    common/view/configpanel/configpanel.h \
+    common/helpers/fonthelper.h \
+    common/view/configpanel/transparentscrollbar.h \
+    common/view/configpanel/transparentscrollbutton.h
 
 FORMS += \
     common/view/deviceview.ui \
@@ -86,7 +90,7 @@ FORMS += \
     common/view/dialogs/updatedialog.ui \
     common/view/overlaymessagedisplay.ui \
     common/view/view.ui \
-    common/view/configpanel.ui
+    common/view/configpanel/configpanel.ui
 
 OTHER_FILES += \
     common/configpanel.css
