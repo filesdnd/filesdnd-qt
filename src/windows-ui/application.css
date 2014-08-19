@@ -13,8 +13,9 @@
 }
 
 #windowTitle {
-    font-size: 15px;
+    font-size: 17px;
     color: #444444;
+    font-family: "Cuprum";
 }
 
 #mainPanelScrollArea {

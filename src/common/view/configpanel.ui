@@ -78,8 +78,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>20</width>
+          <height>20</height>
          </size>
         </property>
         <property name="flat">
@@ -145,14 +145,14 @@
        <widget class="QLabel" name="downloadFolderIcon">
         <property name="minimumSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>20</width>
+          <height>20</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>20</width>
+          <height>20</height>
          </size>
         </property>
         <property name="text">
@@ -228,14 +228,14 @@
        <widget class="QLabel" name="settingsIcon">
         <property name="minimumSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>20</width>
+          <height>20</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>20</width>
+          <height>20</height>
          </size>
         </property>
         <property name="text">
@@ -311,14 +311,14 @@
        <widget class="QLabel" name="aboutIcon">
         <property name="minimumSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>20</width>
+          <height>20</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>20</width>
+          <height>20</height>
          </size>
         </property>
         <property name="text">

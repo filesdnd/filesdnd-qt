@@ -144,14 +144,13 @@ void Controller::checkForBonjourState()
 
 void Controller::startView(QApplication *application)
 {
+    QRect geometry = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenNumber(_view));
+    QSize size(775, 425);
+
     if (SettingsManager::isSearchUpdateAtLaunch())
         _updater.checkForUpdate();
     if (SettingsManager::isServiceStartedAtlaunch())
         _view->startService();
-
-    QFont mainFont = application->font();
-    mainFont.setStyleStrategy(QFont::PreferAntialias);
-    application->setFont(mainFont);
 
 #if defined(Q_OS_WIN)
     // Stylesheet
@@ -162,8 +161,6 @@ void Controller::startView(QApplication *application)
     }
 
     // Create window
-    QRect geometry = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenNumber(_view));
-    QSize size(775, 425);
     BorderlessWindow *window = new BorderlessWindow(application,
                                                     (geometry.width() - size.width()) / 2,
                                                     (geometry.height() - size.height()) / 2,

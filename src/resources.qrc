@@ -71,4 +71,10 @@
         <file>windows-ui/application.css</file>
         <file>common/css/configpanel.css</file>
     </qresource>
+    <qresource prefix="/font">
+        <file>fonts/Roboto/Roboto-Regular.ttf</file>
+        <file>fonts/Cuprum/Cuprum-Regular.ttf</file>
+        <file>fonts/Nova_Flat/NovaFlat.ttf</file>
+        <file>fonts/Open_Sans/OpenSans-Regular.ttf</file>
+    </qresource>
 </RCC>

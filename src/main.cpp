@@ -24,7 +24,9 @@
 #include <QLibraryInfo>
 #include <QMessageBox>
 #include <QSharedMemory>
+#include <QFontDatabase>
 #include <QDebug>
+#include <fonthelper.h>
 
 #include "controller.h"
 #include "settingsmanager.h"
@@ -69,6 +71,11 @@ int main(int argc, char *argv[])
 
         return 0;
     }
+
+    QFontDatabase::addApplicationFont(":/font/fonts/Noce_Flat/NovaFlat.ttf");
+    QFontDatabase::addApplicationFont(":/font/fonts/Cuprum/Cuprum-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/font/fonts/Open_Sans/OpenSans-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/font/fonts/Roboto/Roboto-Regular.ttf");
 
     SettingsManager::loadSettingsFile();
     Controller controller;

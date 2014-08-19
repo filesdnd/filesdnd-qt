@@ -34,7 +34,8 @@ SOURCES += \
     common/view/overlaymessagedisplay.cpp \
     common/view/progressindicator.cpp \
     common/view/view.cpp \
-    common/view/configpanel.cpp
+    common/view/configpanel.cpp \
+    common/helpers/fonthelper.cpp
 
 HEADERS += \
     common/other/controller.h \
@@ -72,7 +73,8 @@ HEADERS += \
     common/view/overlaymessagedisplay.h \
     common/view/progressindicator.h \
     common/view/view.h \
-    common/view/configpanel.h
+    common/view/configpanel.h \
+    common/helpers/fonthelper.h
 
 FORMS += \
     common/view/deviceview.ui \

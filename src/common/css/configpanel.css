@@ -1,5 +1,6 @@
 #downloadFolderLabel, #configLabel, #aboutLabel, #settingsLabel {
     color: #333333;
+    font-size: 11px;
 }
 
 #downloadFolderWidget:hover, #settingsWidget:hover, #aboutWidget:hover {
@@ -15,7 +16,7 @@
 }
 
 #configLabel {
-    font-size: 11px;
+    color: #333333;
     font-weight: bold;
 }
 
