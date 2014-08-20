@@ -14,8 +14,6 @@ HistoryListWidget::HistoryListWidget(QWidget *parent) :
         QString stylesheet = stylesheetFile.readAll();
         setStyleSheet(stylesheet);
     }
-
-    setVerticalScrollMode(ScrollMode::ScrollPerPixel);
 }
 
 HistoryListWidget::~HistoryListWidget()

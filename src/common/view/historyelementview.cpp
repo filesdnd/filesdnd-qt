@@ -99,7 +99,7 @@ void HistoryElementView::refresh()
 
 QString HistoryElementView::textForType(HistoryElementType type, QString text)
 {
-    int cutAt = 30;
+    int cutAt = 25;
     QString endingString = " ...";
     int maxTextSize = (type == HISTORY_FILE_FOLDER_TYPE) ? (cutAt - endingString.size()) : 100;
 
