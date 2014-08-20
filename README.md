@@ -29,7 +29,7 @@ Download the [Android application][3] in order to fully use Files Drag & Drop an
  4. Build your Linux app !
 
 ### Windows version
- 1. Download the Windows version of  Qt 5.3 at least on the [Qt website][4]. **Take care to choose the VS (2013 recommended) compiler !**
+ 1. Download the Windows version of  Qt 5.3 **for Windows 32-bit** at least on the [Qt website][4]. **Take care to choose the VS (2013 recommended) compiler !**
  3. Download/fork the repo, and open the .pro in the source folder. 
  4. Build your Windows app !
 
