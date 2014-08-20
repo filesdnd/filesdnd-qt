@@ -104,7 +104,7 @@ Controller::Controller() :
 
     checkForBonjourState();
     _view->updateDevices();
-    // TODO _view->onHistoryChanged(_service.getHistory());
+    _view->onHistoryChanged(_service.getHistory());
 
     _bonjourBrowser->browseForServiceType(QLatin1String("_fdnd._tcp."));
 

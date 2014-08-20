@@ -3,6 +3,7 @@
 #include "appconfig.h"
 #include "filehelper.h"
 #include "settingsmanager.h"
+#include "historyelementview.h"
 
 #include <QFile>
 #include <QDebug>
@@ -12,6 +13,7 @@
 ConfigPanel::ConfigPanel(QWidget *parent) :
     QWidget(parent),
     _refreshMovie(ANIMATED_REFRESH_ICON),
+    _view(0),
     ui(new Ui::ConfigPanel)
 {
     ui->setupUi(this);
@@ -39,8 +41,14 @@ ConfigPanel::~ConfigPanel()
 void ConfigPanel::createHistoryListWidget() {
     _historyScrollBar = new TransparentScrollBar(ui->historyListWidget);
 
-    for (int i = 0; i < 200; ++i) {
-        ui->historyListWidget->addItem("test " + QString::number(i));
+    for (int i = 0; i < 10; ++i) {
+        HistoryElementView *historyViewElement = new HistoryElementView(QDateTime::currentDateTime().toString("dd/MM/yyyy"),
+                                                                        "long-file-name-example-long.txt",
+                                                                        HistoryElementType(i % 3));
+        QListWidgetItem *item = new QListWidgetItem();
+        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height()));
+        ui->historyListWidget->addItem(item);
+        ui->historyListWidget->setItemWidget(item, historyViewElement);
     }
 }
 
@@ -63,6 +71,11 @@ void ConfigPanel::openDownloadFolder() {
     FileHelper::openURL("file:///" + QDir::toNativeSeparators(SettingsManager::getDestinationFolder()));
 }
 
+void ConfigPanel::setMainView(View *view)
+{
+    _view = view;
+}
+
 void ConfigPanel::on_refreshButton_clicked()
 {
     if (_refreshMovie.state() == QMovie::Running) {
@@ -78,4 +91,19 @@ void ConfigPanel::updateRefreshFrame(int frame)
 {
     Q_UNUSED(frame);
     ui->refreshButton->setIcon(QIcon(_refreshMovie.currentPixmap()));
+}
+
+void ConfigPanel::onHistoryChanged(const QList<HistoryElement> &history)
+{
+    //clearHistory();
+    foreach(HistoryElement elt, history)
+    {
+        HistoryElementView *historyViewElement = new HistoryElementView(elt.getDateTime("dd/MM - hh:mm"), elt.getText(), elt.getType());
+        QListWidgetItem *item = new QListWidgetItem();
+        connect(historyViewElement, SIGNAL(cancelIncomingTransfert()),
+                _view, SLOT(onCancelIncomingTransfert()));
+        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height()));
+        ui->historyListWidget->addItem(item);
+        ui->historyListWidget->setItemWidget(item, historyViewElement);
+    }
 }

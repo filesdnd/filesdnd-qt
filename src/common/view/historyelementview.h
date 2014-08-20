@@ -114,6 +114,16 @@ private:
     HistoryElementType _type;
     /// Date of the history element
     QString _date;
+
+    /**
+      * Find the text to display corresponding to the display type
+      *
+      * @see HistoryElementType
+      * @param type The display type
+      * @param text The original text
+      * @return The truncated text
+      */
+    QString textForType(HistoryElementType type, QString text);
 };
 
 #endif // HISTORYELEMENTVIEW_H

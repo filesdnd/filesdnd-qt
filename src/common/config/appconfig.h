@@ -37,7 +37,7 @@
 #define CONFIG_BLACK_WHITE_TRAY_ICON ":/ic_launcher_black_white"
 #define CONFIG_WHITE_BLACK_TRAY_ICON ":/ic_launcher_white_black"
 #define CONFIG_GREY_WHITE_TRAY_ICON ":/ic_launcher_grey_white"
-#define FILE_ICON ":/fileIcon"
+#define FILE_ICON ":/fileIconFlat"
 #define HIDE_ALL_WIDGETS_ICON ":/images/icons/crosses-small.png"
 #define HIDE_WIDGET_ICON ":/images/icons/cross_red.png"
 #define RESTORE_MAIN_VIEW_ICON ":/images/icons/arrow-out.png"

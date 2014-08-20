@@ -67,9 +67,6 @@ View::View(Model *model) :
     createTrayActions();
     createTrayIcon();
 
-    // Manage font compatibility
-    manageFonts();
-
     // Manage settings dialog
     connect(&_settingsDialog, SIGNAL(refreshDevicesAvailability()),
             this, SLOT(onRefreshDevicesAvailability()));
@@ -79,6 +76,9 @@ View::View(Model *model) :
             _widget, SLOT(updateWindowFlags()));
 
     _overlayMessageDisplay = new OverlayMessageDisplay(ui->devicesView);
+
+    // Config panel
+    ui->configPanel->setMainView(this);
 }
 
 View::~View()
@@ -104,39 +104,6 @@ void View::resizeEvent(QResizeEvent *event)
      QWidget::resizeEvent(event);
      if (_overlayMessageDisplay->isVisible())
         _overlayMessageDisplay->refreshGeometry();
-}
-
-void View::manageFonts()
-{
-    // Font for historyFolderButton
-    QString fontStyle =
-            "font-family : Tahoma;"
-            "font-size : #FONT_SIZE#pt;"
-            "font-weight : bold;";
-    QString historyButtonTemplate =
-            "QToolButton#openDownloadFolderButton "
-            "{"
-                "background-color: white ;"
-                "border: 0px;"
-                "height: 25px;"
-                "#FONT_TEMPLATE#"
-            "}"
-
-            "QToolButton#openDownloadFolderButton:pressed "
-            "{"
-                "border-radius: 10x;"
-                "background-color: lightgray;"
-                "#FONT_TEMPLATE#"
-            "}";
-#if defined(Q_OS_WIN) || defined(Q_OS_WIN32)
-    fontStyle.replace("#FONT_SIZE#", QString::number(7));
-#elif defined(Q_OS_LINUX) || defined(__linux__)
-    fontStyle.replace("#FONT_SIZE#", QString::number(7));
-#elif defined(Q_OS_MACX)
-    fontStyle.replace("#FONT_SIZE#", QString::number(11));
-#endif
-
-    historyButtonTemplate.replace("#FONT_TEMPLATE#", fontStyle);
 }
 
 void View::clearGrid()
@@ -631,6 +598,11 @@ void View::onCancelIncomingTransfert()
 void View::focusInEvent(QFocusEvent *)
 {
     emit focused();
+}
+
+void View::onHistoryChanged(const QList<HistoryElement> &history)
+{
+    ui->configPanel->onHistoryChanged(history);
 }
 
 void View::showTrayMessage(const QString &message)

@@ -322,6 +322,11 @@ public slots:
      */
     void onCancelTransfert(const QString &uid);
     /**
+    * SLOT : on history changed
+    * @param history New history value
+    */
+    void onHistoryChanged(const QList<HistoryElement> &history);
+    /**
      * SLOT : On incoming transfert canceled by user
      */
     void onCancelIncomingTransfert();
@@ -373,10 +378,6 @@ private:
     /// Timer for tray message
     QTimer _trayTimer;
 
-    /**
-     * Manage the font for the various OS
-     */
-    void manageFonts();
     /**
      * Update the tray icon with a grey or colored icon depending
      * on the number of devices detected

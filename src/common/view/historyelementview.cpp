@@ -22,6 +22,7 @@
 #include "ui_historyelementview.h"
 #include "helpers/settingsmanager.h"
 #include "helpers/filehelper.h"
+#include "appconfig.h"
 
 #include <QFileInfo>
 #include <QDebug>
@@ -65,12 +66,44 @@ bool HistoryElementView::isDownloading() const
 
 void HistoryElementView::refresh()
 {
-    bool wordWrap = _text.contains(" ");
+    QString trucatedText = textForType(_type, _text);
     QIcon icon;
-    int maxTextSize = 150;
-    QString trucatedText = _text.left(maxTextSize);
 
-    if (!wordWrap)
+    switch (_type)
+    {
+    case HISTORY_FILE_FOLDER_TYPE:
+        ui->fileName->setText(trucatedText);
+        ui->fileDate->setText(_date);
+        ui->fileSize->setText(FileHelper::getFileSize(_text));
+        ui->fileName->setWordWrap(false);
+//        icon = FileHelper::getFileIcon(_text);
+        icon = QIcon(FILE_ICON);
+        ui->fileIcon->setPixmap(icon.pixmap(16));
+        break;
+    case HISTORY_TEXT_TYPE:
+        ui->text->setText(trucatedText);
+        ui->textDate->setText(_date);
+        ui->text->setWordWrap(true);
+        break;
+    case HISTORY_URL_TYPE:
+        ui->url->setText(trucatedText);
+        ui->urlDate->setText(_date);
+        ui->url->setWordWrap(true);
+        break;
+    }
+
+    ui->stackedWidget->setCurrentIndex(_type);
+
+    setToolTip((_type == HISTORY_FILE_FOLDER_TYPE) ? _text : trucatedText);
+    setProgressBarEnabled(false);;
+}
+
+QString HistoryElementView::textForType(HistoryElementType type, QString text)
+{
+    int maxTextSize = (_type == HISTORY_FILE_FOLDER_TYPE) ? 20 : 150;
+    QString trucatedText = text.left(maxTextSize);
+
+    if (_type != HISTORY_FILE_FOLDER_TYPE)
     {
         int size = trucatedText.size();
         int i = 0;
@@ -80,39 +113,13 @@ void HistoryElementView::refresh()
             trucatedText.insert(++i * 20, " ");
             size -= 20;
         }
-
-        wordWrap = true;
     }
 
-    if (_text.size() > maxTextSize)
-        trucatedText.append(" ...");
+    if (text.size() > maxTextSize)
+        trucatedText.append("...");
 
-    switch (_type)
-    {
-    case HISTORY_FILE_FOLDER_TYPE:
-        ui->fileName->setText(trucatedText);
-        ui->fileDate->setText(_date);
-        ui->fileSize->setText(FileHelper::getFileSize(_text));
-        ui->fileName->setWordWrap(wordWrap);
-        icon = FileHelper::getFileIcon(_text);
-        ui->fileIcon->setPixmap(icon.pixmap(16));
-        break;
-    case HISTORY_TEXT_TYPE:
-        ui->text->setText(trucatedText);
-        ui->textDate->setText(_date);
-        ui->text->setWordWrap(wordWrap);
-        break;
-    case HISTORY_URL_TYPE:
-        ui->url->setText(trucatedText);
-        ui->urlDate->setText(_date);
-        ui->url->setWordWrap(wordWrap);
-        break;
-    }
+    return trucatedText;
 
-    ui->stackedWidget->setCurrentIndex(_type);
-
-    setToolTip(trucatedText);
-    setProgressBarEnabled(false);;
 }
 
 HistoryElementType HistoryElementView::getType() const
