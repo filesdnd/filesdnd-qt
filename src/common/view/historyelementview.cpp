@@ -100,18 +100,19 @@ void HistoryElementView::refresh()
 
 QString HistoryElementView::textForType(HistoryElementType type, QString text)
 {
-    int maxTextSize = (_type == HISTORY_FILE_FOLDER_TYPE) ? 20 : 150;
+    int cutAt = 19;
+    int maxTextSize = (type == HISTORY_FILE_FOLDER_TYPE) ? cutAt : 150;
     QString trucatedText = text.left(maxTextSize);
 
-    if (_type != HISTORY_FILE_FOLDER_TYPE)
+    if (type != HISTORY_FILE_FOLDER_TYPE)
     {
         int size = trucatedText.size();
         int i = 0;
 
-        while (size > 20)
+        while (size > cutAt)
         {
-            trucatedText.insert(++i * 20, " ");
-            size -= 20;
+            trucatedText.insert(++i * cutAt, " ");
+            size -= cutAt;
         }
     }
 

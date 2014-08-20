@@ -74,6 +74,7 @@
     <qresource prefix="/css">
         <file>windows-ui/application.css</file>
         <file>common/css/configpanel.css</file>
+        <file>common/css/history.css</file>
     </qresource>
     <qresource prefix="/font">
         <file>fonts/Roboto/Roboto-Regular.ttf</file>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>244</width>
-    <height>77</height>
+    <width>231</width>
+    <height>73</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,10 +35,13 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="filePage">
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>6</number>
+       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -99,11 +102,6 @@
          </item>
          <item>
           <widget class="QLabel" name="fileName">
-           <property name="font">
-            <font>
-             <pointsize>7</pointsize>
-            </font>
-           </property>
            <property name="text">
             <string>filename.jpg</string>
            </property>
@@ -145,11 +143,6 @@
            </item>
            <item>
             <widget class="QLabel" name="fileDate">
-             <property name="font">
-              <font>
-               <pointsize>6</pointsize>
-              </font>
-             </property>
              <property name="text">
               <string>13/01/2014</string>
              </property>
@@ -160,13 +153,6 @@
            </item>
            <item>
             <widget class="QLabel" name="fileSize">
-             <property name="font">
-              <font>
-               <pointsize>6</pointsize>
-               <weight>50</weight>
-               <bold>false</bold>
-              </font>
-             </property>
              <property name="text">
               <string>10 Mo</string>
              </property>
@@ -328,11 +314,6 @@ QPushButton:flat {
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="font">
-            <font>
-             <pointsize>7</pointsize>
-            </font>
-           </property>
            <property name="text">
             <string>Received text</string>
            </property>
@@ -359,11 +340,6 @@ QPushButton:flat {
          </item>
          <item>
           <widget class="QLabel" name="textDate">
-           <property name="font">
-            <font>
-             <pointsize>6</pointsize>
-            </font>
-           </property>
            <property name="text">
             <string>13/01/2014</string>
            </property>
@@ -438,11 +414,6 @@ QPushButton:flat {
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="font">
-            <font>
-             <pointsize>7</pointsize>
-            </font>
-           </property>
            <property name="text">
             <string>Received url</string>
            </property>
@@ -472,11 +443,6 @@ QPushButton:flat {
          </item>
          <item>
           <widget class="QLabel" name="urlDate">
-           <property name="font">
-            <font>
-             <pointsize>6</pointsize>
-            </font>
-           </property>
            <property name="text">
             <string>13/01/2014</string>
            </property>

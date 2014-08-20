@@ -51,10 +51,11 @@
 #define TEXT_ICON ":/images/icons/script-text.png"
 #define LINK_ICON ":/images/icons/link.png"
 #define CLIPBOARD_ICON ":/images/icons/clipboard-paste.png"
+#define ANIMATED_REFRESH_ICON ":/images/flat/refresh-circle-flat-animated.gif"
 
 #define CONFIG_PANEL_CSS ":/css/common/css/configpanel.css"
 #define WINDOWS_APP_CSS ":/css/windows-ui/application.css"
-#define ANIMATED_REFRESH_ICON ":/images/flat/refresh-circle-flat-animated.gif"
+#define HISTORY_LIST_CSS ":/css/common/css/history.css"
 
 #define OVERLAY_TIMEOUT (1000 * 10)
 #define BONJOUR_TIMEOUT (1000 * 25)
