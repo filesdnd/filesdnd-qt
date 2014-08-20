@@ -6,13 +6,14 @@
 #include <QPointer>
 
 #include "transparentscrollbutton.h"
+#include "historylistwidget.h"
 
 class TransparentScrollBar : public QWidget
 {
     Q_OBJECT
 
 public:
-    TransparentScrollBar(QAbstractItemView *parentView);
+    TransparentScrollBar(HistoryListWidget *parentView);
     ~TransparentScrollBar();
 
 private slots:
@@ -28,9 +29,11 @@ private:
 
     void moveToGlobalPos(QPoint moveTo);
 
-    QPointer<QAbstractItemView> m_view;
+    QPointer<HistoryListWidget> m_view;
     QPointer<TransparentScrollButton> m_scrollBtn;
     QPoint m_pressed;
+    int _scrollButtonWidth;
+    int _minScrollButtonHeight;
 };
 
 #endif // TRANSPARENTSCROLLBAR_H

@@ -37,7 +37,8 @@ SOURCES += \
     common/view/configpanel/configpanel.cpp \
     common/helpers/fonthelper.cpp \
     common/view/configpanel/transparentscrollbar.cpp \
-    common/view/configpanel/transparentscrollbutton.cpp
+    common/view/configpanel/transparentscrollbutton.cpp \
+    common/view/configpanel/historylistwidget.cpp
 
 HEADERS += \
     common/other/controller.h \
@@ -78,7 +79,8 @@ HEADERS += \
     common/view/configpanel/configpanel.h \
     common/helpers/fonthelper.h \
     common/view/configpanel/transparentscrollbar.h \
-    common/view/configpanel/transparentscrollbutton.h
+    common/view/configpanel/transparentscrollbutton.h \
+    common/view/configpanel/historylistwidget.h
 
 FORMS += \
     common/view/deviceview.ui \

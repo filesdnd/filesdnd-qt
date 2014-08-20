@@ -15,7 +15,6 @@ TransparentScrollButton::TransparentScrollButton( QWidget *parent ) :
     setGraphicsEffect(_opacityEffect);
 
     _fadeAnimation = new QPropertyAnimation(_opacityEffect, "opacity");
-    _fadeAnimation->setDuration(350);
 }
 
 TransparentScrollButton::~TransparentScrollButton()
@@ -36,6 +35,7 @@ void TransparentScrollButton::mouseMoveEvent(QMouseEvent *event)
 void TransparentScrollButton::fadeIn()
 {
     _fadeAnimation->stop();
+    _fadeAnimation->setDuration(250);
     _fadeAnimation->setStartValue(_opacityEffect->opacity());
     _fadeAnimation->setEndValue(_maxOpacity);
     _fadeAnimation->start();
@@ -44,6 +44,7 @@ void TransparentScrollButton::fadeIn()
 void TransparentScrollButton::fadeOut()
 {
     _fadeAnimation->stop();
+    _fadeAnimation->setDuration(600);
     _fadeAnimation->setStartValue(_opacityEffect->opacity());
     _fadeAnimation->setEndValue(_minOpacity);
     _fadeAnimation->start();

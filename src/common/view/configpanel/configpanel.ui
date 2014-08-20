@@ -120,7 +120,7 @@
     </spacer>
    </item>
    <item>
-    <widget class="QListWidget" name="historyListWidget">
+    <widget class="HistoryListWidget" name="historyListWidget">
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
@@ -383,6 +383,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HistoryListWidget</class>
+   <extends>QListWidget</extends>
+   <header>historylistwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../../../resources.qrc"/>
  </resources>

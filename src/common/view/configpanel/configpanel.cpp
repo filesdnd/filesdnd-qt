@@ -39,7 +39,7 @@ ConfigPanel::~ConfigPanel()
 void ConfigPanel::createHistoryListWidget() {
     _historyScrollBar = new TransparentScrollBar(ui->historyListWidget);
 
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 200; ++i) {
         ui->historyListWidget->addItem("test " + QString::number(i));
     }
 }

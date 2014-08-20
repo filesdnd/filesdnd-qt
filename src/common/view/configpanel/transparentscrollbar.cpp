@@ -9,18 +9,20 @@
 
 #include "transparentscrollbutton.h"
 
-TransparentScrollBar::TransparentScrollBar(QAbstractItemView *parentView)
-    : QWidget(parentView, Qt::FramelessWindowHint)
-    , m_view(parentView)
+TransparentScrollBar::TransparentScrollBar(HistoryListWidget *parentView)
+    : QWidget(parentView, Qt::FramelessWindowHint),
+    m_view(parentView),
+    _scrollButtonWidth(13),
+    _minScrollButtonHeight(70)
 {
-    Q_ASSERT( parentView );
+    Q_ASSERT(parentView);
 
     setAttribute(Qt::WA_TranslucentBackground);
 //    setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_scrollBtn = new TransparentScrollButton(parentView);
-    m_scrollBtn->setFixedSize(15, 75);
-    resize(10, 0);
+    m_scrollBtn->setFixedSize(_scrollButtonWidth, _minScrollButtonHeight);
+    resize(_scrollButtonWidth, 0);
 
     m_view->installEventFilter(this);
 
@@ -56,10 +58,17 @@ void TransparentScrollBar::moveToGlobalPos(QPoint moveTo)
 
 bool TransparentScrollBar::eventFilter(QObject *obj, QEvent *event)
 {
+    int viewportHeight;
+    int contentHeight;
+
     switch (event->type())
     {
     case QEvent::Enter:
-        m_scrollBtn->fadeIn();
+        viewportHeight = m_view->height();
+        contentHeight = m_view->contentSize().height();
+
+        if (contentHeight > viewportHeight)
+            m_scrollBtn->fadeIn();
         break;
 
     case QEvent::Leave:
@@ -94,15 +103,23 @@ void TransparentScrollBar::onScrollBtnMoved(QPoint point) {
 
 void TransparentScrollBar::updatePos()
 {
+    // Set scroll button height
+    float viewportHeight = m_view->height();
+    float contentHeight = m_view->contentSize().height();
+    float ratio = viewportHeight / contentHeight;
+    int size = qMax((int)(ratio * viewportHeight), _minScrollButtonHeight);
+    m_scrollBtn->setFixedSize(_scrollButtonWidth, size);
+
+    // Set scroll button position
     QScrollBar *sb = m_view->verticalScrollBar();
     const int val = sb->value();
     const int max = sb->maximum();
     const int x = pos().x() + (width() - m_scrollBtn->width()) / 2;
 
-    if ( max == 0 )
+    if (max == 0)
     {
         m_scrollBtn->move(x, pos().y());
-        return ;
+        return;
     }
 
     const int maxY = height() - m_scrollBtn->height();
@@ -121,7 +138,7 @@ void TransparentScrollBar::paintEvent(QPaintEvent * event)
     p.fillRect(rc, QColor(255, 255, 255, 0));
 }
 
-void TransparentScrollBar::resizeEvent( QResizeEvent * event )
+void TransparentScrollBar::resizeEvent(QResizeEvent * event)
 {
     Q_UNUSED(event);
     updatePos();
