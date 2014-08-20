@@ -74,8 +74,7 @@ void HistoryElementView::refresh()
     case HISTORY_FILE_FOLDER_TYPE:
         ui->fileName->setText(trucatedText);
         ui->fileDate->setText(_date);
-        ui->fileSize->setText(FileHelper::getFileSize(_text));
-        ui->fileSize->setVisible(false);
+//        ui->fileSize->setText(FileHelper::getFileSize(_text));
         ui->fileName->setWordWrap(false);
         icon = QIcon(FILE_ICON);
         ui->fileIcon->setPixmap(icon.pixmap(16));
@@ -100,9 +99,9 @@ void HistoryElementView::refresh()
 
 QString HistoryElementView::textForType(HistoryElementType type, QString text)
 {
-    int cutAt = 25;
-    QString endingString = "...";
-    int maxTextSize = (type == HISTORY_FILE_FOLDER_TYPE) ? (cutAt - endingString.size()) : 90;
+    int cutAt = 30;
+    QString endingString = " ...";
+    int maxTextSize = (type == HISTORY_FILE_FOLDER_TYPE) ? (cutAt - endingString.size()) : 100;
 
     QString trucatedText = text.left(maxTextSize);
 

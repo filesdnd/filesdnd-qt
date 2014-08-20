@@ -3,6 +3,7 @@
 
 #include <QFile>
 #include <QDebug>
+#include <QAbstractItemView>
 
 HistoryListWidget::HistoryListWidget(QWidget *parent) :
     QListWidget(parent)
