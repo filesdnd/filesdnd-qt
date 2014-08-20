@@ -9,3 +9,9 @@
     font-size: 9px;
     font-family: "Roboto";
 }
+
+#fileUserLabel, #urlUserLabel, #textUserLabel {
+    color: #3E9BD5;
+    font-family: "Roboto";
+    font-size: 8px;
+}

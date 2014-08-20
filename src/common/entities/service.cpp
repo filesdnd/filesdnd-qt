@@ -346,7 +346,7 @@ bool Service::readFile()
             _bFilename = true;
             QString tmp = filename;
             tmp.remove(ZIP_EXTENSION);
-            _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), tmp, HISTORY_FILE_FOLDER_TYPE);
+            _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), tmp, _dataName, HISTORY_FILE_FOLDER_TYPE);
             addCurrentElementToHistory();
 
             if (filename.contains(ZIP_EXTENSION))
@@ -548,14 +548,14 @@ bool Service::readText()
         if (SettingsManager::isAutoOpenFilesEnabled())
             FileHelper::openURL(text);
 
-        _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), text, HISTORY_URL_TYPE);
+        _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), text, _dataName, HISTORY_URL_TYPE);
     }
     else
     {
         emit receivingText(text);
         LogManager::appendLine("[Service] [TEXT] '" + text + "' saved into clipboard");
 
-        _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), text, HISTORY_TEXT_TYPE);
+        _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), text, _dataName, HISTORY_TEXT_TYPE);
     }
 
     addCurrentElementToHistory();

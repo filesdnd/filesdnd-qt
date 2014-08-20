@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>231</width>
-    <height>73</height>
+    <width>299</width>
+    <height>120</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -60,31 +60,6 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="fileIcon">
-           <property name="minimumSize">
-            <size>
-             <width>16</width>
-             <height>16</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16</width>
-             <height>16</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap resource="../../resources.qrc">:/images/flat/folder-flat.png</pixmap>
-           </property>
-           <property name="scaledContents">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
           <spacer name="fileLeftSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -94,30 +69,7 @@
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>10</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QLabel" name="fileName">
-           <property name="text">
-            <string>filename.jpg</string>
-           </property>
-           <property name="margin">
-            <number>0</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
+             <width>5</width>
              <height>20</height>
             </size>
            </property>
@@ -142,14 +94,65 @@
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="fileDate">
-             <property name="text">
-              <string>13/01/2014</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::MinimumExpanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="fileIcon">
+               <property name="minimumSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap resource="../../resources.qrc">:/images/flat/folder-flat.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::MinimumExpanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
            </item>
            <item>
             <widget class="QLabel" name="fileSize">
@@ -162,7 +165,109 @@
             </widget>
            </item>
            <item>
+            <widget class="QLabel" name="fileDate">
+             <property name="text">
+              <string>13/01/2014</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="fileUserLabel">
+             <property name="text">
+              <string>Nitrog42</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>10</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QLabel" name="fileName">
+               <property name="text">
+                <string>filename.jpg</string>
+               </property>
+               <property name="margin">
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_13">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_4">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -265,33 +370,144 @@ QPushButton:flat {
        </property>
        <item>
         <layout class="QHBoxLayout" name="textTopSpacer">
-         <item>
-          <widget class="QLabel" name="textIcon">
-           <property name="minimumSize">
-            <size>
-             <width>16</width>
-             <height>16</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16</width>
-             <height>16</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap resource="../../resources.qrc">:/images/flat/pencil-flat.png</pixmap>
-           </property>
-           <property name="scaledContents">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>5</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <spacer name="verticalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::MinimumExpanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="textIcon">
+               <property name="minimumSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap resource="../../resources.qrc">:/images/flat/pencil-flat.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::MinimumExpanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="textDate">
+             <property name="text">
+              <string>13/01/2014</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="textUserLabel">
+             <property name="text">
+              <string>Kinoko</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_14">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -307,26 +523,56 @@ QPushButton:flat {
           </spacer>
          </item>
          <item>
-          <widget class="QLabel" name="text">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Received text</string>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-           <property name="margin">
-            <number>0</number>
-           </property>
-          </widget>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <spacer name="verticalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="text">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Received text</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </item>
          <item>
-          <spacer name="horizontalSpacer_5">
+          <spacer name="horizontalSpacer_10">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -338,19 +584,15 @@ QPushButton:flat {
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QLabel" name="textDate">
-           <property name="text">
-            <string>13/01/2014</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
       </layout>
      </widget>
      <widget class="QWidget" name="urlPage">
       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="spacing">
+        <number>0</number>
+       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -365,31 +607,9 @@ QPushButton:flat {
        </property>
        <item>
         <layout class="QHBoxLayout" name="urlTopSpacer">
-         <item>
-          <widget class="QLabel" name="urlIcon">
-           <property name="minimumSize">
-            <size>
-             <width>16</width>
-             <height>16</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16</width>
-             <height>16</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap resource="../../resources.qrc">:/images/flat/link-flat.png</pixmap>
-           </property>
-           <property name="scaledContents">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <spacer name="horizontalSpacer_6">
            <property name="orientation">
@@ -407,29 +627,198 @@ QPushButton:flat {
           </spacer>
          </item>
          <item>
-          <widget class="QLabel" name="url">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Received url</string>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-           <property name="margin">
-            <number>0</number>
-           </property>
-           <property name="openExternalLinks">
-            <bool>true</bool>
-           </property>
-          </widget>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <spacer name="verticalSpacer_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::MinimumExpanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="urlIcon">
+               <property name="minimumSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap resource="../../resources.qrc">:/images/flat/link-flat.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_8">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::MinimumExpanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="urlDate">
+             <property name="text">
+              <string>13/01/2014</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="urlUserLabel">
+             <property name="text">
+              <string>Drusy</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </item>
          <item>
-          <spacer name="horizontalSpacer_7">
+          <spacer name="horizontalSpacer_15">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>10</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <spacer name="verticalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="url">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Received url</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_11">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -440,13 +829,6 @@ QPushButton:flat {
             </size>
            </property>
           </spacer>
-         </item>
-         <item>
-          <widget class="QLabel" name="urlDate">
-           <property name="text">
-            <string>13/01/2014</string>
-           </property>
-          </widget>
          </item>
         </layout>
        </item>

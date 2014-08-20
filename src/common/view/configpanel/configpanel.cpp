@@ -46,7 +46,7 @@ void ConfigPanel::createHistoryListWidget() {
                                                                         "long-file-name-example-long.txt",
                                                                         HistoryElementType(i % 3));
         QListWidgetItem *item = new QListWidgetItem();
-        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height()));
+        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height() - 25));
         ui->historyListWidget->addItem(item);
         ui->historyListWidget->setItemWidget(item, historyViewElement);
     }

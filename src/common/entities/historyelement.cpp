@@ -28,12 +28,13 @@ HistoryElement::HistoryElement(QObject *parent) :
 {
 }
 
-HistoryElement::HistoryElement(const QDateTime &date, const QString &text, HistoryElementType type, QObject *parent) :
+HistoryElement::HistoryElement(const QDateTime &date, const QString &text, const QString &name, HistoryElementType type, QObject *parent) :
     QObject(parent)
 {
     setDate(date);
     setText(text);
     setType(type);
+    setName(name);
 }
 
 HistoryElement& HistoryElement::operator=(const HistoryElement &historyElement)
@@ -43,6 +44,7 @@ HistoryElement& HistoryElement::operator=(const HistoryElement &historyElement)
         setDate(historyElement._date);
         setText(historyElement._txt);
         setType(historyElement._type);
+        setName(historyElement._name);
     }
 
     return *this;
@@ -85,6 +87,16 @@ void HistoryElement::setType(HistoryElementType type)
 void HistoryElement::setText(const QString &text)
 {
     _txt = text;
+}
+
+void HistoryElement::setName(const QString &name)
+{
+    _name = name;
+}
+
+QString HistoryElement::getName()
+{
+    return _name;
 }
 
 QString HistoryElement::getDateTime(const QString &format) const
