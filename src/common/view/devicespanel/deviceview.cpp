@@ -44,25 +44,25 @@ DeviceView::DeviceView(const QString &name, const QString &uid, DeviceType type,
     case TYPE_ANDROID:
         ui->backgroundContainer->setStyleSheet("#backgroundContainer"
                                                "{\n"
-                                                  "background: url(:/images/android_icon_large.png) no-repeat right top;\n"
+                                                  "background: url(:/images/devices/android_icon_large.png) no-repeat right top;\n"
                                                "}\n");
         break;
     case TYPE_WINDOWS:
         ui->backgroundContainer->setStyleSheet("#backgroundContainer"
                                                "{\n"
-                                                  "background: url(:/images/windows_icon_large.png) no-repeat right top;\n"
+                                                  "background: url(:/images/devices/windows_icon_large.png) no-repeat right top;\n"
                                                "}\n");
         break;
     case TYPE_MAC:
         ui->backgroundContainer->setStyleSheet("#backgroundContainer"
                                                "{\n"
-                                                  "background: url(:/images/apple_icon_large_2.png) no-repeat right top;\n"
+                                                  "background: url(:/images/devices/apple_icon_large_2.png) no-repeat right top;\n"
                                                "}\n");
         break;
     case TYPE_LINUX:
         ui->backgroundContainer->setStyleSheet("#backgroundContainer"
                                                "{\n"
-                                                  "background: url(:/images/linux_icon_large.png) no-repeat right top;\n"
+                                                  "background: url(:/images/devices/linux_icon_large.png) no-repeat right top;\n"
                                                "}\n");
         break;
     }
@@ -89,7 +89,7 @@ void DeviceView::manageWidgetVisibility()
         ui->widgetButton->setToolTip(tr("Widget activé"));
         ui->widgetButton->setStyleSheet("QPushButton#widgetButton"
                                         "{"
-                                            "background: url(:/images/arrow-out.png) no-repeat right bottom;"
+                                            "background: url(:/images/icons/arrow-out.png) no-repeat right bottom;"
                                         "}");
     }
     else
@@ -97,7 +97,7 @@ void DeviceView::manageWidgetVisibility()
         ui->widgetButton->setToolTip(tr("Widget désactivé"));
         ui->widgetButton->setStyleSheet("QPushButton#widgetButton"
                                         "{"
-                                            "background: url(:/images/arrow-out_white.png) no-repeat right bottom;"
+                                            "background: url(:/images/icons/arrow-out_white.png) no-repeat right bottom;"
                                         "}");
     }
 }

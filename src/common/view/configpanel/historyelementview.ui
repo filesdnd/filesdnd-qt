@@ -129,7 +129,7 @@
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="../../resources.qrc">:/images/flat/folder-flat.png</pixmap>
+                <pixmap resource="../../../resources.qrc">:/images/flat/folder-flat.png</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>true</bool>
@@ -376,12 +376,12 @@
            <property name="styleSheet">
             <string notr="true">QPushButton#cancelButton
 {
-	background: url(:/images/cross_gray.png) no-repeat right top;
+	background: url(:/images/icons/cross_gray.png) no-repeat right top;
 }
 
 QPushButton#cancelButton:hover
 {
-	background: url(:/images/cross_red.png) no-repeat right top;
+	background: url(:/images/icons/cross_red.png) no-repeat right top;
 }
 
 QPushButton:flat {
@@ -492,7 +492,7 @@ QPushButton:flat {
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="../../resources.qrc">:/images/flat/pencil-flat.png</pixmap>
+                <pixmap resource="../../../resources.qrc">:/images/flat/pencil-flat.png</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>true</bool>
@@ -729,7 +729,7 @@ QPushButton:flat {
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="../../resources.qrc">:/images/flat/link-flat.png</pixmap>
+                <pixmap resource="../../../resources.qrc">:/images/flat/link-flat.png</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>true</bool>
@@ -888,7 +888,7 @@ QPushButton:flat {
   </layout>
  </widget>
  <resources>
-  <include location="../../resources.qrc"/>
+  <include location="../../../resources.qrc"/>
  </resources>
  <connections/>
 </ui>

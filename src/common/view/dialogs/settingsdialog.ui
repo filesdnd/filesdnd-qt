@@ -20,8 +20,8 @@
    <string>Paramètres</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/images/wrench</normaloff>:/images/wrench</iconset>
+   <iconset resource="../../../resources.qrc">
+    <normaloff>:/images/icons/wrench.png</normaloff>:/images/icons/wrench.png</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -115,7 +115,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../../resources.qrc">
-          <normaloff>:/images/general_settings.png</normaloff>:/images/general_settings.png</iconset>
+          <normaloff>:/images/other/general_settings.png</normaloff>:/images/other/general_settings.png</iconset>
         </property>
        </item>
        <item>
@@ -127,7 +127,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../../resources.qrc">
-          <normaloff>:/images/widgetIcon.png</normaloff>:/images/widgetIcon.png</iconset>
+          <normaloff>:/images/other/widgetIcon.png</normaloff>:/images/other/widgetIcon.png</iconset>
         </property>
        </item>
        <item>
@@ -139,7 +139,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../../resources.qrc">
-          <normaloff>:/images/colors_settings.png</normaloff>:/images/colors_settings.png</iconset>
+          <normaloff>:/images/other/colors_settings.png</normaloff>:/images/other/colors_settings.png</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -236,7 +236,7 @@
                 </property>
                 <property name="icon">
                  <iconset resource="../../../resources.qrc">
-                  <normaloff>:/images/terminal.png</normaloff>:/images/terminal.png</iconset>
+                  <normaloff>:/images/icons/terminal.png</normaloff>:/images/icons/terminal.png</iconset>
                 </property>
                </widget>
               </item>
@@ -378,7 +378,7 @@
                 </property>
                 <property name="icon">
                  <iconset resource="../../../resources.qrc">
-                  <normaloff>:/images/folder-horizontal-open.png</normaloff>:/images/folder-horizontal-open.png</iconset>
+                  <normaloff>:/images/icons/folder-horizontal-open.png</normaloff>:/images/icons/folder-horizontal-open.png</iconset>
                 </property>
                </widget>
               </item>
@@ -583,7 +583,7 @@
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="../../../resources.qrc">:/images/alert.png</pixmap>
+                  <pixmap resource="../../../resources.qrc">:/images/icons/alert.png</pixmap>
                  </property>
                  <property name="scaledContents">
                   <bool>true</bool>

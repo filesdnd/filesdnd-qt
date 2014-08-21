@@ -228,12 +228,12 @@
                   <property name="styleSheet">
                    <string notr="true">QPushButton#cancelButton
 {
-	background: url(:/images/cross_gray.png) no-repeat right top;
+	background: url(:/images/icons/cross_gray.png) no-repeat right top;
 }
 
 QPushButton#cancelButton:hover
 {
-	background: url(:/images/cross_red.png) no-repeat right top;
+	background: url(:/images/icons/cross_red.png) no-repeat right top;
 }
 
 QPushButton:flat {
@@ -564,7 +564,7 @@ color: white;</string>
               <property name="styleSheet">
                <string notr="true">QPushButton#widgetButton
 {
-	background: url(:/images/arrow-out.png) no-repeat right bottom;
+	background: url(:/images/icons/arrow-out.png) no-repeat right bottom;
 }</string>
               </property>
               <property name="text">

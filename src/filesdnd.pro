@@ -46,6 +46,10 @@ INCLUDEPATH += \
     "$$PWD/common/udp/" \
     "$$PWD/common/view/" \
     "$$PWD/common/view/configpanel" \
+    "$$PWD/common/view/devicespanel" \
+    "$$PWD/common/view/dialogs" \
+    "$$PWD/common/view/other" \
+    "$$PWD/common/view/widgets" \
     "$$PWD/common/other/"
 
 # Windows UI

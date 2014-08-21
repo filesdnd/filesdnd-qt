@@ -37,7 +37,7 @@
 #include "threads/servicethread.h"
 #include "threads/devicethread.h"
 #include "updatemanager.h"
-#include "common/view/view.h"
+#include "view.h"
 
 /**
   * @class Controller

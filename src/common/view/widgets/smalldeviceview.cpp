@@ -82,16 +82,16 @@ void SmallDeviceView::setAvailable(bool available, TransfertState)
     switch (_type)
     {
     case TYPE_ANDROID:
-        style.append("background: url(:/images/android_icon_small.png) no-repeat right top;\n");
+        style.append("background: url(:/images/devices/android_icon_small.png) no-repeat right top;\n");
         break;
     case TYPE_WINDOWS:
-        style.append("background: url(:/images/windows_icon_small.png) no-repeat right top;\n");
+        style.append("background: url(:/images/devices/windows_icon_small.png) no-repeat right top;\n");
         break;
     case TYPE_MAC:
-         style.append("background: url(:/images/apple_icon_small.png) no-repeat right top;\n");
+         style.append("background: url(:/images/devices/apple_icon_small.png) no-repeat right top;\n");
         break;
     case TYPE_LINUX:
-         style.append("background: url(:/images/linux_icon_small.png) no-repeat right top;\n");
+         style.append("background: url(:/images/devices/linux_icon_small.png) no-repeat right top;\n");
         break;
     }
 

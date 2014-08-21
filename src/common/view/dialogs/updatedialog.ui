@@ -67,7 +67,7 @@ border-bottom: 1px solid lightgray;</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../../resources.qrc">:/images/update_icon.png</pixmap>
+         <pixmap resource="../../../resources.qrc">:/images/icons/update_icon.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>

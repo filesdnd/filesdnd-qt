@@ -124,6 +124,14 @@ private:
       * @return The truncated text
       */
     QString textForType(HistoryElementType type, QString text);
+
+    /**
+     * Trucate the user name to fit the label
+     *
+     * @param fullDataName Full size name
+     * @return Trucated name
+     */
+    QString trucateName(QString fullDataName);
 };
 
 #endif // HISTORYELEMENTVIEW_H

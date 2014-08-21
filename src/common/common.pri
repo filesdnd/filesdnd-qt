@@ -21,21 +21,21 @@ SOURCES += \
     common/helpers/folderzipper.cpp \
     common/helpers/settingsmanager.cpp \
     common/helpers/servicehelper.cpp \
+    common/helpers/fonthelper.cpp \
     common/udp/udpdiscovery.cpp \
-    common/view/deviceview.cpp \
-    common/view/smalldeviceview.cpp \
-    common/view/abstractdeviceview.cpp \
+    common/view/devicespanel/abstractdeviceview.cpp \
+    common/view/devicespanel/overlaymessagedisplay.cpp \
+    common/view/devicespanel/centerinfowidget.cpp \
+    common/view/devicespanel/deviceview.cpp \
     common/view/dialogs/aboutdialog.cpp \
     common/view/dialogs/settingsdialog.cpp \
-    common/view/historyelementview.cpp \
-    common/view/centerinfowidget.cpp \
     common/view/dialogs/updatedialog.cpp \
-    common/view/widget.cpp \
-    common/view/overlaymessagedisplay.cpp \
-    common/view/progressindicator.cpp \
-    common/view/view.cpp \
+    common/view/widgets/widget.cpp \
+    common/view/widgets/smalldeviceview.cpp \
+    common/view/other/progressindicator.cpp \
+    common/view/other/view.cpp \
     common/view/configpanel/configpanel.cpp \
-    common/helpers/fonthelper.cpp \
+    common/view/configpanel/historyelementview.cpp \
     common/view/configpanel/transparentscrollbar.cpp \
     common/view/configpanel/transparentscrollbutton.cpp \
     common/view/configpanel/historylistwidget.cpp
@@ -62,36 +62,36 @@ HEADERS += \
     common/helpers/logmanager.h \
     common/helpers/folderzipper.h \
     common/helpers/settingsmanager.h \
+    common/helpers/fonthelper.h \
     common/helpers/servicehelper.h \
     common/udp/udpdiscovery.h \
-    common/view/deviceview.h \
-    common/view/smalldeviceview.h \
-    common/view/abstractdeviceview.h \
+    common/view/devicespanel/abstractdeviceview.h \
+    common/view/devicespanel/overlaymessagedisplay.h \
+    common/view/devicespanel/centerinfowidget.h \
+    common/view/devicespanel/deviceview.h \
     common/view/dialogs/aboutdialog.h \
     common/view/dialogs/settingsdialog.h \
-    common/view/historyelementview.h \
-    common/view/centerinfowidget.h \
     common/view/dialogs/updatedialog.h \
-    common/view/widget.h \
-    common/view/overlaymessagedisplay.h \
-    common/view/progressindicator.h \
-    common/view/view.h \
+    common/view/widgets/widget.h \
+    common/view/widgets/smalldeviceview.h \
+    common/view/other/progressindicator.h \
+    common/view/other/view.h \
     common/view/configpanel/configpanel.h \
-    common/helpers/fonthelper.h \
+    common/view/configpanel/historyelementview.h \
     common/view/configpanel/transparentscrollbar.h \
     common/view/configpanel/transparentscrollbutton.h \
     common/view/configpanel/historylistwidget.h
 
 FORMS += \
-    common/view/deviceview.ui \
-    common/view/smalldeviceview.ui \
+    common/view/devicespanel/deviceview.ui \
+    common/view/devicespanel/centerinfowidget.ui \
+    common/view/devicespanel/overlaymessagedisplay.ui \
+    common/view/widgets/smalldeviceview.ui \
     common/view/dialogs/aboutdialog.ui \
     common/view/dialogs/settingsdialog.ui \
-    common/view/historyelementview.ui \
-    common/view/centerinfowidget.ui \
     common/view/dialogs/updatedialog.ui \
-    common/view/overlaymessagedisplay.ui \
-    common/view/view.ui \
+    common/view/other/view.ui \
+    common/view/configpanel/historyelementview.ui \
     common/view/configpanel/configpanel.ui
 
 OTHER_FILES += \
