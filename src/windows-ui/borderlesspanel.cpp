@@ -109,24 +109,31 @@ bool BorderlessPanel::winEvent(MSG *message, long *) {
 #if QT_VERSION >= 0x050000
     MSG *message = (MSG *)msg;
 #endif
-    switch(message->message) {
-        case WM_SYSKEYDOWN: {
+    switch(message->message)
+    {
+        case WM_SYSKEYDOWN:
             if (message->wParam == VK_SPACE) {
                 RECT winrect;
                 GetWindowRect(_windowHandle, &winrect);
                 TrackPopupMenu(GetSystemMenu(_windowHandle, false), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, _windowHandle, NULL);
                 break;
             }
-        }
-        case WM_KEYDOWN: {
+            break;
+        case WM_KEYDOWN:
             if (message->wParam == VK_F5 ||
-                 message->wParam == VK_F6 ||
-                 message->wParam == VK_F7)
+                    message->wParam == VK_F6 ||
+                    message->wParam == VK_F7)
             {
                 SendMessage(_windowHandle, WM_KEYDOWN, message->wParam, message->lParam);
                 break;
             }
-        }
+            break;
+        case WM_KILLFOCUS:
+            SendMessage(_windowHandle, WM_KILLFOCUS, message->wParam, message->lParam);
+            break;
+        case WM_SETFOCUS:
+            SendMessage(_windowHandle, WM_SETFOCUS, message->wParam, message->lParam);
+            break;
     }
 
     return false;

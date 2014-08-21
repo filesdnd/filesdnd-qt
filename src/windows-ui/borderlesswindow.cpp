@@ -13,7 +13,6 @@ BorderlessPanel *BorderlessWindow::mainPanel;
 QApplication *BorderlessWindow::a;
 LONG BorderlessWindow::borderWidth = 8;
 HINSTANCE BorderlessWindow::hInstance = GetModuleHandle(NULL);
-bool BorderlessWindow::focus = true;
 
 BorderlessWindow::BorderlessWindow(QApplication *app, const int x, const int y, const int width, const int height, View *view) :
     hWnd(0),
@@ -73,25 +72,6 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
 
     switch (message) {
         case WM_KEYDOWN: {
-            /*
-            switch (wParam) {
-                case VK_F5: {
-                    window->borderlessResizeable = !window->borderlessResizeable;
-                    break;
-                }
-                case VK_F6: {
-                    window->toggleShadow();
-                    window->toggleBorderless();
-                    SetFocus(winId);
-                    break;
-                }
-                case VK_F7: {
-                    window->toggleShadow();
-                    break;
-                }
-            }
-            */
-
             if (wParam != VK_TAB)
                 return DefWindowProc(hWnd, message, wParam, lParam);
 
@@ -112,7 +92,6 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
         }
 
         case WM_SETFOCUS: {
-            focus = true;
             RedrawWindow(hWnd, 0, 0, RDW_INVALIDATE);
             break;
         }
@@ -126,7 +105,6 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
         }
 
         case WM_KILLFOCUS: {
-            focus = false;
             RedrawWindow(hWnd, 0, 0, RDW_INVALIDATE);
             break;
         }
@@ -148,9 +126,8 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
 
             SelectObject(hdcPaint, GetStockObject(DC_PEN));
             SetDCPenColor(hdcPaint, RGB(150, 150, 150));
-            if (QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS8 && !focus && GetFocus() == 0)
+            if (QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7 && GetFocus() == 0)
                 Rectangle(hdcPaint, r.left + 1, r.top + 1, r.right - 1, r.bottom - 1);
-
 
             DeleteObject(brush);
             EndPaint(hWnd, &ps);

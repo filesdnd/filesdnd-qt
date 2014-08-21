@@ -80,8 +80,6 @@ void ConfigPanel::mousePressEvent(QMouseEvent *event) {
     } else if (ui->aboutWidget->geometry().contains(event->pos())) {
         qDebug() << "About";
     }
-
-    QWidget::mousePressEvent(event);
 }
 
 void ConfigPanel::openDownloadFolder() {

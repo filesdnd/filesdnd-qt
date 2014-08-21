@@ -22,7 +22,6 @@ class BorderlessWindow : public QObject
 public:
     HWND hWnd;
     static HINSTANCE hInstance;
-    static bool focus;
 
     BorderlessWindow(QApplication *app, const int x, const int y, const int width, const int height, View *view);
     ~BorderlessWindow();
