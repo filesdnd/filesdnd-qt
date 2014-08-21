@@ -295,6 +295,8 @@ private:
      * If some file has been removed, the view will be notified
      */
     void checkForHistoryExistingFiles();
+    /// Create example history entries
+    void createExampleHistory();
 };
 
 #endif // SERVICE_H

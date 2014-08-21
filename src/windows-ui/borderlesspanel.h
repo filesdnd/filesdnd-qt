@@ -25,6 +25,8 @@ public slots:
 
 private:
     HWND _windowHandle;
+    View *_view;
+    QCloseEvent _closeEvent;
 };
 
 #endif // BORDERLESSPANEL_H

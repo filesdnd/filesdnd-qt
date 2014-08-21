@@ -15,6 +15,8 @@
 BorderlessPanel::BorderlessPanel(HWND hWnd , View *view) :
     QWinWidget(hWnd)
 {
+    _closeEvent = QCloseEvent();
+    _view = view;
     _windowHandle = hWnd;
     setObjectName("mainPanel");
 
@@ -98,7 +100,7 @@ void BorderlessPanel::pushButtonMaximizeClicked() {
 }
 
 void BorderlessPanel::pushButtonCloseClicked() {
-    PostQuitMessage(0);
+    _view->closeEvent(&_closeEvent);
 }
 
 #if QT_VERSION >= 0x050000

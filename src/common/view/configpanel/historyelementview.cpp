@@ -36,7 +36,8 @@ HistoryElementView::HistoryElementView(QWidget *parent) :
     setProgressBarEnabled(false);
 }
 
-HistoryElementView::HistoryElementView(const QString &date, const QString &text, HistoryElementType type, QWidget *parent) :
+HistoryElementView::HistoryElementView(const QString &date, const QString &text, const QString &userName,
+                                       qint64 size, HistoryElementType type, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HistoryElementView)
 {
@@ -45,6 +46,8 @@ HistoryElementView::HistoryElementView(const QString &date, const QString &text,
     _type = type;
     _text = text;
     _date = date;
+    _userName = userName;
+    _size = size;
 
     refresh();
 }
@@ -66,19 +69,18 @@ bool HistoryElementView::isDownloading() const
 
 void HistoryElementView::refresh()
 {
-    QString trucatedText = textForType(_type, _text);
+    QPair<QString, QString> trucatedText = textForType(_type, _text);
     QIcon icon;
 
     switch (_type)
     {
     case HISTORY_FILE_FOLDER_TYPE:
         // File information
-        ui->fileName->setText(trucatedText);
+        ui->fileName->setText(trucatedText.first);
         ui->fileDate->setText(_date);
-        ui->fileSize->setText(FileHelper::getFileSize(_text));
+        ui->fileSize->setText(FileHelper::getSizeAsString(_size));
         ui->fileName->setWordWrap(false);
-        // TODO
-        ui->fileUserLabel->setText(trucateName(ui->fileUserLabel->text()));
+        ui->fileUserLabel->setText(trucateName(_userName));
 
         // File icon
         icon = QIcon(FILE_ICON);
@@ -86,25 +88,23 @@ void HistoryElementView::refresh()
         break;
 
     case HISTORY_TEXT_TYPE:
-        ui->text->setText(trucatedText);
+        ui->text->setText(trucatedText.first);
         ui->textDate->setText(_date);
         ui->text->setWordWrap(true);
-        // TODO
-        ui->textUserLabel->setText(trucateName(ui->textUserLabel->text()));
+        ui->textUserLabel->setText(trucateName(_userName));
         break;
 
     case HISTORY_URL_TYPE:
-        ui->url->setText(trucatedText);
+        ui->url->setText(trucatedText.first);
         ui->urlDate->setText(_date);
         ui->url->setWordWrap(true);
-        // TODO
-        ui->urlUserLabel->setText(trucateName(ui->urlUserLabel->text()));
+        ui->urlUserLabel->setText(trucateName(_userName));
         break;
     }
 
     ui->stackedWidget->setCurrentIndex(_type);
 
-    setToolTip((_type == HISTORY_FILE_FOLDER_TYPE) ? _text : trucatedText);
+    setToolTip((_type == HISTORY_FILE_FOLDER_TYPE) ? _text : trucatedText.second);
     setProgressBarEnabled(false);
 }
 
@@ -120,31 +120,35 @@ QString HistoryElementView::trucateName(QString fullDataName)
     return trucatedName;
 }
 
-QString HistoryElementView::textForType(HistoryElementType type, QString text)
+QPair<QString, QString> HistoryElementView::textForType(HistoryElementType type, QString text)
 {
     int cutAt = 25;
     QString endingString = " ...";
     int maxTextSize = (type == HISTORY_FILE_FOLDER_TYPE) ? (cutAt - endingString.size()) : 100;
+    QPair<QString, QString> trucatedText;
+    QString leftText = text.left(maxTextSize);
 
-    QString trucatedText = text.left(maxTextSize);
+    if (text.size() > maxTextSize) {
+        leftText.append(endingString);
+    }
+
+    trucatedText.first = leftText;
+    trucatedText.second = leftText;
+
 
     if (type != HISTORY_FILE_FOLDER_TYPE)
     {
-        int size = trucatedText.size();
+        int size = trucatedText.first.size();
         int i = 0;
 
         while (size > cutAt)
         {
-            trucatedText.insert(++i * cutAt, " ");
+            trucatedText.first.insert(++i * cutAt, " ");
             size -= cutAt;
         }
     }
 
-    if (text.size() > maxTextSize)
-        trucatedText.append(endingString);
-
     return trucatedText;
-
 }
 
 HistoryElementType HistoryElementView::getType() const

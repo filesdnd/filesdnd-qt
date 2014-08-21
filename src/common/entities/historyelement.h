@@ -53,7 +53,7 @@ public:
      * @param name Name of the device
      * @param type Type of the element
      */
-    HistoryElement(const QDateTime &date, const QString &text, const QString &name, HistoryElementType type, QObject *parent = 0);
+    HistoryElement(const QDateTime &date, const QString &text, const QString &name, qint64 size, HistoryElementType type, QObject *parent = 0);
     /**
       * Operator =
       */
@@ -72,6 +72,10 @@ public:
      */
     void setDate(const QDateTime &date);
     /**
+     * Setter : _size
+     */
+    void setSize(qint64 size);
+    /**
      * Setter : _txt
      */
     void setText(const QString &text);
@@ -87,6 +91,10 @@ public:
       * Getter : _name
       */
     QString getName();
+    /**
+      * Getter : _size
+      */
+    qint64 getSize();
     /**
      * Getter : _date
      *
@@ -130,6 +138,8 @@ private:
     HistoryElementType _type;
     /// Name of the sender/receiver
     QString _name;
+    /// Size of the element (file / text)
+    qint64 _size;
 };
 
 #endif // HISTORYELEMENT_H

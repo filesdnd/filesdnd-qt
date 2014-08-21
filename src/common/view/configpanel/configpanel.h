@@ -96,6 +96,10 @@ private:
      * Create the advances history list widget with animated scrollbar
      */
     void createHistoryListWidget();
+    /**
+    * Clear the history
+    */
+    void clearHistory();
 };
 
 #endif // CONFIGPANEL_H

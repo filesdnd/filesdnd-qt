@@ -48,7 +48,8 @@ public:
      * @param date Date of the file reception
      * @param text Text of the history element
      */
-    HistoryElementView(const QString &date, const QString &text, HistoryElementType type, QWidget *parent = 0);
+    HistoryElementView(const QString &date, const QString &text, const QString &userName,
+                       qint64 size, HistoryElementType type, QWidget *parent = 0);
     /**
      * Destructor
      */
@@ -66,31 +67,23 @@ public:
      * @param enabled True to enable the progress bar, false otherwise
      */
     void setProgressBarEnabled(bool enabled);
-    /**
-     * Refresh all the values of the view
-     */
+
+    /// Refresh all the values of the view
     void refresh();
-    /**
-      * Get the url
-      */
+    /// Get the url
     QString getUrl() const;
-    /**
-      * Get the the text of the element
-      */
+    /// Get the the text of the element
     QString getText() const;
-    /**
-     * Get the size of the file as a string
-     */
+    /// Get the size of the file as a string
     QString getFileSize() const;
+
     /**
       * Shows if the element is in download
       *
       * @return True if the element is downloading, false otherwise
       */
     bool isDownloading() const;
-    /**
-      * Getter : _type
-      */
+    /// Getter : _type
     HistoryElementType getType() const;
 
 signals:
@@ -114,6 +107,10 @@ private:
     HistoryElementType _type;
     /// Date of the history element
     QString _date;
+    /// Name of the sender / receiver
+    QString _userName;
+    /// Size of the element
+    qint64 _size;
 
     /**
       * Find the text to display corresponding to the display type
@@ -121,9 +118,9 @@ private:
       * @see HistoryElementType
       * @param type The display type
       * @param text The original text
-      * @return The truncated text
+      * @return The a air of truncated text with and without spaces
       */
-    QString textForType(HistoryElementType type, QString text);
+    QPair<QString, QString> textForType(HistoryElementType type, QString text);
 
     /**
      * Trucate the user name to fit the label

@@ -53,6 +53,7 @@ private:
     static QApplication *a;
     static BorderlessPanel *mainPanel;
     static View *view;
+    static QFocusEvent focusEvent;
 
     bool closed;
     bool visible;

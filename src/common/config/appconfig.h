@@ -26,7 +26,7 @@
 
 #define CURRENT_VERSION "2.0.0"
 #define PROTOCOL_VERSION "2"
-#define APP_HISTORY_VERSION 1
+#define APP_HISTORY_VERSION 2
 #define WEB_SITE "http://www.filesdnd.fr"
 #define EN_WEB_SITE "http://www.filesdnd.com"
 #define SEND_TO_NAME "Files Drag and Drop.lnk"

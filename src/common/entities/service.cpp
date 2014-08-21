@@ -346,7 +346,7 @@ bool Service::readFile()
             _bFilename = true;
             QString tmp = filename;
             tmp.remove(ZIP_EXTENSION);
-            _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), tmp, _dataName, HISTORY_FILE_FOLDER_TYPE);
+            _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), tmp, _dataName, _fileSize, HISTORY_FILE_FOLDER_TYPE);
             addCurrentElementToHistory();
 
             if (filename.contains(ZIP_EXTENSION))
@@ -482,6 +482,7 @@ void Service::serializeHistory()
 void Service::deserializeHistory()
 {
     QFile file(HistoryFileName);
+    bool emptyHistory = true;
 
     // Check the history version
     if (SettingsManager::getHistoryVersion() != APP_HISTORY_VERSION)
@@ -502,9 +503,36 @@ void Service::deserializeHistory()
             in >> _history;
             file.close();
 
-            checkForHistoryExistingFiles();
+            emptyHistory = false;
+            //checkForHistoryExistingFiles();
         }
     }
+
+    if (emptyHistory) {
+        createExampleHistory();
+        serializeHistory();
+    }
+}
+
+void Service::createExampleHistory()
+{
+    _history.push_front(HistoryElement(QDateTime::currentDateTime(),
+                                       "http://www.filesdnd.com/gallery", "Drusy",
+                                       31, HISTORY_URL_TYPE));
+    _history.push_front(HistoryElement(QDateTime::currentDateTime(),
+                                       "filesdnd.png", "Nitrog42",
+                                       2000, HISTORY_FILE_FOLDER_TYPE));
+    _history.push_front(HistoryElement(QDateTime::currentDateTime(),
+                                       "Files Drag & Drop rocks!", "Nexus 7",
+                                       24, HISTORY_TEXT_TYPE));
+    _history.push_front(HistoryElement(QDateTime::currentDateTime(),
+                                       "http://www.filesdnd.com", "MacBook",
+                                       23, HISTORY_URL_TYPE));
+    _history.push_front(HistoryElement(QDateTime::currentDateTime(),
+                                       "filesdnd-v2.png", "Android",
+                                       3500, HISTORY_FILE_FOLDER_TYPE));
+
+    emit historyChanged(_history);
 }
 
 void Service::checkForHistoryExistingFiles()
@@ -548,14 +576,14 @@ bool Service::readText()
         if (SettingsManager::isAutoOpenFilesEnabled())
             FileHelper::openURL(text);
 
-        _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), text, _dataName, HISTORY_URL_TYPE);
+        _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), text, _dataName, _dataSize, HISTORY_URL_TYPE);
     }
     else
     {
         emit receivingText(text);
         LogManager::appendLine("[Service] [TEXT] '" + text + "' saved into clipboard");
 
-        _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), text, _dataName, HISTORY_TEXT_TYPE);
+        _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), text, _dataName, _dataSize, HISTORY_TEXT_TYPE);
     }
 
     addCurrentElementToHistory();

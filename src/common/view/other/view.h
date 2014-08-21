@@ -169,10 +169,16 @@ signals:
       * Notify the controller that the window is focused to ask for new records
       */
     void focused();
-
+    /// Window must be shown
     void showWindow();
+    /// Window must be hidden
+    void hideWindow();
 
 public slots:
+    /**
+      * @overload close event to keep the program in the tray bar
+      */
+    void closeEvent(QCloseEvent *event);
     /**
       * SLOT : On service name changed in the settings, notify the controller.
       */
@@ -273,10 +279,6 @@ private slots:
       * @param type Action to do on data reception
       */
     void onSendText(const QString &uid, const QString &string, DataType type);
-    /**
-      * @overload close event to keep the program in the tray bar
-      */
-    void closeEvent(QCloseEvent *event);
     /**
       * @overload QWidget::resizeEvent
       */

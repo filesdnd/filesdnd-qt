@@ -14,6 +14,7 @@ QApplication *BorderlessWindow::a;
 LONG BorderlessWindow::borderWidth = 8;
 HINSTANCE BorderlessWindow::hInstance = GetModuleHandle(NULL);
 View *BorderlessWindow::view = NULL;
+QFocusEvent BorderlessWindow::focusEvent = QFocusEvent(QFocusEvent::FocusIn);
 
 BorderlessWindow::BorderlessWindow(QApplication *app, const int x, const int y, const int width, const int height, View *view) :
     hWnd(0),
@@ -24,6 +25,7 @@ BorderlessWindow::BorderlessWindow(QApplication *app, const int x, const int y, 
     visible(true)
 {
     connect(view, SIGNAL(showWindow()), this, SLOT(show()));
+    connect(view, SIGNAL(hideWindow()), this, SLOT(hide()));
 
     WNDCLASSEX wcx = { 0 };
     wcx.cbSize = sizeof(WNDCLASSEX);
@@ -94,7 +96,7 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
         }
 
         case WM_SETFOCUS: {
-            view->focusInEvent(new QFocusEvent(QFocusEvent::FocusIn));
+            view->focusInEvent(&focusEvent);
             RedrawWindow(hWnd, 0, 0, RDW_INVALIDATE);
             break;
         }

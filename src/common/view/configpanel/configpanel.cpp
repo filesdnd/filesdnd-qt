@@ -60,16 +60,6 @@ ConfigPanel::~ConfigPanel()
 
 void ConfigPanel::createHistoryListWidget() {
     _historyScrollBar = new TransparentScrollBar(ui->historyListWidget);
-
-    for (int i = 0; i < 10; ++i) {
-        HistoryElementView *historyViewElement = new HistoryElementView(QDateTime::currentDateTime().toString("dd/MM/yyyy"),
-                                                                        "long-file-name-example-long.txt",
-                                                                        HistoryElementType(i % 3));
-        QListWidgetItem *item = new QListWidgetItem();
-        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height() - 15));
-        ui->historyListWidget->addItem(item);
-        ui->historyListWidget->setItemWidget(item, historyViewElement);
-    }
 }
 
 void ConfigPanel::mousePressEvent(QMouseEvent *event) {
@@ -113,15 +103,25 @@ void ConfigPanel::updateRefreshFrame(int frame)
 
 void ConfigPanel::onHistoryChanged(const QList<HistoryElement> &history)
 {
-    //clearHistory();
+    clearHistory();
     foreach(HistoryElement elt, history)
     {
-        HistoryElementView *historyViewElement = new HistoryElementView(elt.getDateTime("dd/MM - hh:mm"), elt.getText(), elt.getType());
+        HistoryElementView *historyViewElement = new HistoryElementView(elt.getDateTime("dd/MM/yyyy"), elt.getText(), elt.getName(), elt.getSize(), elt.getType());
         QListWidgetItem *item = new QListWidgetItem();
         connect(historyViewElement, SIGNAL(cancelIncomingTransfert()),
                 _view, SLOT(onCancelIncomingTransfert()));
-        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height()));
+        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height()  - 10));
         ui->historyListWidget->addItem(item);
         ui->historyListWidget->setItemWidget(item, historyViewElement);
+    }
+}
+
+void ConfigPanel::clearHistory()
+{
+    QListWidgetItem *item;
+    while (ui->historyListWidget->count() != 0)
+    {
+        item = ui->historyListWidget->takeItem(0);
+        delete item;
     }
 }

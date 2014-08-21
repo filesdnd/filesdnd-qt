@@ -28,13 +28,14 @@ HistoryElement::HistoryElement(QObject *parent) :
 {
 }
 
-HistoryElement::HistoryElement(const QDateTime &date, const QString &text, const QString &name, HistoryElementType type, QObject *parent) :
+HistoryElement::HistoryElement(const QDateTime &date, const QString &text, const QString &name, qint64 size, HistoryElementType type, QObject *parent) :
     QObject(parent)
 {
     setDate(date);
     setText(text);
     setType(type);
     setName(name);
+    setSize(size);
 }
 
 HistoryElement& HistoryElement::operator=(const HistoryElement &historyElement)
@@ -45,6 +46,7 @@ HistoryElement& HistoryElement::operator=(const HistoryElement &historyElement)
         setText(historyElement._txt);
         setType(historyElement._type);
         setName(historyElement._name);
+        setSize(historyElement._size);
     }
 
     return *this;
@@ -64,7 +66,9 @@ bool HistoryElement::operator==(const HistoryElement &historyElement)
 {
     return (historyElement._date == _date &&
             historyElement._txt == _txt &&
-            historyElement._type == _type);
+            historyElement._type == _type &&
+            historyElement._name == _name &&
+            historyElement._size == _size);
 }
 
 HistoryElement::HistoryElement(const HistoryElement &element)
@@ -72,11 +76,18 @@ HistoryElement::HistoryElement(const HistoryElement &element)
     _date = element._date;
     _txt = element._txt;
     _type = element._type;
+    _name = element._name;
+    _size = element._size;
 }
 
 void HistoryElement::setDate(const QDateTime &date)
 {
     _date = date;
+}
+
+void HistoryElement::setSize(qint64 size)
+{
+    _size = size;
 }
 
 void HistoryElement::setType(HistoryElementType type)
@@ -99,6 +110,11 @@ QString HistoryElement::getName()
     return _name;
 }
 
+qint64 HistoryElement::getSize()
+{
+    return _size;
+}
+
 QString HistoryElement::getDateTime(const QString &format) const
 {
     return _date.toString(format);
@@ -111,7 +127,7 @@ QString HistoryElement::getText() const
 
 QDataStream &operator<<(QDataStream &out, const HistoryElement &element)
 {
-    out << element._date << element._txt << (qint16)element._type;
+    out << element._date << element._txt << element._name << (qint64)element._size << (qint16)element._type;
 
     return out;
 }
@@ -120,7 +136,7 @@ QDataStream &operator>>(QDataStream &in, HistoryElement &element)
 {
     qint16 type;
 
-    in >> element._date >> element._txt >> type;
+    in >> element._date >> element._txt >> element._name >> element._size >> type;
 
     element._type = HistoryElementType(type);
 

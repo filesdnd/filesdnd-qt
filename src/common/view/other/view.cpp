@@ -451,7 +451,7 @@ void View::closeEvent(QCloseEvent *event)
 {
     if (_trayIcon->isVisible())
     {
-        hide();
+        emit hideWindow();
         manageWidgetVisibility();
         event->ignore();
     }
@@ -595,8 +595,9 @@ void View::onCancelIncomingTransfert()
     emit cancelIncomingTransfert();
 }
 
-void View::focusInEvent(QFocusEvent *)
+void View::focusInEvent(QFocusEvent *event)
 {
+    Q_UNUSED(event);
     emit focused();
 }
 
