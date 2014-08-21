@@ -49,9 +49,7 @@ enum DataType
   */
 struct DataStruct
 {
-    /**
-      * Constructor
-      */
+    ///Constructor
     DataStruct();
 
     /// Type of data

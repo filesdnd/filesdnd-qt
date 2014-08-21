@@ -72,7 +72,6 @@ private slots:
 private:
     /// Gui
     Ui::UpdateDialog *ui;
-
     /// Version to update
     QString _version;
 };

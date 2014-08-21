@@ -135,6 +135,8 @@ private:
     Ui::DeviceView *ui;
     /// ProgressBar visibility timer
     QTimer _progressTimer;
+    /// State of the transfert
+    TransfertState _state;
 
     /**
      * Manage the device on availability
@@ -206,8 +208,6 @@ private:
      * @param mimeData Data
      */
     void sendProperData(const QMimeData *mimeData);
-
-    TransfertState _state;
 };
 
 #endif // DEVICEVIEW_H
