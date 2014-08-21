@@ -13,6 +13,7 @@ BorderlessPanel *BorderlessWindow::mainPanel;
 QApplication *BorderlessWindow::a;
 LONG BorderlessWindow::borderWidth = 8;
 HINSTANCE BorderlessWindow::hInstance = GetModuleHandle(NULL);
+View *BorderlessWindow::view = NULL;
 
 BorderlessWindow::BorderlessWindow(QApplication *app, const int x, const int y, const int width, const int height, View *view) :
     hWnd(0),
@@ -45,6 +46,7 @@ BorderlessWindow::BorderlessWindow(QApplication *app, const int x, const int y, 
 
     SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 
+    BorderlessWindow::view = view;
     mainPanel = new BorderlessPanel(hWnd, view);
     winId = (HWND)mainPanel->winId();
 
@@ -92,6 +94,7 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
         }
 
         case WM_SETFOCUS: {
+            view->focusInEvent(new QFocusEvent(QFocusEvent::FocusIn));
             RedrawWindow(hWnd, 0, 0, RDW_INVALIDATE);
             break;
         }
@@ -126,7 +129,7 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
 
             SelectObject(hdcPaint, GetStockObject(DC_PEN));
             SetDCPenColor(hdcPaint, RGB(150, 150, 150));
-            if (QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7 && GetFocus() == 0)
+            if (QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS8 && GetFocus() == 0)
                 Rectangle(hdcPaint, r.left + 1, r.top + 1, r.right - 1, r.bottom - 1);
 
             DeleteObject(brush);

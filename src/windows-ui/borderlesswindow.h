@@ -52,6 +52,7 @@ public slots:
 private:
     static QApplication *a;
     static BorderlessPanel *mainPanel;
+    static View *view;
 
     bool closed;
     bool visible;
