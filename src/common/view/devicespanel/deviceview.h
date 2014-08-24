@@ -208,6 +208,17 @@ private:
      * @param mimeData Data
      */
     void sendProperData(const QMimeData *mimeData);
+    /**
+     * Update the style of a widget
+     *
+     * @param widget The widget to refresh
+     * @param cssClass The qss class to apply
+     */
+    void updateWidgetStyle(QWidget *widget, const QString &cssClass);
+    /**
+     * Load the css style and replace the proper values (available colors)
+     */
+    void loadStyle(const QString &color);
 };
 
 #endif // DEVICEVIEW_H

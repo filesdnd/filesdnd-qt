@@ -61,7 +61,7 @@ void UpdateDialog::on_updateButton_clicked()
     else
         website = EN_WEB_SITE;
 
-    FileHelper::openURL(QString(website) + "/download");
+    FileHelper::openURL(QString(website) + "/#button-section");
     close();
 }
 

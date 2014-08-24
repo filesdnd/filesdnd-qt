@@ -126,6 +126,13 @@ public:
      * @return The path of the sent to folder or an empty string
      */
     static QString getSendToFolder();
+    /**
+     * Read the content of a file
+     *
+     * @param path Path of the file to read
+     * @return The content of the file or an empty string
+     */
+    static QString loadFileContent(const QString &path);
 };
 
 #endif // FILEHELPER_H

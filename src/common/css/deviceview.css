@@ -1,0 +1,49 @@
+#backgroundContainerWindows {
+    background: url(:/images/devices/windows_icon_large.png) no-repeat right top;
+}
+
+#backgroundContainerAndroid {
+    background: url(:/images/devices/android_icon_large.png) no-repeat right top;
+}
+
+#backgroundContainerMac {
+    background: url(:/images/devices/apple_icon_large_2.png) no-repeat right top;
+}
+
+#backgroundContainerLinux {
+    background: url(:/images/devices/linux_icon_large.png) no-repeat right top;
+}
+
+#enabledWidget, #enabledWidget:pressed {
+    background: url(:/images/icons/arrow-out.png) no-repeat right bottom;
+    border: 0px;
+}
+
+#disabledWidget, #disabledWidget:pressed {
+    background: url(:/images/icons/arrow-out_white.png) no-repeat right bottom;
+    border: 0px;
+}
+
+#borderContainer {
+    border: 3px solid #borderColor#;
+    border-radius: 10px;
+}
+
+QProgressBar#greenProgressBar:horizontal, QProgressBar#redProgressBar:horizontal {
+    border: 1px solid gray;
+    border-radius: 3px;
+    background: white;
+}
+
+QProgressBar#cleanProgressBar:horizontal, QProgressBar#cleanProgressBar::chunk:horizontal {
+}
+
+
+QProgressBar#greenProgressBar::chunk:horizontal {
+    background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 green, stop: 1 white);
+}
+
+
+QProgressBar#redProgressBar::chunk:horizontal {
+    background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 darkred, stop: 1 white);
+}

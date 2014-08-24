@@ -39,31 +39,22 @@ DeviceView::DeviceView(const QString &name, const QString &uid, DeviceType type,
     connect(&_progressTimer, SIGNAL(timeout()),
             this, SLOT(onProgressTimerOut()));
 
+    // Stylesheet
+    loadStyle(SettingsManager::availableDeviceColor());
+
     switch (type)
     {
     case TYPE_ANDROID:
-        ui->backgroundContainer->setStyleSheet("#backgroundContainer"
-                                               "{\n"
-                                                  "background: url(:/images/devices/android_icon_large.png) no-repeat right top;\n"
-                                               "}\n");
+        updateWidgetStyle(ui->backgroundContainer, "backgroundContainerAndroid");
         break;
     case TYPE_WINDOWS:
-        ui->backgroundContainer->setStyleSheet("#backgroundContainer"
-                                               "{\n"
-                                                  "background: url(:/images/devices/windows_icon_large.png) no-repeat right top;\n"
-                                               "}\n");
+        updateWidgetStyle(ui->backgroundContainer, "backgroundContainerWindows");
         break;
     case TYPE_MAC:
-        ui->backgroundContainer->setStyleSheet("#backgroundContainer"
-                                               "{\n"
-                                                  "background: url(:/images/devices/apple_icon_large_2.png) no-repeat right top;\n"
-                                               "}\n");
+        updateWidgetStyle(ui->backgroundContainer, "backgroundContainerMac");
         break;
     case TYPE_LINUX:
-        ui->backgroundContainer->setStyleSheet("#backgroundContainer"
-                                               "{\n"
-                                                  "background: url(:/images/devices/linux_icon_large.png) no-repeat right top;\n"
-                                               "}\n");
+        updateWidgetStyle(ui->backgroundContainer, "backgroundContainerLinux");
         break;
     }
 
@@ -82,23 +73,34 @@ DeviceView::~DeviceView()
     delete ui;
 }
 
+void DeviceView::loadStyle(const QString &color)
+{
+    QString css = FileHelper::loadFileContent(DEVICE_VIEW_CSS);
+
+    css.replace("#borderColor#", color);
+
+    setStyleSheet(css);
+}
+
+void DeviceView::updateWidgetStyle(QWidget *widget, const QString &cssClass)
+{
+    widget->setObjectName(cssClass);
+    style()->unpolish(widget);
+    style()->polish(widget);
+    widget->repaint();
+}
+
 void DeviceView::manageWidgetVisibility()
 {
     if (SettingsManager::shouldDisplayWidget(_uid))
     {
         ui->widgetButton->setToolTip(tr("Widget activé"));
-        ui->widgetButton->setStyleSheet("QPushButton#widgetButton"
-                                        "{"
-                                            "background: url(:/images/icons/arrow-out.png) no-repeat right bottom;"
-                                        "}");
+        updateWidgetStyle(ui->widgetButton, "enabledWidget");
     }
     else
     {
         ui->widgetButton->setToolTip(tr("Widget désactivé"));
-        ui->widgetButton->setStyleSheet("QPushButton#widgetButton"
-                                        "{"
-                                            "background: url(:/images/icons/arrow-out_white.png) no-repeat right bottom;"
-                                        "}");
+        updateWidgetStyle(ui->widgetButton, "disabledWidget");
     }
 }
 
@@ -120,45 +122,23 @@ TransfertState DeviceView::lastState()
 
 void DeviceView::deviceAvailable(TransfertState state)
 {
-    ui->borderContainer->setStyleSheet("#borderContainer"
-                                       "{\n"
-                                          "border: 3px solid " + SettingsManager::availableDeviceColor() + ";\n"
-                                          "border-radius: 10px;\n"
-                                       "}\n");
+    loadStyle(SettingsManager::availableDeviceColor());
 
     ui->progressBar->setMaximum(100);
     ui->progressBar->setValue(100);
     switch (state)
     {
         case SUCCESS:
-            ui->progressBar->setStyleSheet("QProgressBar:horizontal {\n"
-                                               "border: 1px solid gray;\n"
-                                               "border-radius: 3px;\nbackground: white;\n"
-                                           "}\n"
-                                           "QProgressBar::chunk:horizontal {\n"
-                                                "background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 green, stop: 1 white);\n"
-                                           "}");
+            updateWidgetStyle(ui->progressBar, "greenProgressBar");
             ui->progressBar->setFormat(tr("Transfert terminé"));
             _progressTimer.start(3000);
             break;
         case CANCELED:
-            ui->progressBar->setStyleSheet("QProgressBar:horizontal {\n"
-                                               "border: 1px solid gray;\n"
-                                               "border-radius: 3px;\nbackground: white;\n"
-                                           "}\n"
-                                           "QProgressBar::chunk:horizontal {\n"
-                                                "background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 darkred, stop: 1 white);\n"
-                                           "}");
+            updateWidgetStyle(ui->progressBar, "redProgressBar");
             ui->progressBar->setFormat(tr("Transfert annulé"));
             break;
         default:
-            ui->progressBar->setStyleSheet("QProgressBar:horizontal {\n"
-                                               "border: 1px solid gray;\n"
-                                               "border-radius: 3px;\nbackground: white;\n"
-                                           "}\n"
-                                           "QProgressBar::chunk:horizontal {\n"
-                                                "background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 darkred, stop: 1 white);\n"
-                                           "}");
+            updateWidgetStyle(ui->progressBar, "redProgressBar");
             ui->progressBar->setFormat(tr("Echec du transfert"));
     }
     ui->cancelButton->setVisible(false);
@@ -166,11 +146,8 @@ void DeviceView::deviceAvailable(TransfertState state)
 
 void DeviceView::deviceUnavailable(TransfertState state)
 {
-    ui->borderContainer->setStyleSheet("#borderContainer"
-                                       "{\n"
-                                          "border: 3px solid " + SettingsManager::unavailableDeviceColor() + ";\n"
-                                          "border-radius: 10px;\n"
-                                       "}\n");
+    loadStyle(SettingsManager::unavailableDeviceColor());
+
     _progressTimer.stop();
     ui->cancelButton->setVisible(true);
 
@@ -178,13 +155,7 @@ void DeviceView::deviceUnavailable(TransfertState state)
     {
         ui->progressBar->setMaximum(100);
         ui->progressBar->setValue(0);
-        ui->progressBar->setStyleSheet("QProgressBar:horizontal {\n"
-                                           "border: 1px solid gray;\n"
-                                           "border-radius: 3px;\nbackground: white;\n"
-                                       "}\n"
-                                       "QProgressBar::chunk:horizontal {\n"
-                                            "background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 green, stop: 1 white);\n"
-                                       "}");
+        updateWidgetStyle(ui->progressBar, "greenProgressBar");
         ui->progressBar->setFormat(tr("Authentification ..."));
     } else
     {
@@ -193,13 +164,13 @@ void DeviceView::deviceUnavailable(TransfertState state)
             ui->cancelButton->setVisible(false);
             ui->progressBar->setMaximum(100);
             ui->progressBar->setValue(0);
-            ui->progressBar->setStyleSheet("");
+            updateWidgetStyle(ui->progressBar, "cleanProgressBar");
             ui->progressBar->setFormat(tr("Version différente"));
         }
         else
         {
             ui->progressBar->setMaximum(0);
-            ui->progressBar->setStyleSheet("");
+            updateWidgetStyle(ui->progressBar, "cleanProgressBar");
             ui->progressBar->setFormat(tr("Connexion en cours ..."));
         }
     }

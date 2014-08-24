@@ -75,6 +75,7 @@
         <file>windows-ui/application.css</file>
         <file>common/css/configpanel.css</file>
         <file>common/css/history.css</file>
+        <file>common/css/deviceview.css</file>
     </qresource>
     <qresource prefix="/font">
         <file>fonts/Roboto/Roboto-Regular.ttf</file>

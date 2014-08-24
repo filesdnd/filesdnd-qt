@@ -154,11 +154,7 @@ void Controller::startView(QApplication *application)
 
 #if defined(Q_OS_WIN)
     // Stylesheet
-    QFile stylesheetFile(WINDOWS_APP_CSS);
-    if (stylesheetFile.open(QFile::ReadOnly)) {
-        QString stylesheet = stylesheetFile.readAll();
-        application->setStyleSheet(stylesheet);
-    }
+    application->setStyleSheet(FileHelper::loadFileContent(WINDOWS_APP_CSS));
 
     // Create window
     BorderlessWindow *window = new BorderlessWindow(application,

@@ -200,6 +200,18 @@ QString FileHelper::getDefaultStorageLocation()
     return defaultLocation;
 }
 
+QString FileHelper::loadFileContent(const QString &path)
+{
+    QFile file(path);
+    QString content = "";
+
+    if (file.open(QFile::ReadOnly)) {
+        content = file.readAll();
+    }
+
+    return content;
+}
+
 QString FileHelper::getFileStorageLocation()
 {
     QString defaultLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation);

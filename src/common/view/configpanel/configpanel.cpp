@@ -39,11 +39,7 @@ ConfigPanel::ConfigPanel(QWidget *parent) :
     ui->setupUi(this);
 
     // Stylesheet
-    QFile stylesheetFile(CONFIG_PANEL_CSS);
-    if (stylesheetFile.open(QFile::ReadOnly)) {
-        QString stylesheet = stylesheetFile.readAll();
-        setStyleSheet(stylesheet);
-    }
+    setStyleSheet(FileHelper::loadFileContent(CONFIG_PANEL_CSS));
 
     // Manage history list widget
     createHistoryListWidget();

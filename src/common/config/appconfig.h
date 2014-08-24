@@ -56,6 +56,7 @@
 #define CONFIG_PANEL_CSS ":/css/common/css/configpanel.css"
 #define WINDOWS_APP_CSS ":/css/windows-ui/application.css"
 #define HISTORY_LIST_CSS ":/css/common/css/history.css"
+#define DEVICE_VIEW_CSS ":/css/common/css/deviceview.css"
 
 #define OVERLAY_TIMEOUT (1000 * 10)
 #define BONJOUR_TIMEOUT (1000 * 25)
