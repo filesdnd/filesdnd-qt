@@ -60,6 +60,9 @@
         <file>images/flat/folder-flat.png</file>
         <file>images/flat/link-flat.png</file>
         <file>images/flat/pencil-flat.png</file>
+        <file>images/flat/flat-facebook.png</file>
+        <file>images/flat/flat-googleplus.png</file>
+        <file>images/flat/flat-twitter.png</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>
