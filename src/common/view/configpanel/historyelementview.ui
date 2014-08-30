@@ -35,7 +35,7 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="filePage">
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -129,7 +129,7 @@
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="../../../resources.qrc">:/images/flat/folder-flat.png</pixmap>
+                <pixmap resource="../../../resources.qrc">:/folderIconFlat</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>true</bool>

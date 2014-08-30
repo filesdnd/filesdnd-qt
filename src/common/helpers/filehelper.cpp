@@ -224,3 +224,43 @@ QString FileHelper::getFileStorageLocation()
 
     return defaultLocation;
 }
+
+bool FileHelper::isSpreadsheet(const QString &filename)
+{
+    return (filename.endsWith("ods") || filename.endsWith("xls") || filename.endsWith("xlsx") || filename.endsWith("xlr"));
+}
+
+bool FileHelper::isDoc(const QString &filename)
+{
+    return (filename.endsWith("doc") || filename.endsWith("docx") || filename.endsWith("odt") || filename.endsWith("rtf"));
+}
+
+bool FileHelper::isPdf(const QString &filename)
+{
+    return filename.endsWith("pdf");
+}
+
+bool FileHelper::isZip(const QString &filename)
+{
+    return (filename.endsWith("zip") || filename.endsWith("tar") || filename.endsWith("tar.gz") || filename.endsWith("rar")
+             || filename.endsWith("7z") || filename.endsWith("gz"));
+}
+
+bool FileHelper::isMusic(const QString &filename)
+{
+    return (filename.endsWith("aac") || filename.endsWith("flac") || filename.endsWith("mid") || filename.endsWith("mp3")
+             || filename.endsWith("m3u") || filename.endsWith("wav") || filename.endsWith("mpa") || filename.endsWith("m4a"));
+}
+
+bool FileHelper::isImage(const QString &filename)
+{
+    return (filename.endsWith("png") || filename.endsWith("jpg") || filename.endsWith("jpeg") || filename.endsWith("gif")
+            || filename.endsWith("bmp") || filename.endsWith("psd") || filename.endsWith("svg") || filename.endsWith("ico"));
+}
+
+bool FileHelper::isMovie(const QString &filename)
+{
+    return (filename.endsWith("3gp") || filename.endsWith("avi") || filename.endsWith("mp4") || filename.endsWith("mpeg")
+            || filename.endsWith("flv") || filename.endsWith("m4v") || filename.endsWith("mov") || filename.endsWith("mpg")
+            || filename.endsWith("rts") || filename.endsWith("wmv") || filename.endsWith("xvid") || filename.endsWith("swf"));
+}

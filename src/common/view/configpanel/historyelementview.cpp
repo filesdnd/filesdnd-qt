@@ -67,10 +67,33 @@ bool HistoryElementView::isDownloading() const
     return ui->progressBar->isVisible();
 }
 
+void HistoryElementView::setIconToLabelForFilename(QLabel *label, const QString &filename)
+{
+    QIcon icon;
+
+    if (FileHelper::isSpreadsheet(filename)) {
+        icon = QIcon(XLSX_ICON);
+    } else if(FileHelper::isDoc(filename)) {
+        icon = QIcon(DOC_ICON);
+    } else if(FileHelper::isPdf(filename)) {
+        icon = QIcon(PDF_ICON);
+    } else if(FileHelper::isZip(filename)) {
+        icon = QIcon(ZIP_ICON);
+    } else if(FileHelper::isMusic(filename)) {
+        icon = QIcon(MUSIC_ICON);
+    } else if(FileHelper::isImage(filename)) {
+        icon = QIcon(IMG_ICON);
+    } else if(FileHelper::isMovie(filename)) {
+        icon = QIcon(MOVIE_ICON);
+    } else {
+        icon = QIcon(FILE_ICON);
+    }
+    label->setPixmap(icon.pixmap(HISTORY_ICON_SIZE));
+}
+
 void HistoryElementView::refresh()
 {
     QPair<QString, QString> trucatedText = textForType(_text);
-    QIcon icon;
 
     switch (_type)
     {
@@ -84,8 +107,7 @@ void HistoryElementView::refresh()
         ui->stackedWidget->setCurrentIndex(0);
 
         // File icon
-        icon = QIcon(FILE_ICON);
-        ui->fileIcon->setPixmap(icon.pixmap(16));
+        setIconToLabelForFilename(ui->fileIcon, _text);
         break;
 
     case HISTORY_FOLDER_TYPE:

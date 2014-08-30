@@ -519,8 +519,23 @@ void Service::deserializeHistory()
 void Service::createExampleHistory()
 {
     _history.push_front(HistoryElement(QDateTime::currentDateTime(),
-                                       "http://www.filesdnd.com/gallery", "Drusy",
-                                       31, HISTORY_URL_TYPE));
+                                       "filesdnd.mp3", "Kinoko",
+                                       3500, HISTORY_FILE_TYPE));
+    _history.push_front(HistoryElement(QDateTime::currentDateTime(),
+                                       "filesdnd.xlsx", "Yusiko",
+                                       92, HISTORY_FILE_TYPE));
+    _history.push_front(HistoryElement(QDateTime::currentDateTime(),
+                                       "filesdnd.doc", "Filesdnd",
+                                       70, HISTORY_FILE_TYPE));
+    _history.push_front(HistoryElement(QDateTime::currentDateTime(),
+                                       "filesdnd.zip", "Windows",
+                                       1024, HISTORY_FILE_TYPE));
+    _history.push_front(HistoryElement(QDateTime::currentDateTime(),
+                                       "filesdnd.avi", "John",
+                                       35000, HISTORY_FILE_TYPE));
+    _history.push_front(HistoryElement(QDateTime::currentDateTime(),
+                                       "filesdnd.pdf", "Drusy",
+                                       310, HISTORY_FILE_TYPE));
     _history.push_front(HistoryElement(QDateTime::currentDateTime(),
                                        "filesdnd", "Nitrog42",
                                        10000, HISTORY_FOLDER_TYPE));

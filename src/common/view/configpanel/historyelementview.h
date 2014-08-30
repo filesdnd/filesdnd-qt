@@ -23,6 +23,7 @@
 
 #include <QWidget>
 #include <QDateTime>
+#include <QLabel>
 
 #include "entities/historyelement.h"
 
@@ -135,6 +136,14 @@ private:
      * @return True if the element is a file or a folder, false otherwise
      */
     bool isFileFolder();
+
+    /**
+     * Set the proper icon for a label depending of the file extension
+     *
+     * @param label Label of the icon
+     * @param filename Name of the file
+     */
+    void setIconToLabelForFilename(QLabel *label, const QString &filename);
 };
 
 #endif // HISTORYELEMENTVIEW_H

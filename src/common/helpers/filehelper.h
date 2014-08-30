@@ -133,6 +133,49 @@ public:
      * @return The content of the file or an empty string
      */
     static QString loadFileContent(const QString &path);
+    /**
+     * Defines if the file is a Spreadsheet
+     *
+     * @param filename File name
+     */
+    static bool isSpreadsheet(const QString &filename);
+    /**
+     * Defines if the file is a Doc
+     *
+     * @param filename File name
+     */
+    static bool isDoc(const QString &filename);
+    /**
+     * Defines if the file is a Pdf
+     *
+     * @param filename File name
+     */
+    static bool isPdf(const QString &filename);
+    /**
+     * Defines if the file is a Zip
+     *
+     * @param filename File name
+     */
+    static bool isZip(const QString &filename);
+    /**
+     * Defines if the file is a Music
+     *
+     * @param filename File name
+     */
+    static bool isMusic(const QString &filename);
+    /**
+     * Defines if the file is an Image
+     *
+     * @param filename File name
+     */
+    static bool isImage(const QString &filename);
+    /**
+     * Defines if the file is a Movie
+     *
+     * @param filename File name
+     */
+    static bool isMovie(const QString &filename);
+
 };
 
 #endif // FILEHELPER_H

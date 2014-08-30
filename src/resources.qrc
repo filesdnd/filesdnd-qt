@@ -57,14 +57,19 @@
         <file>images/flat/refresh-circle-flat-animated.gif</file>
         <file>images/flat/download-flat-v3.png</file>
         <file alias="fileIconFlat">images/flat/file-flat.png</file>
-        <file>images/flat/folder-flat.png</file>
+        <file alias="folderIconFlat">images/flat/folder-flat.png</file>
         <file>images/flat/link-flat.png</file>
         <file>images/flat/pencil-flat.png</file>
         <file>images/flat/flat-facebook.png</file>
         <file>images/flat/flat-googleplus.png</file>
         <file>images/flat/flat-twitter.png</file>
-        <file>images/flat/image-flat.png</file>
-        <file>images/flat/archive-flat.png</file>
+        <file alias="imageIconFlat">images/flat/image-flat.png</file>
+        <file alias="zipIconFlat">images/flat/archive-flat.png</file>
+        <file alias="docIconFlat">images/flat/doc-flat.png</file>
+        <file alias="musicIconFlat">images/flat/music-flat.png</file>
+        <file alias="pdfIconFlat">images/flat/pdf-flat.png</file>
+        <file alias="xlsxIconFlat">images/flat/xlsx-flat.png</file>
+        <file alias="movieIconFlat">images/flat/video-flat.png</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>
