@@ -63,7 +63,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Aucun périphérique disponible</string>
+      <string>Nous cherchons vos périphériques</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

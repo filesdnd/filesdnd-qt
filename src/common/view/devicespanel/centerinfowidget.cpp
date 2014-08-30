@@ -24,26 +24,35 @@
 
 #include <QDebug>
 
+QMovie *CenterInfoWidget::AnimatedLogo = 0;
+
 CenterInfoWidget::CenterInfoWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CenterInfoWidget)
 {
     ui->setupUi(this);
+
+    if (AnimatedLogo == 0) {
+        AnimatedLogo = new QMovie((ANIMATED_WAITING_LOGO));
+    }
 }
 
 CenterInfoWidget::~CenterInfoWidget()
 {
+    AnimatedLogo->setPaused(true);
     delete ui;
 }
 
 void CenterInfoWidget::setNoDeviceMode()
 {
-    ui->infoLabel->setText(tr("Aucun périphérique disponible"));
-    ui->icon->setPixmap(QPixmap(NODEVICE_LOGO));
+    ui->icon->setMovie(AnimatedLogo);
+    AnimatedLogo->setPaused(false);
+    ui->infoLabel->setText(tr("Nous cherchons vos périphériques"));
 }
 
 void CenterInfoWidget::setBonjourErrorMode(const QString &message)
 {
+    AnimatedLogo->stop();
     ui->infoLabel->setText(message);
     ui->icon->setPixmap(QPixmap(BONJOUR_LOGO));
 }

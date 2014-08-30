@@ -108,8 +108,9 @@ void View::resizeEvent(QResizeEvent *event)
 
 void View::clearGrid()
 {
-    foreach (DeviceView *device, _devices)
+    foreach (DeviceView *device, _devices) {
         delete device;
+    }
     clearCenterInfoWidget();
     _devices.clear();
 }
@@ -275,8 +276,9 @@ void View::displayBonjourServiceError()
         break;
     }
 
-    if (!_infoWidget)
+    if (!_infoWidget) {
         _infoWidget = new CenterInfoWidget(this);
+    }
 
     _infoWidget->setBonjourErrorMode(message);
     ui->gridLayout->addWidget(_infoWidget, currentPosition.first, currentPosition.second);

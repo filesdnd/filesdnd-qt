@@ -51,6 +51,7 @@
 #define LINK_ICON ":/images/icons/link.png"
 #define CLIPBOARD_ICON ":/images/icons/clipboard-paste.png"
 #define ANIMATED_REFRESH_ICON ":/images/flat/refresh-circle-flat-animated.gif"
+#define ANIMATED_WAITING_LOGO ":/images/logo/waiting-logo.gif"
 
 #define CONFIG_PANEL_CSS ":/css/common/css/configpanel.css"
 #define WINDOWS_APP_CSS ":/css/windows-ui/application.css"

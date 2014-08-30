@@ -22,6 +22,7 @@
 #define CENTERINFOWIDGET_H
 
 #include <QWidget>
+#include <QMovie>
 
 namespace Ui {
 class CenterInfoWidget;
@@ -60,6 +61,8 @@ public:
 private:
     /// GUI
     Ui::CenterInfoWidget *ui;
+    /// Animated logo
+    static QMovie *AnimatedLogo;
 };
 
 #endif // CENTERINFOWIDGET_H
