@@ -344,15 +344,17 @@ bool Service::readFile()
                 return false;
             stream >> filename;
             _bFilename = true;
-            QString tmp = filename;
-            tmp.remove(ZIP_EXTENSION);
-            _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), tmp, _dataName, _fileSize, HISTORY_FILE_FOLDER_TYPE);
-            addCurrentElementToHistory();
 
-            if (filename.contains(ZIP_EXTENSION))
-                emit receivingFolder(tmp, _fileSize);
-            else
+            if (filename.contains(ZIP_EXTENSION)) {
+                QString noExtension = filename;
+                noExtension.remove(ZIP_EXTENSION);
+                _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), noExtension, _dataName, _fileSize, HISTORY_FOLDER_TYPE);
+                emit receivingFolder(noExtension, _fileSize);
+            } else {
+                _currentHistoryElement = HistoryElement(QDateTime::currentDateTime(), filename, _dataName, _fileSize, HISTORY_FILE_TYPE);
                 emit receivingFile(filename, _fileSize);
+            }
+            addCurrentElementToHistory();
         }
 
         if(_file.isOpen() && _fileSize != 0
@@ -520,8 +522,8 @@ void Service::createExampleHistory()
                                        "http://www.filesdnd.com/gallery", "Drusy",
                                        31, HISTORY_URL_TYPE));
     _history.push_front(HistoryElement(QDateTime::currentDateTime(),
-                                       "filesdnd.png", "Nitrog42",
-                                       2000, HISTORY_FILE_FOLDER_TYPE));
+                                       "filesdnd", "Nitrog42",
+                                       10000, HISTORY_FOLDER_TYPE));
     _history.push_front(HistoryElement(QDateTime::currentDateTime(),
                                        "Files Drag & Drop rocks!", "Nexus 7",
                                        24, HISTORY_TEXT_TYPE));
@@ -530,7 +532,7 @@ void Service::createExampleHistory()
                                        23, HISTORY_URL_TYPE));
     _history.push_front(HistoryElement(QDateTime::currentDateTime(),
                                        "filesdnd-v2.png", "Android",
-                                       3500, HISTORY_FILE_FOLDER_TYPE));
+                                       3500, HISTORY_FILE_TYPE));
 
     emit historyChanged(_history);
 }

@@ -116,11 +116,10 @@ private:
       * Find the text to display corresponding to the display type
       *
       * @see HistoryElementType
-      * @param type The display type
       * @param text The original text
       * @return The a air of truncated text with and without spaces
       */
-    QPair<QString, QString> textForType(HistoryElementType type, QString text);
+    QPair<QString, QString> textForType(QString text);
 
     /**
      * Trucate the user name to fit the label
@@ -129,6 +128,13 @@ private:
      * @return Trucated name
      */
     QString trucateName(QString fullDataName);
+
+    /**
+     * Defines if the type of the element if a file or a folder
+     *
+     * @return True if the element is a file or a folder, false otherwise
+     */
+    bool isFileFolder();
 };
 
 #endif // HISTORYELEMENTVIEW_H

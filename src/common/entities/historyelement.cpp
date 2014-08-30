@@ -54,7 +54,7 @@ HistoryElement& HistoryElement::operator=(const HistoryElement &historyElement)
 
 bool HistoryElement::isFile()
 {
-    return (_type == HISTORY_FILE_FOLDER_TYPE);
+    return (_type == HISTORY_FILE_TYPE);
 }
 
 HistoryElementType HistoryElement::getType() const

@@ -63,6 +63,8 @@
         <file>images/flat/flat-facebook.png</file>
         <file>images/flat/flat-googleplus.png</file>
         <file>images/flat/flat-twitter.png</file>
+        <file>images/flat/image-flat.png</file>
+        <file>images/flat/archive-flat.png</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>
@@ -73,6 +75,13 @@
         <file>windows-ui/images/borderless-minimize-hover.png</file>
         <file>windows-ui/images/borderless-restore.png</file>
         <file>windows-ui/images/borderless-restore-hover.png</file>
+        <file>mac-ui/images/yosemite-close.png</file>
+        <file>mac-ui/images/yosemite-close-hover.png</file>
+        <file>mac-ui/images/yosemite-inactive.png</file>
+        <file>mac-ui/images/yosemite-maximize.png</file>
+        <file>mac-ui/images/yosemite-maximize-hover.png</file>
+        <file>mac-ui/images/yosemite-minimize.png</file>
+        <file>mac-ui/images/yosemite-minimize-hover.png</file>
     </qresource>
     <qresource prefix="/css">
         <file>windows-ui/application.css</file>
