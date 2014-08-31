@@ -31,9 +31,7 @@
 
 TransparentScrollBar::TransparentScrollBar(HistoryListWidget *parentView)
     : QWidget(parentView, Qt::FramelessWindowHint),
-    m_view(parentView),
-    _scrollButtonWidth(13),
-    _minScrollButtonHeight(70)
+    m_view(parentView)
 {
     Q_ASSERT(parentView);
 
@@ -41,10 +39,11 @@ TransparentScrollBar::TransparentScrollBar(HistoryListWidget *parentView)
 //    setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_scrollBtn = new TransparentScrollButton(parentView);
-    m_scrollBtn->setFixedSize(_scrollButtonWidth, _minScrollButtonHeight);
-    resize(_scrollButtonWidth, 0);
+    resize(m_scrollBtn->getMaxWidth(), 0);
 
+    m_scrollBtn->installEventFilter(this);
     m_view->installEventFilter(this);
+    installEventFilter(this);
 
     connect(m_view->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(updatePos()));
     connect(m_scrollBtn, SIGNAL(moved(QPoint)), this, SLOT(onScrollBtnMoved(QPoint)));
@@ -52,9 +51,10 @@ TransparentScrollBar::TransparentScrollBar(HistoryListWidget *parentView)
 
 TransparentScrollBar::~TransparentScrollBar()
 {
+    removeEventFilter(m_scrollBtn);
     removeEventFilter(m_view);
+    removeEventFilter(this);
 }
-
 
 void TransparentScrollBar::mousePressEvent(QMouseEvent *event)
 {
@@ -84,19 +84,35 @@ bool TransparentScrollBar::eventFilter(QObject *obj, QEvent *event)
     switch (event->type())
     {
     case QEvent::Enter:
-        viewportHeight = m_view->height();
-        contentHeight = m_view->contentSize().height();
+        if (obj == m_view) {
+            viewportHeight = m_view->height();
+            contentHeight = m_view->contentSize().height();
 
-        if (contentHeight > viewportHeight)
-            m_scrollBtn->fadeIn();
+            if (contentHeight > viewportHeight)
+                m_scrollBtn->fadeIn();
+
+            setFocus();
+        } else if (obj == this) {
+            m_scrollBtn->wideButton();
+        } else if (obj == m_scrollBtn) {
+            m_scrollBtn->wideButton();
+        }
         break;
 
     case QEvent::Leave:
-        m_scrollBtn->fadeOut();
+        if (obj == m_view) {
+            m_scrollBtn->fadeOut();
+        } else if (obj == this) {
+            m_scrollBtn->thinButton();
+        } else if (obj == m_scrollBtn) {
+            m_scrollBtn->thinButton();
+        }
         break;
 
     case QEvent::Resize:
-        onResize( static_cast<QResizeEvent *>(event));
+        if (obj == m_view) {
+            onResize(static_cast<QResizeEvent*>(event));
+        }
         break;
     }
 
@@ -127,14 +143,14 @@ void TransparentScrollBar::updatePos()
     float viewportHeight = m_view->height();
     float contentHeight = m_view->contentSize().height();
     float ratio = viewportHeight / contentHeight;
-    int size = qMax((int)(ratio * viewportHeight), _minScrollButtonHeight);
-    m_scrollBtn->setFixedSize(_scrollButtonWidth, size);
+    int size = qMax((int)(ratio * viewportHeight), m_scrollBtn->getMinHeight());
+    m_scrollBtn->setFixedSize(m_scrollBtn->width(), size);
 
     // Set scroll button position
     QScrollBar *sb = m_view->verticalScrollBar();
     const int val = sb->value();
     const int max = sb->maximum();
-    const int x = pos().x() + (width() - m_scrollBtn->width()) / 2;
+    const int x = pos().x() + (width() - m_scrollBtn->getMaxWidth()) / 2;
 
     if (max == 0)
     {

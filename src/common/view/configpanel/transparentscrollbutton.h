@@ -51,6 +51,17 @@ public:
     void fadeIn();
     /// Fade the button out
     void fadeOut();
+    /// Change button size (called on mouse enter)
+    void wideButton();
+    /// Change button size (called on mouse leave)
+    void thinButton();
+
+    /// Getter : _minScrollButtonHeight
+    int getMinHeight();
+    /// Getter : _scrollButtonWidth
+    int getMinWidth();
+    /// Getter : _maxScrollButtonWidth
+    int getMaxWidth();
 
 signals:
     /// Signal that the button has moved
@@ -61,11 +72,18 @@ private:
     QGraphicsOpacityEffect *_opacityEffect;
     /// Fade in/out animation
     QPropertyAnimation  *_fadeAnimation;
+    /// Size in/out animation
+    QPropertyAnimation  *_maxSizeAnimation;
+    QPropertyAnimation  *_minSizeAnimation;
     /// Minimum opacity
     float _minOpacity;
     /// Maximum opacity
     float _maxOpacity;
-
+    /// The width of the scroll button
+    int _minScrollButtonWidth;
+    int _maxScrollButtonWidth;
+    /// The minimum height of the scroll button (the height is dynamic, depending on list content)
+    int _minScrollButtonHeight;
     /// See QWidget::paintEvent
     void paintEvent(QPaintEvent *event);
 };

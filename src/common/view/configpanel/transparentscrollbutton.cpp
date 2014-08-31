@@ -25,21 +25,32 @@
 #include <QColor>
 #include <QDebug>
 
-TransparentScrollButton::TransparentScrollButton( QWidget *parent ) :
+TransparentScrollButton::TransparentScrollButton(QWidget *parent) :
     QWidget(parent),
     _minOpacity(0),
-    _maxOpacity(0.5)
+    _maxOpacity(0.5),
+    _minScrollButtonWidth(10),
+    _maxScrollButtonWidth(14),
+    _minScrollButtonHeight(70)
 {
     _opacityEffect = new QGraphicsOpacityEffect(this);
     _opacityEffect->setOpacity(_minOpacity);
     setGraphicsEffect(_opacityEffect);
 
     _fadeAnimation = new QPropertyAnimation(_opacityEffect, "opacity");
+    _maxSizeAnimation = new QPropertyAnimation(this, "maximumWidth");
+    _minSizeAnimation = new QPropertyAnimation(this, "minimumWidth");
+
+    setMaximumHeight(_minScrollButtonHeight);
+    setMinimumHeight(_minScrollButtonHeight);
+    setMaximumWidth(_minScrollButtonWidth);
+    setMinimumWidth(_minScrollButtonWidth);
 }
 
 TransparentScrollButton::~TransparentScrollButton()
 {
     delete _opacityEffect;
+    delete _maxSizeAnimation;
 }
 
 void TransparentScrollButton::mousePressEvent(QMouseEvent *event)
@@ -47,9 +58,54 @@ void TransparentScrollButton::mousePressEvent(QMouseEvent *event)
     Q_UNUSED(event);
 }
 
+int TransparentScrollButton::getMinHeight()
+{
+    return _minScrollButtonHeight;
+}
+
+int TransparentScrollButton::getMinWidth()
+{
+    return _minScrollButtonWidth;
+}
+
+int TransparentScrollButton::getMaxWidth()
+{
+    return _maxScrollButtonWidth;
+}
+
 void TransparentScrollButton::mouseMoveEvent(QMouseEvent *event)
 {
     emit moved(event->globalPos());
+}
+
+void TransparentScrollButton::wideButton()
+{
+    _maxSizeAnimation->stop();
+    _maxSizeAnimation->setDuration(250);
+    _maxSizeAnimation->setStartValue(maximumWidth());
+    _maxSizeAnimation->setEndValue(_maxScrollButtonWidth);
+    _maxSizeAnimation->start();
+
+    _minSizeAnimation->stop();
+    _minSizeAnimation->setDuration(250);
+    _minSizeAnimation->setStartValue(maximumWidth());
+    _minSizeAnimation->setEndValue(_maxScrollButtonWidth);
+    _minSizeAnimation->start();
+}
+
+void TransparentScrollButton::thinButton()
+{
+    _maxSizeAnimation->stop();
+    _maxSizeAnimation->setDuration(250);
+    _maxSizeAnimation->setStartValue(maximumWidth());
+    _maxSizeAnimation->setEndValue(_minScrollButtonWidth);
+    _maxSizeAnimation->start();
+
+    _minSizeAnimation->stop();
+    _minSizeAnimation->setDuration(250);
+    _minSizeAnimation->setStartValue(maximumWidth());
+    _minSizeAnimation->setEndValue(_minScrollButtonWidth);
+    _minSizeAnimation->start();
 }
 
 void TransparentScrollButton::fadeIn()

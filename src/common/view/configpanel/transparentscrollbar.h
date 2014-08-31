@@ -72,10 +72,6 @@ private:
     QPointer<HistoryListWidget> m_view;
     /// The scroll button (visible one)
     QPointer<TransparentScrollButton> m_scrollBtn;
-    /// The width of the scroll button
-    int _scrollButtonWidth;
-    /// The minimum height of the scroll button (the height is dynamic, depending on list content)
-    int _minScrollButtonHeight;
 };
 
 #endif // TRANSPARENTSCROLLBAR_H
