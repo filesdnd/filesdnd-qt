@@ -25,6 +25,7 @@
 #include <QDebug>
 
 QMovie *CenterInfoWidget::AnimatedLogo = 0;
+QMovie *CenterInfoWidget::AnimatedBonjour = 0;
 
 CenterInfoWidget::CenterInfoWidget(QWidget *parent) :
     QWidget(parent),
@@ -33,13 +34,18 @@ CenterInfoWidget::CenterInfoWidget(QWidget *parent) :
     ui->setupUi(this);
 
     if (AnimatedLogo == 0) {
-        AnimatedLogo = new QMovie((ANIMATED_WAITING_LOGO));
+        AnimatedLogo = new QMovie(ANIMATED_WAITING_LOGO);
+    }
+
+    if (AnimatedBonjour == 0) {
+        AnimatedBonjour = new QMovie(ANIMATED_BONJOUR_LOGO);
     }
 }
 
 CenterInfoWidget::~CenterInfoWidget()
 {
     AnimatedLogo->setPaused(true);
+    AnimatedBonjour->setPaused(true);
     delete ui;
 }
 
@@ -47,12 +53,15 @@ void CenterInfoWidget::setNoDeviceMode()
 {
     ui->icon->setMovie(AnimatedLogo);
     AnimatedLogo->setPaused(false);
+    AnimatedBonjour->setPaused(true);
     ui->infoLabel->setText(tr("Nous cherchons vos périphériques"));
 }
 
 void CenterInfoWidget::setBonjourErrorMode(const QString &message)
 {
-    AnimatedLogo->stop();
+    ui->icon->setMovie(AnimatedBonjour);
+    //ui->icon->setPixmap(QPixmap(BONJOUR_LOGO));
+    AnimatedBonjour->setPaused(false);
+    AnimatedLogo->setPaused(true);
     ui->infoLabel->setText(message);
-    ui->icon->setPixmap(QPixmap(BONJOUR_LOGO));
 }

@@ -61,8 +61,10 @@ public:
 private:
     /// GUI
     Ui::CenterInfoWidget *ui;
-    /// Animated logo
+    /// Animated filesdnd logo
     static QMovie *AnimatedLogo;
+    /// Animated bonjour logo
+    static QMovie *AnimatedBonjour;
 };
 
 #endif // CENTERINFOWIDGET_H

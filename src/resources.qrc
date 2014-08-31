@@ -71,6 +71,7 @@
         <file alias="xlsxIconFlat">images/flat/xlsx-flat.png</file>
         <file alias="movieIconFlat">images/flat/video-flat.png</file>
         <file>images/logo/waiting-logo.gif</file>
+        <file>images/other/bonjour-logo.gif</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>

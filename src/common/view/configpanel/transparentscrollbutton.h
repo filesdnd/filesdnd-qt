@@ -72,15 +72,17 @@ private:
     QGraphicsOpacityEffect *_opacityEffect;
     /// Fade in/out animation
     QPropertyAnimation  *_fadeAnimation;
-    /// Size in/out animation
+    /// Max size animation
     QPropertyAnimation  *_maxSizeAnimation;
+    /// Min size anomation
     QPropertyAnimation  *_minSizeAnimation;
     /// Minimum opacity
     float _minOpacity;
     /// Maximum opacity
     float _maxOpacity;
-    /// The width of the scroll button
+    /// The minimum width of the scroll button
     int _minScrollButtonWidth;
+    /// The maximum width of the scroll button
     int _maxScrollButtonWidth;
     /// The minimum height of the scroll button (the height is dynamic, depending on list content)
     int _minScrollButtonHeight;

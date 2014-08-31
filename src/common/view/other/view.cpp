@@ -264,13 +264,13 @@ void View::displayBonjourServiceError()
     switch (_lastBonjourState)
     {
     case BONJOUR_SERVICE_FAILED:
-        message.append(tr("Impossible d'accéder au service Bonjour"));
+        message.append(tr("Une erreur s'est produite dans le logiciel Bonjour de Apple\nLa détection des périphériques risque de ne pas fonctionner"));
         break;
     case BONJOUR_SERVICE_NOT_FOUND:
-        message.append(tr("Le service Bonjour n'est pas installé"));
+        message.append(tr("Le logiciel Bonjour de Apple n'est pas installé\nLa détection des périphériques risque de ne pas fonctionner"));
         break;
     case BONJOUR_SERVICE_NOT_STARTED:
-        message.append(tr("Le service Bonjour n'est pas lancé"));
+        message.append(tr("Le logiciel Bonjour de Apple n'est pas lancé\nLa détection des périphériques risque de ne pas fonctionner"));
         break;
     default:
         break;
