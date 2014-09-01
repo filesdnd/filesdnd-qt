@@ -54,7 +54,7 @@ void CenterInfoWidget::setNoDeviceMode()
     ui->icon->setMovie(AnimatedLogo);
     AnimatedLogo->setPaused(false);
     AnimatedBonjour->setPaused(true);
-    ui->infoLabel->setText(tr("Nous cherchons vos périphériques"));
+    ui->infoLabel->setText(tr("Recherche des périphériques en cours"));
 }
 
 void CenterInfoWidget::setBonjourErrorMode(const QString &message)
