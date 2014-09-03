@@ -42,9 +42,9 @@ FDNDApplication::FDNDApplication(int argc, char *argv[]) :
     QtSingleApplication(argc, argv)
 {
 #ifdef Q_OS_MAC
-    Class cls = objc_getClass("NSApplication");
+    objc_object *cls = objc_getClass("NSApplication");
     SEL sharedApplication = sel_registerName("sharedApplication");
-    objc_object* appInst = objc_msgSend((objc_object*)cls,sharedApplication);
+    objc_object *appInst = objc_msgSend((objc_object*)cls,sharedApplication);
 
     if(appInst != NULL)
     {

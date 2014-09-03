@@ -40,7 +40,7 @@
 #elif defined(Q_OS_LINUX)
 
 #elif defined(Q_OS_OSX)
-
+#include "macwindow.h"
 #endif
 
 Controller::Controller() :
@@ -153,9 +153,6 @@ void Controller::startView(QApplication *application)
         _view->startService();
 
 #if defined(Q_OS_WIN)
-    // Stylesheet
-    application->setStyleSheet(FileHelper::loadFileContent(WINDOWS_APP_CSS));
-
     // Create window
     BorderlessWindow *window = new BorderlessWindow(application,
                                                     (geometry.width() - size.width()) / 2,
@@ -169,6 +166,15 @@ void Controller::startView(QApplication *application)
 #elif defined(Q_OS_LINUX)
 
 #elif defined(Q_OS_OSX)
+    MacWindow *window = new MacWindow(application,
+                                      (geometry.width() - size.width()) / 2,
+                                      (geometry.height() - size.height()) / 2,
+                                      size.width(), size.height(), _view);
+
+    window->setMinimumSize(size.width(), size.height());
+
+    if(!SettingsManager::isStartMinimizedAtlaunch())
+        window->show();
 
 #endif
 

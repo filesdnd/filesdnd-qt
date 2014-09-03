@@ -20,6 +20,8 @@ BorderlessPanel::BorderlessPanel(HWND hWnd , View *view) :
     _windowHandle = hWnd;
     setObjectName("mainPanel");
 
+    setStyleSheet(FileHelper::loadFileContent(WINDOWS_APP_CSS));
+
     // Horizontal layout
     QHBoxLayout *horizontalLayout = new QHBoxLayout;
     horizontalLayout->setSpacing(0);
