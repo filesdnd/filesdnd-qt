@@ -31,6 +31,7 @@ HistoryListWidget::HistoryListWidget(QWidget *parent) :
 {
     // Stylesheet
     setStyleSheet(FileHelper::loadFileContent(HISTORY_LIST_CSS));
+    setAttribute(Qt::WA_MacShowFocusRect, false);
 
 }
 

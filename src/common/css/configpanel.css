@@ -20,8 +20,13 @@
     font-weight: bold;
 }
 
+#refreshButton {
+    border: none;
+}
+
 #refreshButton:pressed {
     background: transparent;
+    border: none;
 }
 
 #historyListWidget {
