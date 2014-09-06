@@ -361,62 +361,22 @@ void DeviceView::sendProperData(const QMimeData *mimeData)
 
 void DeviceView::dragInLeftPanel()
 {
-    ui->leftPanel->setStyleSheet(
-                "#leftPanel"
-                "{"
-                    "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(210, 210, 210,65%), stop:0.5 rgba(0, 40, 0, 65%));"
-                    "opacity: 0.5;"
-                    "border-top-left-radius: 6px;"
-                "}");
-
-    ui->leftLabel->setStyleSheet(
-                "font-weight: bold;"
-                "color: white;");
+    updateWidgetStyle(ui->leftPanel, "dragInLeft");
 }
 
 void DeviceView::dragOutLeftPanel()
 {
-    ui->leftPanel->setStyleSheet(
-                "#leftPanel"
-                "{"
-                    "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(210, 210, 210, 65%), stop:0.5 rgba(0, 0, 0, 65%));"
-                    "opacity: 0.5;"
-                    "border-top-left-radius: 6px;"
-                 "}");
-
-    ui->leftLabel->setStyleSheet(
-                "font-weight: bold;"
-                "color: white;");
+    updateWidgetStyle(ui->leftPanel, "dragOutLeft");
 }
 
 void DeviceView::dragInRightPanel()
 {
-    ui->rightPanel->setStyleSheet(
-                "#rightPanel"
-                "{"
-                    "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(210, 210, 210,65%), stop:0.5 rgba(0, 40, 0, 65%));"
-                    "opacity: 0.5;"
-                    "border-top-right-radius: 6px;"
-                "}");
-
-    ui->rightLabel->setStyleSheet(
-                "font-weight: bold;"
-                "color: white;");
+    updateWidgetStyle(ui->rightPanel, "dragInRight");
 }
 
 void DeviceView::dragOutRightPanel()
 {
-    ui->rightPanel->setStyleSheet(
-                "#rightPanel"
-                "{"
-                    "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(210, 210, 210, 65%), stop:0.5 rgba(0, 0, 0, 65%));"
-                    "opacity: 0.5;"
-                    "border-top-right-radius: 6px;"
-                "}");
-
-    ui->rightLabel->setStyleSheet(
-                "font-weight: bold;"
-                "color: white;");
+    updateWidgetStyle(ui->rightPanel, "dragOutRight");
 }
 
 void DeviceView::on_cancelButton_clicked()

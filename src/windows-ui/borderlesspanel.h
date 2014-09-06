@@ -23,10 +23,14 @@ public slots:
     void pushButtonMaximizeClicked();
     void pushButtonCloseClicked();
 
+    void maximizeButtonState();
+    void restoreButtonState();
+
 private:
     HWND _windowHandle;
     View *_view;
     QCloseEvent _closeEvent;
+    QPushButton *_pushButtonMaximize;
 };
 
 #endif // BORDERLESSPANEL_H

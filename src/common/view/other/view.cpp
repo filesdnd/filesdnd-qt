@@ -454,6 +454,7 @@ void View::closeEvent(QCloseEvent *event)
     if (_trayIcon->isVisible())
     {
         emit hideWindow();
+        hide();
         manageWidgetVisibility();
         event->ignore();
     }
@@ -524,6 +525,7 @@ void View::onShow()
     activateWindow();
     QApplication::alert(this);
 
+    show();
     emit showWindow();
 }
 

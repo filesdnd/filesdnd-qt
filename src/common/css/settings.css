@@ -1,0 +1,9 @@
+#availableColor {
+    border-radius: 4px;
+    background-color: #availableColor#;
+}
+
+#unavailableColor {
+    border-radius: 4px;
+    background-color: #unavailableColor#;
+}

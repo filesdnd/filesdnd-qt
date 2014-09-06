@@ -188,6 +188,12 @@ private:
     DeviceView *_availableDevice;
     /// Exemple device unavailable
     DeviceView *_unavailableDevice;
+
+
+    /**
+     * Load the css style and replace the proper values (available colors)
+     */
+    void loadStyle(const QString &availableColor, const QString &unavailableColor);
 };
 
 #endif // SETTINGSDIALOG_H

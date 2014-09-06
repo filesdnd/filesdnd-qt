@@ -59,6 +59,8 @@
 #define MAC_APP_CSS ":/css/mac-ui/application.css"
 #define HISTORY_LIST_CSS ":/css/common/css/history.css"
 #define DEVICE_VIEW_CSS ":/css/common/css/deviceview.css"
+#define SETTINGS_CSS ":/css/common/css/settings.css"
+#define SMALL_DEVICE_VIEW_CSS ":/css/common/css/smalldeviceview.css"
 
 #define HISTORY_ICON_SIZE 16
 #define FILE_ICON ":/fileIconFlat"

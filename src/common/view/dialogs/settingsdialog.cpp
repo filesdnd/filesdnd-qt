@@ -37,6 +37,9 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     _availableDevice = new DeviceView(tr("Disponible"), "", TYPE_ANDROID, true, NOSTATE, 0, ui->overView);
     _unavailableDevice = new DeviceView(tr("Non Disponible"), "", TYPE_ANDROID, false, NOSTATE, 0, ui->overView);
 
+    // Stylesheet
+    loadStyle(SettingsManager::availableDeviceColor(), SettingsManager::unavailableDeviceColor());
+
     ui->availableDevice->addWidget(_availableDevice);
     ui->unavailableDevice->addWidget(_unavailableDevice);
 
@@ -110,16 +113,10 @@ void SettingsDialog::refreshSettingsFromFile()
     ui->destFolderArea->setText(SettingsManager::getDestinationFolder());
 
     /// Color settings
-    ui->availableColor->setStyleSheet("QPushButton {\n"
-                                          "border-radius: 4px;\n"
-                                          "background-color: " + SettingsManager::availableDeviceColor() + ";\n"
-                                      "}");
-    _availableDevice->setAvailable(true);
-    ui->unavailableColor->setStyleSheet("QPushButton {\n"
-                                          "border-radius: 4px;\n"
-                                          "background-color: " + SettingsManager::unavailableDeviceColor() + ";\n"
-                                      "}");
+    loadStyle(SettingsManager::availableDeviceColor(), SettingsManager::unavailableDeviceColor());
+
     _unavailableDevice->setAvailable(false);
+    _availableDevice->setAvailable(true);
 
     /// Widget settings
     if (!ui->widgetEnabled->isChecked())
@@ -154,10 +151,8 @@ void SettingsDialog::on_availableColor_clicked()
     if (color.isValid())
     {
         SettingsManager::setAvailableDeviceColor(color.name());
-        ui->availableColor->setStyleSheet("QPushButton {\n"
-                                              "border-radius: 4px;\n"
-                                              "background-color: " + color.name() + ";\n"
-                                          "}");
+        loadStyle(SettingsManager::availableDeviceColor(), SettingsManager::unavailableDeviceColor());
+
         _availableDevice->setAvailable(true);
         emit refreshDevicesAvailability();
     }
@@ -170,10 +165,8 @@ void SettingsDialog::on_unavailableColor_clicked()
     if (color.isValid())
     {
         SettingsManager::setUnavailableDeviceColor(color.name());
-        ui->unavailableColor->setStyleSheet("QPushButton {\n"
-                                              "border-radius: 4px;\n"
-                                              "background-color: " + color.name() + ";\n"
-                                          "}");
+        loadStyle(SettingsManager::availableDeviceColor(), SettingsManager::unavailableDeviceColor());
+
         _unavailableDevice->setAvailable(false);
         emit refreshDevicesAvailability();
     }
@@ -258,17 +251,11 @@ void SettingsDialog::on_reset_clicked()
 
     case VIEW_INDEX:
         SettingsManager::setUnavailableDeviceColor("#ef0800");
-        ui->unavailableColor->setStyleSheet("QPushButton {\n"
-                                              "border-radius: 4px;\n"
-                                              "background-color: #ef0800;\n"
-                                          "}");
         _unavailableDevice->setAvailable(false);
         SettingsManager::setAvailableDeviceColor("#008000");
-        ui->availableColor->setStyleSheet("QPushButton {\n"
-                                              "border-radius: 4px;\n"
-                                              "background-color: #008000;\n"
-                                          "}");
         _availableDevice->setAvailable(true);
+
+        loadStyle(SettingsManager::availableDeviceColor(), SettingsManager::unavailableDeviceColor());
         emit refreshDevicesAvailability();
         break;
     }
@@ -283,6 +270,16 @@ void SettingsDialog::on_widgetForeground_toggled(bool checked)
 void SettingsDialog::on_searchUpdateAtLaunch_toggled(bool checked)
 {
     SettingsManager::setSearchUpdateAtLaunch(checked);
+}
+
+void SettingsDialog::loadStyle(const QString &availableColor, const QString &unavailableColor)
+{
+    QString css = FileHelper::loadFileContent(SETTINGS_CSS);
+
+    css.replace("#availableColor#", availableColor);
+    css.replace("#unavailableColor#", unavailableColor);
+
+    setStyleSheet(css);
 }
 
 void SettingsDialog::on_startAtBoot_toggled(bool checked)

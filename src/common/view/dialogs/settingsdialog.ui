@@ -150,7 +150,7 @@
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="global_settings">
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -728,12 +728,6 @@
                   <height>25</height>
                  </size>
                 </property>
-                <property name="styleSheet">
-                 <string notr="true"> QPushButton {
-     border-radius: 4px;
-     background-color: #008000;
- }</string>
-                </property>
                 <property name="text">
                  <string/>
                 </property>
@@ -782,12 +776,6 @@
                   <width>35</width>
                   <height>25</height>
                  </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"> QPushButton {
-     border-radius: 4px;
-     background-color: #ef0800;
- }</string>
                 </property>
                 <property name="text">
                  <string/>

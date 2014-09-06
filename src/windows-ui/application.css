@@ -23,18 +23,10 @@
 }
 
 /* System buttons */
-#pushButtonMaximize, #pushButtonMinimize, #pushButtonClose {
+#pushButtonMaximize, #pushButtonMinimize, #pushButtonClose, #pushButtonRestore {
     border: none;
     width: 30px;
     height: 26px;
-}
-
-#pushButtonMaximize {
-    image: url(:/borderless/windows-ui/images/borderless-maximize.png);
-}
-
-#pushButtonMaximize:hover {
-    image: url(:/borderless/windows-ui/images/borderless-maximize-hover.png);
 }
 
 #pushButtonMinimize {
@@ -51,4 +43,20 @@
 
 #pushButtonClose:hover {
     image: url(:/borderless/windows-ui/images/borderless-close-hover.png);
+}
+
+#pushButtonRestore {
+    image: url(:/borderless/windows-ui/images/borderless-restore.png);
+} 
+
+#pushButtonRestore:hover {
+    image: url(:/borderless/windows-ui/images/borderless-restore-hover.png); 
+}
+
+#pushButtonMaximize {
+    image: url(:/borderless/windows-ui/images/borderless-maximize.png);
+} 
+
+#pushButtonMaximize:hover {
+    image: url(:/borderless/windows-ui/images/borderless-maximize-hover.png); 
 }

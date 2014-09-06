@@ -42,12 +42,7 @@ SmallDeviceView::SmallDeviceView(const QString &name, const QString &uid, Device
     setWindowOpacity(WIDGET_OPACITY);
     setAttribute(Qt::WA_TranslucentBackground);
 
-    ui->backgroundContainer->setStyleSheet("#backgroundContainer"
-                                           "{"
-                                               "border-radius: 13px;"
-                                               "border: 0px;"
-                                               "background-color: rgba(220, 220, 220," + QString::number(WIDGET_OPACITY * 255) + ");"
-                                           "}");
+    loadStyle(QString::number(WIDGET_OPACITY * 255), SettingsManager::availableDeviceColor());
 
     // Context menu
     setContextMenuPolicy(Qt::CustomContextMenu);
@@ -72,6 +67,24 @@ SmallDeviceView::~SmallDeviceView()
     delete ui;
 }
 
+void SmallDeviceView::updateWidgetStyle(QWidget *widget, const QString &cssClass)
+{
+    widget->setObjectName(cssClass);
+    style()->unpolish(widget);
+    style()->polish(widget);
+    widget->repaint();
+}
+
+void SmallDeviceView::loadStyle(const QString &opacity ,const QString &color)
+{
+    QString css = FileHelper::loadFileContent(SMALL_DEVICE_VIEW_CSS);
+
+    css.replace("#opacity#", opacity);
+    css.replace("#color#", color);
+
+    setStyleSheet(css);
+}
+
 void SmallDeviceView::setAvailable(bool available, TransfertState)
 {
     QString style;
@@ -82,36 +95,27 @@ void SmallDeviceView::setAvailable(bool available, TransfertState)
     switch (_type)
     {
     case TYPE_ANDROID:
-        style.append("background: url(:/images/devices/android_icon_small.png) no-repeat right top;\n");
+        updateWidgetStyle(ui->borderContainer, "androidContainer");
         break;
     case TYPE_WINDOWS:
-        style.append("background: url(:/images/devices/windows_icon_small.png) no-repeat right top;\n");
+        updateWidgetStyle(ui->borderContainer, "windowsContainer");
         break;
     case TYPE_MAC:
-         style.append("background: url(:/images/devices/apple_icon_small.png) no-repeat right top;\n");
+        updateWidgetStyle(ui->borderContainer, "macContainer");
         break;
     case TYPE_LINUX:
-         style.append("background: url(:/images/devices/linux_icon_small.png) no-repeat right top;\n");
+        updateWidgetStyle(ui->borderContainer, "linuxContainer");
         break;
     }
 
     if (available)
     {
-        ui->borderContainer->setStyleSheet("#borderContainer"
-                                           "{\n"
-                                              "border: 2px solid " + SettingsManager::availableDeviceColor() + ";\n"
-                                              "border-radius: 7px;\n"
-                                              + style +
-                                           "}\n");
+        loadStyle(QString::number(WIDGET_OPACITY * 255), SettingsManager::availableDeviceColor());
+
     }
     else
     {
-        ui->borderContainer->setStyleSheet("#borderContainer"
-                                           "{\n"
-                                              "border: 2px solid " + SettingsManager::unavailableDeviceColor() + ";\n"
-                                              "border-radius: 7px;\n"
-                                              + style +
-                                           "}\n");
+        loadStyle(QString::number(WIDGET_OPACITY * 255), SettingsManager::unavailableDeviceColor());
     }
 }
 

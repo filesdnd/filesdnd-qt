@@ -20,8 +20,6 @@ BorderlessPanel::BorderlessPanel(HWND hWnd , View *view) :
     _windowHandle = hWnd;
     setObjectName("mainPanel");
 
-    setStyleSheet(FileHelper::loadFileContent(WINDOWS_APP_CSS));
-
     // Horizontal layout
     QHBoxLayout *horizontalLayout = new QHBoxLayout;
     horizontalLayout->setSpacing(0);
@@ -47,10 +45,10 @@ BorderlessPanel::BorderlessPanel(HWND hWnd , View *view) :
     QObject::connect(pushButtonMinimize, SIGNAL(clicked()), this, SLOT( pushButtonMinimizeClicked()));
 
     // Maximize
-    QPushButton *pushButtonMaximize = new QPushButton("", this);
-    pushButtonMaximize->setObjectName("pushButtonMaximize");
-    horizontalLayout->addWidget(pushButtonMaximize);
-    QObject::connect(pushButtonMaximize, SIGNAL(clicked()), this, SLOT(pushButtonMaximizeClicked()));
+    _pushButtonMaximize = new QPushButton("", this);
+    _pushButtonMaximize->setObjectName("pushButtonMaximize");
+    horizontalLayout->addWidget(_pushButtonMaximize);
+    QObject::connect(_pushButtonMaximize, SIGNAL(clicked()), this, SLOT(pushButtonMaximizeClicked()));
 
     // Close
     QPushButton *pushButtonClose = new QPushButton( "", this );
@@ -78,6 +76,7 @@ BorderlessPanel::BorderlessPanel(HWND hWnd , View *view) :
     verticalLayout->addWidget(view);
 
     // Show
+    setStyleSheet(FileHelper::loadFileContent(WINDOWS_APP_CSS));
     centralWidget->setLayout(verticalLayout);
     mainGridLayout->addWidget(centralWidget);
 
@@ -99,6 +98,22 @@ void BorderlessPanel::pushButtonMaximizeClicked() {
     } else {
         ShowWindow(parentWindow(), SW_MAXIMIZE);
     }
+}
+
+void BorderlessPanel::maximizeButtonState()
+{
+    _pushButtonMaximize->setObjectName("pushButtonMaximize");
+    style()->unpolish(_pushButtonMaximize);
+    style()->polish(_pushButtonMaximize);
+    _pushButtonMaximize->repaint();
+}
+
+void BorderlessPanel::restoreButtonState()
+{
+    _pushButtonMaximize->setObjectName("pushButtonRestore");
+    style()->unpolish(_pushButtonMaximize);
+    style()->polish(_pushButtonMaximize);
+    _pushButtonMaximize->repaint();
 }
 
 void BorderlessPanel::pushButtonCloseClicked() {

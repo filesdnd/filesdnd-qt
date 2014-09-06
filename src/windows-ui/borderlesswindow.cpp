@@ -210,13 +210,11 @@ LRESULT CALLBACK BorderlessWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
             GetWindowPlacement(hWnd, &wp);
 
             if (wp.showCmd == SW_MAXIMIZE) {
-                QPushButton* pushButtonMaximize = mainPanel->findChild<QPushButton*>("pushButtonMaximize");
-                pushButtonMaximize->setStyleSheet("#pushButtonMaximize {image: url(:/borderless/windows-ui/images/borderless-restore.png);} #pushButtonMaximize:hover { image: url(:/borderless/windows-ui/images/borderless-restore-hover.png); }");
                 mainPanel->setGeometry(borderWidth * 2, borderWidth * 2, winrect.right - borderWidth * 4, winrect.bottom - borderWidth * 4);
+                mainPanel->restoreButtonState();
             } else {
-                QPushButton* pushButtonMaximize = mainPanel->findChild<QPushButton*>("pushButtonMaximize");
-                pushButtonMaximize->setStyleSheet("#pushButtonMaximize {image: url(:/borderless/windows-ui/images/borderless-maximize.png);} #pushButtonMaximize:hover { image: url(:/borderless/windows-ui/images/borderless-maximize-hover.png); }");
                 mainPanel->setGeometry(borderWidth, borderWidth, winrect.right - borderWidth * 2, winrect.bottom - borderWidth * 2);
+                mainPanel->maximizeButtonState();
             }
             break;
         }
