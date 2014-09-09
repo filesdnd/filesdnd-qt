@@ -36,22 +36,21 @@
 View::View(Model *model) :
     ui(new Ui::View),
     _model(model),
-    _aboutDialog(this),
-    _settingsDialog(0),
+    _aboutWidget(this),
+    _settingsWidget(0),
     _updateDialog(this),
     _infoWidget(0),
     _lastBonjourState(BONJOUR_SERVICE_OK),
     _trayTimer(this)
 {
     ui->setupUi(this);
-
     _trayTimer.setSingleShot(true);
 
     QApplication::setActiveWindow(this);
     activateWindow();
     setFocus(Qt::ActiveWindowFocusReason);
-
     setWindowIcon(QIcon(CONFIG_APP_ICON));
+
     // Manage widget
     _widget = new Widget(this);
     connect(_widget, SIGNAL(normalSizeRequested()),
@@ -68,17 +67,22 @@ View::View(Model *model) :
     createTrayIcon();
 
     // Manage settings dialog
-    connect(&_settingsDialog, SIGNAL(refreshDevicesAvailability()),
+    connect(&_settingsWidget, SIGNAL(refreshDevicesAvailability()),
             this, SLOT(onRefreshDevicesAvailability()));
-    connect(&_settingsDialog, SIGNAL(serviceNameChanged()),
+    connect(&_settingsWidget, SIGNAL(serviceNameChanged()),
             this, SLOT(onServiceNameChanged()));
-    connect(&_settingsDialog, SIGNAL(updateWidgetFlags()),
+    connect(&_settingsWidget, SIGNAL(updateWidgetFlags()),
             _widget, SLOT(updateWindowFlags()));
 
     _overlayMessageDisplay = new OverlayMessageDisplay(ui->devicesView);
 
     // Config panel
     ui->configPanel->setMainView(this);
+    connect(ui->configPanel, SIGNAL(aboutTriggered()), this, SLOT(onAboutTriggered()));
+    connect(ui->configPanel, SIGNAL(settingsTriggered()), this, SLOT(onSettingsTriggered()));
+
+    // SlidingWidget
+    fillSlidingWidget();
 }
 
 View::~View()
@@ -97,6 +101,20 @@ View::~View()
 
     delete _widget;
     delete ui;
+}
+
+void View::fillSlidingWidget()
+{
+    // Default page
+    ui->stackedWidget->setCurrentIndex(VIEW_DEVICES);
+
+    // Configuration
+    ui->stackedWidget->setWrap(true);
+    ui->stackedWidget->setSpeed(SLIDING_WIDGET_ANIMATION_SPEED);
+
+    // Add settings & about pages
+    ui->aboutPage->layout()->addWidget(&_aboutWidget);
+    ui->settingsPage->layout()->addWidget(&_settingsWidget);
 }
 
 void View::resizeEvent(QResizeEvent *event)
@@ -122,6 +140,16 @@ void View::clearCenterInfoWidget()
         delete _infoWidget;
         _infoWidget = 0;
     }
+}
+
+void View::onSettingsTriggered()
+{
+    ui->stackedWidget->slideInIdx(VIEW_SETTINGS);
+}
+
+void View::onAboutTriggered()
+{
+    ui->stackedWidget->slideInIdx(VIEW_ABOUT);
 }
 
 QList<QPair<unsigned, unsigned> > View::getPosition(unsigned size)
@@ -446,7 +474,7 @@ void View::createTrayActions()
 
 void View::onSettingsActionTriggered()
 {
-    _settingsDialog.show();
+    _settingsWidget.show();
 }
 
 void View::closeEvent(QCloseEvent *event)
@@ -476,15 +504,15 @@ void View::createTrayIcon()
 #endif
 
     // Manage Tray icon
-    connect(&_settingsDialog, SIGNAL(trayDisabled()),
+    connect(&_settingsWidget, SIGNAL(trayDisabled()),
             this, SLOT(onTrayDisabled()));
-    connect(&_settingsDialog, SIGNAL(trayEnabled()),
+    connect(&_settingsWidget, SIGNAL(trayEnabled()),
             this, SLOT(onTrayEnabled()));
     connect(_trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
     connect(_trayIcon, SIGNAL(messageClicked()),
             this, SLOT(onShow()));
-    connect(&_settingsDialog, SIGNAL(widgetStateChanged()),
+    connect(&_settingsWidget, SIGNAL(widgetStateChanged()),
             this, SLOT(manageWidgetVisibility()));
 
     if (SettingsManager::isTrayEnabled())

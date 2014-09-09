@@ -34,10 +34,10 @@
 
 #include "deviceview.h"
 #include "widget.h"
-#include "dialogs/settingsdialog.h"
+#include "settingswidget.h"
 #include "historyelement.h"
 #include "historyelementview.h"
-#include "dialogs/aboutdialog.h"
+#include "aboutwidget.h"
 #include "centerinfowidget.h"
 #include "model.h"
 #include "helpers/servicehelper.h"
@@ -49,6 +49,12 @@
 namespace Ui {
 class View;
 }
+
+enum ViewSlidingIndex {
+    VIEW_ABOUT,
+    VIEW_DEVICES,
+    VIEW_SETTINGS
+};
 
 /**
   * @class View
@@ -305,6 +311,10 @@ private slots:
      * On tray icon enabled on the settings dialog
      */
     void onTrayEnabled();
+    /// On config panel settings button triggered
+    void onSettingsTriggered();
+    /// On config panel about button triggered
+    void onAboutTriggered();
 
 public slots:
     /**
@@ -364,9 +374,9 @@ private:
     /// Frameless widget on window closes
     Widget *_widget;
     /// About dialog of the soft
-    AboutDialog _aboutDialog;
+    AboutWidget _aboutWidget;
     /// Handle settings
-    SettingsDialog _settingsDialog;
+    SettingsWidget _settingsWidget;
     /// Update dialog
     UpdateDialog _updateDialog;
     /// Context menu of the history view
@@ -385,6 +395,8 @@ private:
      * on the number of devices detected
      */
     void updateTrayIcon();
+    /// Configure and add components to the sliding widget
+    void fillSlidingWidget();
 };
 
 #endif // VIEW_H

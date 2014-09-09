@@ -62,9 +62,9 @@ void ConfigPanel::mousePressEvent(QMouseEvent *event) {
     if (ui->downloadFolderWidget->geometry().contains(event->pos())) {
         openDownloadFolder();
     } else if (ui->settingsWidget->geometry().contains(event->pos())) {
-        qDebug() << "Settings";
+        emit settingsTriggered();
     } else if (ui->aboutWidget->geometry().contains(event->pos())) {
-        qDebug() << "About";
+        emit aboutTriggered();
     }
 }
 

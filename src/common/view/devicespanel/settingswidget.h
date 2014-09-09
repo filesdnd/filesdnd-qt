@@ -18,12 +18,12 @@
 **
 **************************************************************************************/
 
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+#ifndef SETTINGSWIDGET_H
+#define SETTINGSWIDGET_H
 
 #include "deviceview.h"
 
-#include <QDialog>
+#include <QWidget>
 
 /**
   * @enum SettingsIndex
@@ -38,15 +38,15 @@ enum SettingsIndex
 };
 
 namespace Ui {
-class SettingsDialog;
+class SettingsWidget;
 }
 
 /**
- * @class SettingsDialog
+ * @class SettingsWidget
  *
  * Let the user manage the settings
  */
-class SettingsDialog : public QDialog
+class SettingsWidget : public QWidget
 {
     Q_OBJECT
     
@@ -54,11 +54,11 @@ public:
     /**
      * Constructor
      */
-    explicit SettingsDialog(QWidget *parent = 0);
+    explicit SettingsWidget(QWidget *parent = 0);
     /**
      * Destructor
      */
-    ~SettingsDialog();
+    ~SettingsWidget();
 
     /**
      * @overload QWidget::showEvent
@@ -183,12 +183,11 @@ signals:
 
 private:
     /// GUI
-    Ui::SettingsDialog *ui;
+    Ui::SettingsWidget *ui;
     /// Exemple device available
     DeviceView *_availableDevice;
     /// Exemple device unavailable
     DeviceView *_unavailableDevice;
-
 
     /**
      * Load the css style and replace the proper values (available colors)
@@ -196,4 +195,4 @@ private:
     void loadStyle(const QString &availableColor, const QString &unavailableColor);
 };
 
-#endif // SETTINGSDIALOG_H
+#endif // SETTINGSWIDGET_H

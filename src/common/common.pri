@@ -27,8 +27,8 @@ SOURCES += \
     common/view/devicespanel/overlaymessagedisplay.cpp \
     common/view/devicespanel/centerinfowidget.cpp \
     common/view/devicespanel/deviceview.cpp \
-    common/view/dialogs/aboutdialog.cpp \
-    common/view/dialogs/settingsdialog.cpp \
+    common/view/devicespanel/aboutwidget.cpp \
+    common/view/devicespanel/settingswidget.cpp \
     common/view/dialogs/updatedialog.cpp \
     common/view/widgets/widget.cpp \
     common/view/widgets/smalldeviceview.cpp \
@@ -38,7 +38,8 @@ SOURCES += \
     common/view/configpanel/historyelementview.cpp \
     common/view/configpanel/transparentscrollbar.cpp \
     common/view/configpanel/transparentscrollbutton.cpp \
-    common/view/configpanel/historylistwidget.cpp
+    common/view/configpanel/historylistwidget.cpp \
+    common/view/devicespanel/slidingstackedwidget.cpp
 
 HEADERS += \
     common/other/controller.h \
@@ -69,8 +70,8 @@ HEADERS += \
     common/view/devicespanel/overlaymessagedisplay.h \
     common/view/devicespanel/centerinfowidget.h \
     common/view/devicespanel/deviceview.h \
-    common/view/dialogs/aboutdialog.h \
-    common/view/dialogs/settingsdialog.h \
+    common/view/devicespanel/aboutwidget.h \
+    common/view/devicespanel/settingswidget.h \
     common/view/dialogs/updatedialog.h \
     common/view/widgets/widget.h \
     common/view/widgets/smalldeviceview.h \
@@ -80,19 +81,20 @@ HEADERS += \
     common/view/configpanel/historyelementview.h \
     common/view/configpanel/transparentscrollbar.h \
     common/view/configpanel/transparentscrollbutton.h \
-    common/view/configpanel/historylistwidget.h
+    common/view/configpanel/historylistwidget.h \
+    common/view/devicespanel/slidingstackedwidget.h
 
 FORMS += \
     common/view/devicespanel/deviceview.ui \
     common/view/devicespanel/centerinfowidget.ui \
     common/view/devicespanel/overlaymessagedisplay.ui \
     common/view/widgets/smalldeviceview.ui \
-    common/view/dialogs/aboutdialog.ui \
-    common/view/dialogs/settingsdialog.ui \
     common/view/dialogs/updatedialog.ui \
     common/view/other/view.ui \
     common/view/configpanel/historyelementview.ui \
-    common/view/configpanel/configpanel.ui
+    common/view/configpanel/configpanel.ui \
+    common/view/devicespanel/settingswidget.ui \
+    common/view/devicespanel/aboutwidget.ui
 
 OTHER_FILES += \
     common/configpanel.css

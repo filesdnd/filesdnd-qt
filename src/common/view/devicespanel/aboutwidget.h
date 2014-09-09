@@ -18,13 +18,13 @@
 **
 **************************************************************************************/
 
-#ifndef ABOUTDIALOG_H
-#define ABOUTDIALOG_H
+#ifndef ABOUTWIDGET_H
+#define ABOUTWIDGET_H
 
-#include <QDialog>
+#include <QWidget>
 
 namespace Ui {
-class AboutDialog;
+class AboutWidget;
 }
 
 /**
@@ -32,7 +32,7 @@ class AboutDialog;
   *
   * About this application
   */
-class AboutDialog : public QDialog
+class AboutWidget : public QWidget
 {
     Q_OBJECT
     
@@ -40,11 +40,11 @@ public:
     /**
       * Constructor
       */
-    explicit AboutDialog(QWidget *parent = 0);
+    explicit AboutWidget(QWidget *parent = 0);
     /**
       * Destructor
       */
-    ~AboutDialog();
+    ~AboutWidget();
 
     /**
      * Show the about dialog and set the proper size (depending on the OS)
@@ -53,7 +53,7 @@ public:
     
 private:
     /// GUI
-    Ui::AboutDialog *ui;
+    Ui::AboutWidget *ui;
 };
 
-#endif // ABOUTDIALOG_H
+#endif // ABOUTWIDGET_H

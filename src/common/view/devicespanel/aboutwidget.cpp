@@ -18,30 +18,28 @@
 **
 **************************************************************************************/
 
-#include "aboutdialog.h"
-#include "ui_aboutdialog.h"
+#include "aboutwidget.h"
+#include "ui_aboutwidget.h"
 #include "appconfig.h"
 
 #include <QDebug>
 
-AboutDialog::AboutDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::AboutDialog)
+AboutWidget::AboutWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::AboutWidget)
 {
     ui->setupUi(this);
 
-    QString txt = ui->aboutLabel->text();
-
-    txt.insert(txt.indexOf("</span>"), "<br />Version "CURRENT_VERSION);
+    QString txt = ui->aboutLabel->text().replace("#VERSION#", CURRENT_VERSION);
     ui->aboutLabel->setText(txt);
 }
 
-AboutDialog::~AboutDialog()
+AboutWidget::~AboutWidget()
 {
     delete ui;
 }
 
-void AboutDialog::showAbout()
+void AboutWidget::showAbout()
 {
     show();
 }

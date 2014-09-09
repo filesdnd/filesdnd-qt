@@ -82,6 +82,12 @@ public slots:
     */
     void onHistoryChanged(const QList<HistoryElement> &history);
 
+signals:
+    /// Sent when the settings button is clicked
+    void settingsTriggered();
+    /// Send when the about button is clicked
+    void aboutTriggered();
+
 private:
     /// GUI
     Ui::ConfigPanel *ui;

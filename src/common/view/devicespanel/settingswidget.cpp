@@ -19,18 +19,18 @@
 **************************************************************************************/
 
 #include "helpers/logmanager.h"
-#include "settingsdialog.h"
+#include "settingswidget.h"
 #include "helpers/settingsmanager.h"
-#include "ui_settingsdialog.h"
+#include "ui_settingswidget.h"
 
 #include <QTextStream>
 #include <QDebug>
 #include <QColorDialog>
 #include <QFileDialog>
 
-SettingsDialog::SettingsDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::SettingsDialog)
+SettingsWidget::SettingsWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::SettingsWidget)
 {
     ui->setupUi(this);
 
@@ -50,14 +50,14 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 #endif
 }
 
-SettingsDialog::~SettingsDialog()
+SettingsWidget::~SettingsWidget()
 {
     delete ui;
     delete _availableDevice;
     delete _unavailableDevice;
 }
 
-void SettingsDialog::on_trayIconEnabled_toggled(bool checked)
+void SettingsWidget::on_trayIconEnabled_toggled(bool checked)
 {
     ui->widgetForeground->setEnabled(checked);
     ui->widgetEnabled->setEnabled(checked);
@@ -71,7 +71,7 @@ void SettingsDialog::on_trayIconEnabled_toggled(bool checked)
     SettingsManager::setTrayIconEnabled(checked);
 }
 
-void SettingsDialog::on_widgetEnabled_toggled(bool checked)
+void SettingsWidget::on_widgetEnabled_toggled(bool checked)
 {
     ui->widgetForeground->setChecked(checked);
     ui->widgetForeground->setEnabled(checked);
@@ -80,22 +80,22 @@ void SettingsDialog::on_widgetEnabled_toggled(bool checked)
     emit widgetStateChanged();
 }
 
-void SettingsDialog::on_logEnabled_toggled(bool checked)
+void SettingsWidget::on_logEnabled_toggled(bool checked)
 {
     SettingsManager::setLogEnabled(checked);
 }
 
-void SettingsDialog::on_apply_clicked()
+void SettingsWidget::on_apply_clicked()
 {
     close();
 }
 
-void SettingsDialog::on_startServiceAtLaunch_toggled(bool checked)
+void SettingsWidget::on_startServiceAtLaunch_toggled(bool checked)
 {
     SettingsManager::setStartServiceAtLaunch(checked);
 }
 
-void SettingsDialog::refreshSettingsFromFile()
+void SettingsWidget::refreshSettingsFromFile()
 {
     /// Global settings
     ui->startMinimized->setChecked(SettingsManager::isStartMinimizedAtlaunch());
@@ -126,25 +126,25 @@ void SettingsDialog::refreshSettingsFromFile()
     }
 }
 
-void SettingsDialog::showEvent(QShowEvent* event)
+void SettingsWidget::showEvent(QShowEvent* event)
 {
     refreshSettingsFromFile();
 
     QWidget::showEvent(event);
 }
 
-void SettingsDialog::on_autoOpenFiles_toggled(bool checked)
+void SettingsWidget::on_autoOpenFiles_toggled(bool checked)
 {
     SettingsManager::setAutoOpenFiles(checked);
 }
 
-void SettingsDialog::on_historyDisplay_currentIndexChanged(int index)
+void SettingsWidget::on_historyDisplay_currentIndexChanged(int index)
 {
     SettingsManager::setHistoryDisplayPolicy(index);
     emit historyPolicyChanged();
 }
 
-void SettingsDialog::on_availableColor_clicked()
+void SettingsWidget::on_availableColor_clicked()
 {
     QColor color = QColorDialog::getColor(Qt::white, this);
 
@@ -158,7 +158,7 @@ void SettingsDialog::on_availableColor_clicked()
     }
 }
 
-void SettingsDialog::on_unavailableColor_clicked()
+void SettingsWidget::on_unavailableColor_clicked()
 {
     QColor color = QColorDialog::getColor(Qt::white, this);
 
@@ -172,14 +172,14 @@ void SettingsDialog::on_unavailableColor_clicked()
     }
 }
 
-void SettingsDialog::on_serviceDeviceName_editingFinished()
+void SettingsWidget::on_serviceDeviceName_editingFinished()
 {
     ui->serviceDeviceName->setText(ui->serviceDeviceName->text().remove(";"));
     SettingsManager::setServiceDeviceName(ui->serviceDeviceName->text());
     emit serviceNameChanged();
 }
 
-void SettingsDialog::on_destFolderButton_clicked()
+void SettingsWidget::on_destFolderButton_clicked()
 {
 //    QFileDialog dialog(this);
 
@@ -199,7 +199,7 @@ void SettingsDialog::on_destFolderButton_clicked()
     }
 }
 
-void SettingsDialog::onExistingDirectoryOver(const QString &dirName)
+void SettingsWidget::onExistingDirectoryOver(const QString &dirName)
 {
     if (!dirName.isEmpty())
     {
@@ -208,7 +208,7 @@ void SettingsDialog::onExistingDirectoryOver(const QString &dirName)
     }
 }
 
-void SettingsDialog::on_reset_clicked()
+void SettingsWidget::on_reset_clicked()
 {
     QString localHostName = QHostInfo::localHostName();
 
@@ -261,18 +261,18 @@ void SettingsDialog::on_reset_clicked()
     }
 }
 
-void SettingsDialog::on_widgetForeground_toggled(bool checked)
+void SettingsWidget::on_widgetForeground_toggled(bool checked)
 {
     SettingsManager::setWidgetForeground(checked);
     emit updateWidgetFlags();
 }
 
-void SettingsDialog::on_searchUpdateAtLaunch_toggled(bool checked)
+void SettingsWidget::on_searchUpdateAtLaunch_toggled(bool checked)
 {
     SettingsManager::setSearchUpdateAtLaunch(checked);
 }
 
-void SettingsDialog::loadStyle(const QString &availableColor, const QString &unavailableColor)
+void SettingsWidget::loadStyle(const QString &availableColor, const QString &unavailableColor)
 {
     QString css = FileHelper::loadFileContent(SETTINGS_CSS);
 
@@ -282,17 +282,17 @@ void SettingsDialog::loadStyle(const QString &availableColor, const QString &una
     setStyleSheet(css);
 }
 
-void SettingsDialog::on_startAtBoot_toggled(bool checked)
+void SettingsWidget::on_startAtBoot_toggled(bool checked)
 {
     SettingsManager::setStartAtBoot(checked);
 }
 
-void SettingsDialog::on_openLogButton_clicked()
+void SettingsWidget::on_openLogButton_clicked()
 {
     LogManager::openLogFile();
 }
 
-void SettingsDialog::on_startMinimized_toggled(bool checked)
+void SettingsWidget::on_startMinimized_toggled(bool checked)
 {
     SettingsManager::setStartMinimized(checked);
 }

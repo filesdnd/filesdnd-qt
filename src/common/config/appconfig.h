@@ -84,6 +84,7 @@
 #define WIDGET_ANIMATION_TIMER 600
 #define WIDGET_OFFSET 15
 #define WIDGET_OPACITY 0.85
+#define SLIDING_WIDGET_ANIMATION_SPEED 1000
 #define PREFIX "filesdnd "
 
 #define KEY_UID "uid"
