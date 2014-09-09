@@ -85,8 +85,10 @@ public slots:
 signals:
     /// Sent when the settings button is clicked
     void settingsTriggered();
-    /// Send when the about button is clicked
+    /// Sent when the about button is clicked
     void aboutTriggered();
+    /// Sent when the devices button is clicked
+    void devicesTriggered();
 
 private:
     /// GUI

@@ -40,8 +40,8 @@ opacity: 0.6;</string>
 {
 	background: transparent;
 	border-bottom-left-radius: 10px;
-border-bottom-right-radius: 10px;
-	background-color: rgba(128, 0, 0, 210);
+	border-bottom-right-radius: 10px;
+	background-color: qlineargradient(spread:pad, x1:0.502151, y1:1, x2:0.493, y2:0, stop:0.79397 rgba(45, 45, 95, 226), stop:1 rgba(255, 255, 255, 255));
 }</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">

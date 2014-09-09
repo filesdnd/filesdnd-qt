@@ -37,6 +37,7 @@ ConfigPanel::ConfigPanel(QWidget *parent) :
     ui(new Ui::ConfigPanel)
 {
     ui->setupUi(this);
+    ui->devicesWidget->hide();
 
     // Stylesheet
     setStyleSheet(FileHelper::loadFileContent(CONFIG_PANEL_CSS));
@@ -61,10 +62,21 @@ void ConfigPanel::createHistoryListWidget() {
 void ConfigPanel::mousePressEvent(QMouseEvent *event) {
     if (ui->downloadFolderWidget->geometry().contains(event->pos())) {
         openDownloadFolder();
-    } else if (ui->settingsWidget->geometry().contains(event->pos())) {
+    } else if (ui->settingsWidget->isVisible() && ui->settingsWidget->geometry().contains(event->pos())) {
         emit settingsTriggered();
-    } else if (ui->aboutWidget->geometry().contains(event->pos())) {
+        ui->devicesWidget->show();
+        ui->aboutWidget->show();
+        ui->settingsWidget->hide();
+    } else if (ui->aboutWidget->isVisible() && ui->aboutWidget->geometry().contains(event->pos())) {
         emit aboutTriggered();
+        ui->devicesWidget->show();
+        ui->settingsWidget->show();
+        ui->aboutWidget->hide();
+    } else if (ui->devicesWidget->isVisible() && ui->devicesWidget->geometry().contains(event->pos())) {
+        emit devicesTriggered();
+        ui->devicesWidget->hide();
+        ui->settingsWidget->show();
+        ui->aboutWidget->show();
     }
 }
 

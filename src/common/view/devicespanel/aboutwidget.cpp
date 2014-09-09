@@ -21,6 +21,7 @@
 #include "aboutwidget.h"
 #include "ui_aboutwidget.h"
 #include "appconfig.h"
+#include "filehelper.h"
 
 #include <QDebug>
 
@@ -30,8 +31,12 @@ AboutWidget::AboutWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // Set version
     QString txt = ui->aboutLabel->text().replace("#VERSION#", CURRENT_VERSION);
     ui->aboutLabel->setText(txt);
+
+    // Stylesheet
+    setStyleSheet(FileHelper::loadFileContent(ABOUT_CSS));
 }
 
 AboutWidget::~AboutWidget()
@@ -42,4 +47,29 @@ AboutWidget::~AboutWidget()
 void AboutWidget::showAbout()
 {
     show();
+}
+
+void AboutWidget::on_playLinkButton_clicked()
+{
+    FileHelper::openURL(PLAY_LINK);
+}
+
+void AboutWidget::on_facebookLinkButton_clicked()
+{
+    FileHelper::openURL(FACEBOOK_LINK);
+}
+
+void AboutWidget::on_googleLinkButton_clicked()
+{
+    FileHelper::openURL(GOOGLE_LINK);
+}
+
+void AboutWidget::on_twitterLinkButton_clicked()
+{
+    FileHelper::openURL(TWITTER_LINK);
+}
+
+void AboutWidget::on_githubLinkButton_clicked()
+{
+    FileHelper::openURL(GITHUB_LINK);
 }

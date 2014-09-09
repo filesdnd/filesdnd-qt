@@ -25,6 +25,8 @@
 #include <QtWidgets/QWidget>
 #include <QDebug>
 #include <QEasingCurve>
+#include <QParallelAnimationGroup>
+#include <QPropertyAnimation>
 
 /*!
 Description
@@ -88,6 +90,9 @@ protected:
         bool m_wrap;
         QPoint m_pnow;
         bool m_active;
+        QParallelAnimationGroup *m_animationGroup;
+        QPropertyAnimation *m_animnow;
+        QPropertyAnimation *m_animnext;
 
         QList<QWidget*> blockedPageList;
 

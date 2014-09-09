@@ -80,6 +80,7 @@ View::View(Model *model) :
     ui->configPanel->setMainView(this);
     connect(ui->configPanel, SIGNAL(aboutTriggered()), this, SLOT(onAboutTriggered()));
     connect(ui->configPanel, SIGNAL(settingsTriggered()), this, SLOT(onSettingsTriggered()));
+    connect(ui->configPanel, SIGNAL(devicesTriggered()), this, SLOT(onDevicesTriggered()));
 
     // SlidingWidget
     fillSlidingWidget();
@@ -111,6 +112,7 @@ void View::fillSlidingWidget()
     // Configuration
     ui->stackedWidget->setWrap(true);
     ui->stackedWidget->setSpeed(SLIDING_WIDGET_ANIMATION_SPEED);
+    ui->stackedWidget->setAnimation(QEasingCurve::OutCubic);
 
     // Add settings & about pages
     ui->aboutPage->layout()->addWidget(&_aboutWidget);
@@ -145,6 +147,11 @@ void View::clearCenterInfoWidget()
 void View::onSettingsTriggered()
 {
     ui->stackedWidget->slideInIdx(VIEW_SETTINGS);
+}
+
+void View::onDevicesTriggered()
+{
+    ui->stackedWidget->slideInIdx(VIEW_DEVICES);
 }
 
 void View::onAboutTriggered()
@@ -584,7 +591,7 @@ void View::onServiceError(ServiceErrorState error, bool isCritical)
         break;
     }
 
-    QMessageBox::warning(this, tr("Le client à rencontré une erreur"), message);
+    QMessageBox::warning(this, tr("Le client �  rencontré une erreur"), message);
 
     if (isCritical)
         stopService();

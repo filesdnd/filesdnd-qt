@@ -42,6 +42,8 @@ UpdateDialog::~UpdateDialog()
 
 void UpdateDialog::updateAndShow(const QString &version, const QString &note)
 {
+    QPoint globalParentPos = parentWidget()->mapToGlobal(parentWidget()->pos());
+
     _version = version;
     ui->updateLabel->setText(tr("La version ")
                              + version
@@ -49,6 +51,11 @@ void UpdateDialog::updateAndShow(const QString &version, const QString &note)
                              + QString(CURRENT_VERSION)
                              + tr(")\nVoulez vous mettre l'application à jour ?"));
     ui->releaseNote->setHtml(note);
+
+    setGeometry(globalParentPos.x() + (parentWidget()->width() / 2) - (width() / 2),
+                globalParentPos.y() + (parentWidget()->height() / 2) - (height() / 2),
+                width(),
+                height());
     show();
 }
 
@@ -61,7 +68,7 @@ void UpdateDialog::on_updateButton_clicked()
     else
         website = EN_WEB_SITE;
 
-    FileHelper::openURL(QString(website) + "/#button-section");
+    FileHelper::openURL(QString(website));
     close();
 }
 

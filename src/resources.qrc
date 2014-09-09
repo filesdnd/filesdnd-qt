@@ -60,9 +60,6 @@
         <file alias="folderIconFlat">images/flat/folder-flat.png</file>
         <file>images/flat/link-flat.png</file>
         <file>images/flat/pencil-flat.png</file>
-        <file>images/flat/flat-facebook.png</file>
-        <file>images/flat/flat-googleplus.png</file>
-        <file>images/flat/flat-twitter.png</file>
         <file alias="imageIconFlat">images/flat/image-flat.png</file>
         <file alias="zipIconFlat">images/flat/archive-flat.png</file>
         <file alias="docIconFlat">images/flat/doc-flat.png</file>
@@ -72,6 +69,12 @@
         <file alias="movieIconFlat">images/flat/video-flat.png</file>
         <file>images/logo/waiting-logo.gif</file>
         <file>images/other/bonjour-logo.gif</file>
+        <file>images/flat/facebook-round-flat.png</file>
+        <file>images/flat/github-round-flat.png</file>
+        <file>images/flat/google-round-flat.png</file>
+        <file>images/flat/play-round-flat.png</file>
+        <file>images/flat/twitter-round-flat.png</file>
+        <file>images/flat/devices-flat.png</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>
@@ -97,6 +100,7 @@
         <file>common/css/deviceview.css</file>
         <file>common/css/settings.css</file>
         <file>common/css/smalldeviceview.css</file>
+        <file>common/css/about.css</file>
     </qresource>
     <qresource prefix="/font">
         <file>fonts/Roboto/Roboto-Regular.ttf</file>

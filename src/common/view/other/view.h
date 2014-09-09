@@ -315,6 +315,8 @@ private slots:
     void onSettingsTriggered();
     /// On config panel about button triggered
     void onAboutTriggered();
+    /// On config panel devices button triggered
+    void onDevicesTriggered();
 
 public slots:
     /**

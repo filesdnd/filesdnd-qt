@@ -31,6 +31,12 @@
 #define EN_WEB_SITE "http://www.filesdnd.com"
 #define SEND_TO_NAME "Files Drag and Drop.lnk"
 
+#define PLAY_LINK "https://play.google.com/store/apps/details?id=com.filesdnd"
+#define GOOGLE_LINK "https://plus.google.com/+FilesdndFr"
+#define TWITTER_LINK "https://twitter.com/FilesDnD"
+#define GITHUB_LINK "https://github.com/filesdnd"
+#define FACEBOOK_LINK "https://www.facebook.com/FilesDND"
+
 #define CONFIG_APP_ICON ":/ic_launcher"
 #define CONFIG_TRAY_ICON ":/ic_launcher"
 #define CONFIG_GREY_TRAY_ICON ":/ic_launcher_grey"
@@ -61,6 +67,7 @@
 #define DEVICE_VIEW_CSS ":/css/common/css/deviceview.css"
 #define SETTINGS_CSS ":/css/common/css/settings.css"
 #define SMALL_DEVICE_VIEW_CSS ":/css/common/css/smalldeviceview.css"
+#define ABOUT_CSS ":/css/common/css/about.css"
 
 #define HISTORY_ICON_SIZE 16
 #define FILE_ICON ":/fileIconFlat"
@@ -84,7 +91,7 @@
 #define WIDGET_ANIMATION_TIMER 600
 #define WIDGET_OFFSET 15
 #define WIDGET_OPACITY 0.85
-#define SLIDING_WIDGET_ANIMATION_SPEED 1000
+#define SLIDING_WIDGET_ANIMATION_SPEED 500
 #define PREFIX "filesdnd "
 
 #define KEY_UID "uid"

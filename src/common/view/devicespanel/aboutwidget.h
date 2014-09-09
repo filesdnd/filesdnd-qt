@@ -51,6 +51,17 @@ public:
      */
     void showAbout();
     
+private slots:
+    void on_playLinkButton_clicked();
+
+    void on_facebookLinkButton_clicked();
+
+    void on_googleLinkButton_clicked();
+
+    void on_twitterLinkButton_clicked();
+
+    void on_githubLinkButton_clicked();
+
 private:
     /// GUI
     Ui::AboutWidget *ui;

@@ -48,10 +48,19 @@ SlidingStackedWidget::SlidingStackedWidget(QWidget *parent)
         m_wrap=false;
         m_pnow=QPoint(0,0);
         m_active=false;
+        m_animationGroup = new QParallelAnimationGroup;
+        m_animnext = new QPropertyAnimation;
+        m_animnow = new QPropertyAnimation;
+
+        m_animationGroup->addAnimation(m_animnow);
+        m_animationGroup->addAnimation(m_animnext);
 }
 
 
 SlidingStackedWidget::~SlidingStackedWidget(){
+    delete m_animnext;
+    delete m_animnow;
+    delete m_animationGroup;
 }
 
 void SlidingStackedWidget::setVerticalMode(bool vertical) {
@@ -102,13 +111,12 @@ void SlidingStackedWidget::slideInIdx(int idx, enum t_direction direction) {
 void SlidingStackedWidget::slideInWgt(QWidget * newwidget, enum t_direction  direction) {
 
         if (m_active) {
-                return; // at the moment, do not allow re-entrance before an animation is completed.
-                //other possibility may be to finish the previous animation abrupt, or
-                //to revert the previous animation with a counter animation, before going ahead
-                //or to revert the previous animation abrupt
-                //and all those only, if the newwidget is not the same as that of the previous running animation.
+            animationDoneSlot();
+
+                    m_animationGroup->stop();
+                m_animationGroup->disconnect();
         }
-        else m_active=true;
+        m_active=true;
 
         enum t_direction directionhint;
         int now=currentIndex();		//currentIndex() is a function inherited from QStackedWidget
@@ -163,28 +171,25 @@ void SlidingStackedWidget::slideInWgt(QWidget * newwidget, enum t_direction  dir
         widget(next)->raise();
 
         //animate both, the now and next widget to the side, using animation framework
-        QPropertyAnimation *animnow = new QPropertyAnimation(widget(now), "pos");
+        m_animnow->setTargetObject(widget(now));
+        m_animnow->setPropertyName("pos");
+        m_animnow->setDuration(m_speed);
+        m_animnow->setEasingCurve(m_animationtype);
+        m_animnow->setStartValue(QPoint(pnow.x(), pnow.y()));
+        m_animnow->setEndValue(QPoint(offsetx+pnow.x(), offsety+pnow.y()));
 
-        animnow->setDuration(m_speed);
-        animnow->setEasingCurve(m_animationtype);
-        animnow->setStartValue(QPoint(pnow.x(), pnow.y()));
-        animnow->setEndValue(QPoint(offsetx+pnow.x(), offsety+pnow.y()));
-        QPropertyAnimation *animnext = new QPropertyAnimation(widget(next), "pos");
-        animnext->setDuration(m_speed);
-        animnext->setEasingCurve(m_animationtype);
-        animnext->setStartValue(QPoint(-offsetx+pnext.x(), offsety+pnext.y()));
-        animnext->setEndValue(QPoint(pnext.x(), pnext.y()));
+        m_animnext->setTargetObject(widget(next));
+        m_animnext->setPropertyName("pos");
+        m_animnext->setDuration(m_speed);
+        m_animnext->setEasingCurve(m_animationtype);
+        m_animnext->setStartValue(QPoint(-offsetx+pnext.x(), offsety+pnext.y()));
+        m_animnext->setEndValue(QPoint(pnext.x(), pnext.y()));
 
-        QParallelAnimationGroup *animgroup = new QParallelAnimationGroup;
-
-        animgroup->addAnimation(animnow);
-        animgroup->addAnimation(animnext);
-
-        QObject::connect(animgroup, SIGNAL(finished()),this,SLOT(animationDoneSlot()));
+        QObject::connect(m_animationGroup, SIGNAL(finished()),this,SLOT(animationDoneSlot()));
         m_next=next;
         m_now=now;
         m_active=true;
-        animgroup->start();
+        m_animationGroup->start();
 
         //note; the rest is done via a connect from the animation ready;
         //animation->finished() provides a signal when animation is done;

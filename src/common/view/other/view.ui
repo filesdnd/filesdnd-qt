@@ -34,6 +34,11 @@
    </item>
    <item>
     <widget class="SlidingStackedWidget" name="stackedWidget">
+     <property name="styleSheet">
+      <string notr="true">#stackedWidget {
+	background: white;
+}</string>
+     </property>
      <widget class="QWidget" name="aboutPage">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
