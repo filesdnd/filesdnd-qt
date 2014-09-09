@@ -18,7 +18,7 @@
 **
 **************************************************************************************/
 
-#include "SlidingStackedWidget.h"
+#include "slidingstackedwidget.h"
 #include <QPropertyAnimation>
 #include <QParallelAnimationGroup>
 
