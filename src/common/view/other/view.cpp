@@ -481,7 +481,8 @@ void View::createTrayActions()
 
 void View::onSettingsActionTriggered()
 {
-    _settingsWidget.show();
+    onShow();
+    ui->configPanel->triggerSettings();
 }
 
 void View::closeEvent(QCloseEvent *event)

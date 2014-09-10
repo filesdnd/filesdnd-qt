@@ -63,15 +63,12 @@ void ConfigPanel::mousePressEvent(QMouseEvent *event) {
     if (ui->downloadFolderWidget->geometry().contains(event->pos())) {
         openDownloadFolder();
     } else if (ui->settingsWidget->isVisible() && ui->settingsWidget->geometry().contains(event->pos())) {
-        emit settingsTriggered();
-        ui->devicesWidget->show();
-        ui->aboutWidget->show();
-        ui->settingsWidget->hide();
+        triggerSettings();
     } else if (ui->aboutWidget->isVisible() && ui->aboutWidget->geometry().contains(event->pos())) {
         emit aboutTriggered();
+        ui->aboutWidget->hide();
         ui->devicesWidget->show();
         ui->settingsWidget->show();
-        ui->aboutWidget->hide();
     } else if (ui->devicesWidget->isVisible() && ui->devicesWidget->geometry().contains(event->pos())) {
         emit devicesTriggered();
         ui->devicesWidget->hide();
@@ -80,7 +77,16 @@ void ConfigPanel::mousePressEvent(QMouseEvent *event) {
     }
 }
 
-void ConfigPanel::openDownloadFolder() {
+void ConfigPanel::triggerSettings()
+{
+    emit settingsTriggered();
+    ui->settingsWidget->hide();
+    ui->devicesWidget->show();
+    ui->aboutWidget->show();
+}
+
+void ConfigPanel::openDownloadFolder()
+{
     QDir dlDir;
 
     dlDir.mkpath(SettingsManager::getDestinationFolder());

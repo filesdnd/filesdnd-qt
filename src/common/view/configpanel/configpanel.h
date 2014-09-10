@@ -65,6 +65,9 @@ public:
     /// See QWidget mousePressEvent
     void mousePressEvent(QMouseEvent *event);
 
+    /// Display settings
+    void triggerSettings();
+
 private slots:
     /**
      * Refresh button clicked : refresh the devices
