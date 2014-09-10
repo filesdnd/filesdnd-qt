@@ -1,17 +1,21 @@
 #backgroundContainerWindows {
     background: url(:/images/devices/windows_icon_large.png) no-repeat right top;
+    border: none;
 }
 
 #backgroundContainerAndroid {
     background: url(:/images/devices/android_icon_large.png) no-repeat right top;
+    border: none;
 }
 
 #backgroundContainerMac {
     background: url(:/images/devices/apple_icon_large_2.png) no-repeat right top;
+    border: none;
 }
 
 #backgroundContainerLinux {
     background: url(:/images/devices/linux_icon_large.png) no-repeat right top;
+    border: none;
 }
 
 #enabledWidget, #enabledWidget:pressed {

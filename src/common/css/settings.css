@@ -12,6 +12,10 @@
     background: white;
 }
 
+#groupBox {
+    background: white;
+}
+
 QWidget {
     color: #333333;
 }

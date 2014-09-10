@@ -55,9 +55,6 @@
    </property>
    <item>
     <widget class="QFrame" name="backgroundContainer">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -82,9 +79,6 @@
       </property>
       <item>
        <widget class="QFrame" name="borderContainer">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>

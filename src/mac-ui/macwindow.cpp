@@ -21,6 +21,8 @@
 #include "macwindow.h"
 #include "ui_macwindow.h"
 
+#include <QShortcut>
+
 MacWindow::MacWindow(QApplication *app, const int x, const int y, const int width, const int height, View *view, QWidget *parent) :
     QMainWindow(parent),
     _app(app),
@@ -37,9 +39,23 @@ MacWindow::MacWindow(QApplication *app, const int x, const int y, const int widt
     setStyleSheet(FileHelper::loadFileContent(MAC_APP_CSS));
 
     ui->centralwidget->layout()->addWidget(view);
+
+    _cmdWShortcut = new QShortcut(QKeySequence("Ctrl+w"), this);
+    _cmdQShortcut = new QShortcut(QKeySequence("Ctrl+q"), this);
+
+    connect(_cmdWShortcut, SIGNAL(activated()), this, SLOT(close()));
+    connect(_cmdQShortcut, SIGNAL(activated()), qApp, SLOT(quit()));
 }
 
 MacWindow::~MacWindow()
 {
     delete ui;
+    delete _cmdWShortcut;
+    delete _cmdQShortcut;
+}
+
+void MacWindow::closeEvent(QCloseEvent *event)
+{
+    _view->closeEvent(&_closeEvent);
+    event->ignore();
 }

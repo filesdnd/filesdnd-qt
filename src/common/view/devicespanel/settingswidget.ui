@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>812</width>
-    <height>624</height>
+    <width>822</width>
+    <height>484</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -28,26 +28,45 @@
    </property>
    <item>
     <widget class="QWidget" name="mainWidget" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QVBoxLayout" name="verticalLayout_9">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <property name="leftMargin">
        <number>0</number>
       </property>
       <property name="topMargin">
-       <number>26</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
        <number>0</number>
       </property>
       <property name="bottomMargin">
-       <number>9</number>
+       <number>0</number>
       </property>
+      <item>
+       <spacer name="verticalSpacer_10">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>27</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="tabShape">
          <enum>QTabWidget::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="generalPage">
          <attribute name="title">
@@ -61,7 +80,7 @@
            <number>9</number>
           </property>
           <property name="topMargin">
-           <number>20</number>
+           <number>9</number>
           </property>
           <property name="rightMargin">
            <number>9</number>
@@ -70,6 +89,22 @@
            <number>9</number>
           </property>
           <item>
+           <spacer name="verticalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>15</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
            <widget class="QGroupBox" name="groupBox">
             <property name="font">
              <font>
@@ -77,20 +112,22 @@
               <bold>true</bold>
              </font>
             </property>
-            <property name="styleSheet">
-             <string notr="true">QGroupBox
-{
-
-    font-weight: bold;
-}</string>
-            </property>
             <property name="title">
              <string>Configuration générale </string>
             </property>
-            <property name="flat">
-             <bool>false</bool>
-            </property>
             <layout class="QVBoxLayout" name="verticalLayout_3">
+             <property name="leftMargin">
+              <number>9</number>
+             </property>
+             <property name="topMargin">
+              <number>9</number>
+             </property>
+             <property name="rightMargin">
+              <number>9</number>
+             </property>
+             <property name="bottomMargin">
+              <number>9</number>
+             </property>
              <item>
               <widget class="QCheckBox" name="trayIconEnabled">
                <property name="text">
@@ -177,17 +214,22 @@
               <bold>true</bold>
              </font>
             </property>
-            <property name="styleSheet">
-             <string notr="true">QGroupBox
-{
-
-    font-weight: bold;
-}</string>
-            </property>
             <property name="title">
              <string>Réception</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_5">
+             <property name="leftMargin">
+              <number>9</number>
+             </property>
+             <property name="topMargin">
+              <number>9</number>
+             </property>
+             <property name="rightMargin">
+              <number>9</number>
+             </property>
+             <property name="bottomMargin">
+              <number>9</number>
+             </property>
              <item>
               <widget class="QCheckBox" name="startServiceAtLaunch">
                <property name="sizePolicy">
@@ -207,7 +249,7 @@
              <item>
               <widget class="QCheckBox" name="autoOpenFiles">
                <property name="text">
-                <string>Ouvrir automatiquement les fichiers reçus (uniquement si un seul fichier transféré)</string>
+                <string>Ouvrir automatiquement les fichiers reçus (si un seul fichier transféré)</string>
                </property>
                <property name="checked">
                 <bool>true</bool>
@@ -380,11 +422,14 @@
           <string>Widget</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_4">
+          <property name="spacing">
+           <number>6</number>
+          </property>
           <property name="leftMargin">
            <number>9</number>
           </property>
           <property name="topMargin">
-           <number>20</number>
+           <number>9</number>
           </property>
           <property name="rightMargin">
            <number>9</number>
@@ -393,16 +438,32 @@
            <number>9</number>
           </property>
           <item>
+           <spacer name="verticalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>15</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
            <widget class="QGroupBox" name="broupBox">
             <property name="enabled">
              <bool>true</bool>
             </property>
-            <property name="styleSheet">
-             <string notr="true">QGroupBox
-{
-
-    font-weight: bold;
-}</string>
+            <property name="font">
+             <font>
+              <family>Lucida Grande</family>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
             </property>
             <property name="title">
              <string>Configuration des Widgets</string>
@@ -414,6 +475,18 @@
              <bool>false</bool>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_8">
+             <property name="leftMargin">
+              <number>9</number>
+             </property>
+             <property name="topMargin">
+              <number>9</number>
+             </property>
+             <property name="rightMargin">
+              <number>9</number>
+             </property>
+             <property name="bottomMargin">
+              <number>9</number>
+             </property>
              <item>
               <widget class="QLabel" name="label">
                <property name="text">
@@ -550,22 +623,61 @@
           <string>Affichage</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_7">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <property name="leftMargin">
+           <number>9</number>
+          </property>
           <property name="topMargin">
-           <number>20</number>
+           <number>9</number>
+          </property>
+          <property name="rightMargin">
+           <number>9</number>
+          </property>
+          <property name="bottomMargin">
+           <number>9</number>
           </property>
           <item>
+           <spacer name="verticalSpacer_9">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>15</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
            <widget class="QGroupBox" name="groupBox_3">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox
-{
-
-    font-weight: bold;
-}</string>
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
             </property>
             <property name="title">
              <string>Aspect des périphériques</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_6">
+             <property name="leftMargin">
+              <number>9</number>
+             </property>
+             <property name="topMargin">
+              <number>9</number>
+             </property>
+             <property name="rightMargin">
+              <number>9</number>
+             </property>
+             <property name="bottomMargin">
+              <number>9</number>
+             </property>
              <item>
               <widget class="QLabel" name="label_6">
                <property name="text">
@@ -689,17 +801,28 @@
           </item>
           <item>
            <widget class="QGroupBox" name="overView">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox
-{
-
-    font-weight: bold;
-}</string>
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
             </property>
             <property name="title">
              <string>Aperçu</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <property name="leftMargin">
+              <number>9</number>
+             </property>
+             <property name="topMargin">
+              <number>9</number>
+             </property>
+             <property name="rightMargin">
+              <number>9</number>
+             </property>
+             <property name="bottomMargin">
+              <number>9</number>
+             </property>
              <item>
               <spacer name="horizontalSpacer_6">
                <property name="orientation">

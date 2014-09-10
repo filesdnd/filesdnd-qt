@@ -15,7 +15,6 @@
 BorderlessPanel::BorderlessPanel(HWND hWnd , View *view) :
     QWinWidget(hWnd)
 {
-    _closeEvent = QCloseEvent();
     _view = view;
     _windowHandle = hWnd;
     setObjectName("mainPanel");
