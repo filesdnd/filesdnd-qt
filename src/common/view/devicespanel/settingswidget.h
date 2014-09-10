@@ -83,10 +83,6 @@ private slots:
      */
     void on_logEnabled_toggled(bool checked);
     /**
-     * Apply button clicked
-     */
-    void on_apply_clicked();
-    /**
      * Start service at launch state changed
      */
     void on_startServiceAtLaunch_toggled(bool checked);
@@ -94,10 +90,6 @@ private slots:
      * Auto open files on receive state changed
      */
     void on_autoOpenFiles_toggled(bool checked);
-    /**
-     * History display state changed
-     */
-    void on_historyDisplay_currentIndexChanged(int index);
     /**
       * Available color triggered
       */
@@ -114,10 +106,6 @@ private slots:
      * Destination folder button clicked
      */
     void on_destFolderButton_clicked();
-    /**
-     * Reset button clicked
-     */
-    void on_reset_clicked();
     /**
      * Widget at foreground changed
      */

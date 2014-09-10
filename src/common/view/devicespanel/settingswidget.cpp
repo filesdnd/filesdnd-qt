@@ -85,11 +85,6 @@ void SettingsWidget::on_logEnabled_toggled(bool checked)
     SettingsManager::setLogEnabled(checked);
 }
 
-void SettingsWidget::on_apply_clicked()
-{
-    close();
-}
-
 void SettingsWidget::on_startServiceAtLaunch_toggled(bool checked)
 {
     SettingsManager::setStartServiceAtLaunch(checked);
@@ -108,7 +103,6 @@ void SettingsWidget::refreshSettingsFromFile()
     ui->logEnabled->setChecked(SettingsManager::isLogEnabled());
     ui->startServiceAtLaunch->setChecked(SettingsManager::isServiceStartedAtlaunch());
     ui->autoOpenFiles->setChecked(SettingsManager::isAutoOpenFilesEnabled());
-    ui->historyDisplay->setCurrentIndex(SettingsManager::getHistoryDisplayPolicy());
     ui->serviceDeviceName->setText(SettingsManager::getServiceDeviceName());
     ui->destFolderArea->setText(SettingsManager::getDestinationFolder());
 
@@ -136,12 +130,6 @@ void SettingsWidget::showEvent(QShowEvent* event)
 void SettingsWidget::on_autoOpenFiles_toggled(bool checked)
 {
     SettingsManager::setAutoOpenFiles(checked);
-}
-
-void SettingsWidget::on_historyDisplay_currentIndexChanged(int index)
-{
-    SettingsManager::setHistoryDisplayPolicy(index);
-    emit historyPolicyChanged();
 }
 
 void SettingsWidget::on_availableColor_clicked()
@@ -205,59 +193,6 @@ void SettingsWidget::onExistingDirectoryOver(const QString &dirName)
     {
         SettingsManager::setDestinationFolder(dirName);
         ui->destFolderArea->setText(dirName);
-    }
-}
-
-void SettingsWidget::on_reset_clicked()
-{
-    QString localHostName = QHostInfo::localHostName();
-
-#if defined (Q_OS_MACX)
-    localHostName.remove(".local");
-#endif
-
-    switch (ui->stackedWidget->currentIndex())
-    {
-    case GENERAL_INDEX:
-        ui->startMinimized->setChecked(false);
-        SettingsManager::setStartMinimized(false);
-        ui->startAtBoot->setChecked(false);
-        SettingsManager::setStartAtBoot(false);
-        ui->trayIconEnabled->setChecked(true);
-        SettingsManager::setTrayIconEnabled(true);
-        ui->logEnabled->setChecked(true);
-        SettingsManager::setLogEnabled(true);
-        ui->searchUpdateAtLaunch->setChecked(true);
-        SettingsManager::setSearchUpdateAtLaunch(true);
-        ui->startServiceAtLaunch->setChecked(true);
-        SettingsManager::setStartServiceAtLaunch(true);
-        ui->autoOpenFiles->setChecked(true);
-        SettingsManager::setAutoOpenFiles(true);
-        ui->destFolderArea->setText(FileHelper::getDownloadLocation());
-        SettingsManager::setDestinationFolder(FileHelper::getDownloadLocation());
-        ui->serviceDeviceName->setText(localHostName);
-        SettingsManager::setServiceDeviceName(localHostName);
-        ui->historyDisplay->setCurrentIndex(ON_SERVICE_ENABLED);
-        SettingsManager::setHistoryDisplayPolicy(ON_SERVICE_ENABLED);
-        break;
-
-    case WIDGET_INDEX:
-        ui->errorMessage->setVisible(false);
-        ui->widgetEnabled->setChecked(true);
-        SettingsManager::setWidgetEnabled(true);
-        ui->widgetForeground->setChecked(true);
-        SettingsManager::setWidgetForeground(true);
-        break;
-
-    case VIEW_INDEX:
-        SettingsManager::setUnavailableDeviceColor("#ef0800");
-        _unavailableDevice->setAvailable(false);
-        SettingsManager::setAvailableDeviceColor("#008000");
-        _availableDevice->setAvailable(true);
-
-        loadStyle(SettingsManager::availableDeviceColor(), SettingsManager::unavailableDeviceColor());
-        emit refreshDevicesAvailability();
-        break;
     }
 }
 

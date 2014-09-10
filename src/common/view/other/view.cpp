@@ -299,13 +299,13 @@ void View::displayBonjourServiceError()
     switch (_lastBonjourState)
     {
     case BONJOUR_SERVICE_FAILED:
-        message.append(tr("Une erreur s'est produite dans le logiciel Bonjour de Apple\nLa détection des périphériques risque de ne pas fonctionner"));
+        message.append(tr("Une erreur s'est produite dans le logiciel Bonjour d'Apple\nLa détection des périphériques risque de ne pas fonctionner"));
         break;
     case BONJOUR_SERVICE_NOT_FOUND:
-        message.append(tr("Le logiciel Bonjour de Apple n'est pas installé\nLa détection des périphériques risque de ne pas fonctionner"));
+        message.append(tr("Le logiciel Bonjour d'Apple n'est pas installé\nLa détection des périphériques risque de ne pas fonctionner"));
         break;
     case BONJOUR_SERVICE_NOT_STARTED:
-        message.append(tr("Le logiciel Bonjour de Apple n'est pas lancé\nLa détection des périphériques risque de ne pas fonctionner"));
+        message.append(tr("Le logiciel Bonjour d'Apple n'est pas lancé\nLa détection des périphériques risque de ne pas fonctionner"));
         break;
     default:
         break;
@@ -591,7 +591,7 @@ void View::onServiceError(ServiceErrorState error, bool isCritical)
         break;
     }
 
-    QMessageBox::warning(this, tr("Le client �  rencontré une erreur"), message);
+    QMessageBox::warning(this, tr("Le client à rencontré une erreur"), message);
 
     if (isCritical)
         stopService();

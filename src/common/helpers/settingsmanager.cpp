@@ -41,7 +41,6 @@
 #define LOG_ENABLED "LogEnabled"
 #define START_SERVICE_AT_LAUNCH "StartServiceAtLaunch"
 #define AUTO_OPEN_FILES "AutoOpenFiles"
-#define HISTORY_DISPLAY_POLICY "HistoryDisplayPolicy"
 #define SERVICE_DEVICE_NAME "ServiceDeviceName"
 #define DESTINATION_FOLDER "DestinationFolder"
 #define DEVICE_UID "UID"
@@ -72,7 +71,6 @@ QString SettingsManager::ServiceDeviceName = QHostInfo::localHostName().remove("
 QString SettingsManager::ServiceDeviceName = QHostInfo::localHostName();
 #endif
 QString SettingsManager::DestinationFolder = FileHelper::getDownloadLocation();
-int SettingsManager::HistoryDisplayPolicy = ON_SERVICE_ENABLED;
 QString SettingsManager::UnavailableDeviceColor = "#ef0800";
 QString SettingsManager::IgnoredVersion = "Any";
 const QString SettingsManager::FileName = FileHelper::getFileStorageLocation() + "/" + SETTINGS_FILE;
@@ -140,11 +138,6 @@ QString SettingsManager::getServiceDeviceName()
 int SettingsManager::getHistoryVersion()
 {
     return HistoryVersion;
-}
-
-int SettingsManager::getHistoryDisplayPolicy()
-{
-    return HistoryDisplayPolicy;
 }
 
 bool SettingsManager::isAutoOpenFilesEnabled()
@@ -217,7 +210,6 @@ void SettingsManager::rewriteSettings()
     settings.setValue(LOG_ENABLED, LogEnabled);
     settings.setValue(START_SERVICE_AT_LAUNCH, StartServiceAtLaunch);
     settings.setValue(AUTO_OPEN_FILES, AutoOpenFiles);
-    settings.setValue(HISTORY_DISPLAY_POLICY, HistoryDisplayPolicy);
     settings.setValue(SERVICE_DEVICE_NAME, ServiceDeviceName);
     settings.setValue(DESTINATION_FOLDER, DestinationFolder);
     settings.setValue(DEVICE_UID, DeviceUID);
@@ -233,7 +225,6 @@ void SettingsManager::loadSettings()
     HistoryVersion  = settings.value(HISTORY_VERSION, HistoryVersion).toInt();
     StartMinimized = settings.value(START_MINIMIZED, StartMinimized).toBool();
     MaxDevices = settings.value(MAX_DEVICES, MaxDevices).toInt();
-    HistoryDisplayPolicy = settings.value(HISTORY_DISPLAY_POLICY, HistoryDisplayPolicy).toInt();
     TrayIconEnabled = settings.value(TRAY_ICON_ENABLED, TrayIconEnabled).toBool();
     StartServiceAtLaunch = settings.value(START_SERVICE_AT_LAUNCH, StartServiceAtLaunch).toBool();
     WidgetForeground = settings.value(WIDGET_FOREGROUND, WidgetForeground).toBool();
@@ -306,12 +297,6 @@ void SettingsManager::setWidgetForeground(bool enabled)
 {
     WidgetForeground = enabled;
     writeSetting(WIDGET_FOREGROUND, WidgetForeground);
-}
-
-void SettingsManager::setHistoryDisplayPolicy(int policy)
-{
-    HistoryDisplayPolicy = policy;
-    writeSetting(HISTORY_DISPLAY_POLICY, HistoryDisplayPolicy);
 }
 
 void SettingsManager::setStartServiceAtLaunch(bool enabled)

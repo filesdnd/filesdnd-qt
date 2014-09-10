@@ -24,13 +24,6 @@
 #include <QString>
 #include <QSettings>
 
-enum HistoryDisplayType
-{
-    ON_SERVICE_ENABLED,
-    ALWAYS,
-    NEVER
-};
-
 /**
   * @class SettingsManager
   *
@@ -51,10 +44,6 @@ public:
       * Getter : MaxDevices
       */
     static int getMaxDevices();
-    /**
-      * Getter : HistoryDisplayPolicy
-      */
-    static int getHistoryDisplayPolicy();
     /**
       * Getter : HistoryVersion
       */
@@ -176,10 +165,6 @@ public:
       */
     static void setServiceDeviceName(const QString &serviceDeviceName);
     /**
-      * Setter : HistoryDisplayPolicy
-      */
-    static void setHistoryDisplayPolicy(int policy);
-    /**
       * Setter : AvailableDeviceColor
       */
     static void setAvailableDeviceColor(const QString &color);
@@ -270,8 +255,6 @@ private:
     static bool SearchUpdateAtLaunch;
     /// Auto open files on received
     static bool AutoOpenFiles;
-    /// History display policy
-    static int HistoryDisplayPolicy;
     /// Unique ID
     static QString DeviceUID;
     /// Version ignored
