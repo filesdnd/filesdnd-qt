@@ -42,6 +42,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
 
     ui->availableDevice->addWidget(_availableDevice);
     ui->unavailableDevice->addWidget(_unavailableDevice);
+    ui->tabWidget->setCurrentIndex(0);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_WIN32)
     ui->startAtBoot->setVisible(true);

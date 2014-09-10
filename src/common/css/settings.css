@@ -12,6 +12,32 @@
     background: white;
 }
 
+QWidget {
+    color: #333333;
+}
+
+QGroupBox {
+    background: white;
+}
+
+QPushButton {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #f3f3f3, stop: 0.4 #eeeeee,
+                                stop: 0.5 #dadada, stop: 1.0 #ffffff);
+    border: 1px solid rgba(150, 150, 150, 150);
+    border-radius: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+QPushButton:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #ffffff, stop: 0.4 #f9f9f9,
+                                stop: 0.5 #ececec, stop: 1.0 #ffffff);
+}
+
 QTabWidget::pane { /* The tab widget frame */
     border-top: 1px solid qlineargradient(spread:reflect, x1:0.498, y1:0.00568182, x2:1,
                                           y2:0.00568182, stop:0.321608 rgba(150, 150, 150, 150),

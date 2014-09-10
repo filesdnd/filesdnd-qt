@@ -72,6 +72,7 @@
         <file>images/flat/play-round-flat.png</file>
         <file>images/flat/twitter-round-flat.png</file>
         <file>images/flat/devices-flat.png</file>
+        <file>images/logo/cloud-bg.png</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>
