@@ -459,7 +459,7 @@ void View::createTrayActions()
     connect(_settingsAction, SIGNAL(triggered()), this, SLOT(onSettingsActionTriggered()));
     _settingsAction->setMenuRole(QAction::NoRole);
 
-    _serviceAction = new QAction(tr("Réception"), _trayIconMenu);
+    _serviceAction = new QAction(tr("Détectable"), _trayIconMenu);
     _serviceAction->setCheckable(true);
     connect(_serviceAction, SIGNAL(triggered()), this, SLOT(onServiceTriggered()));
     _serviceAction->setMenuRole(QAction::NoRole);
@@ -591,7 +591,7 @@ void View::onServiceError(ServiceErrorState error, bool isCritical)
         break;
     }
 
-    QMessageBox::warning(this, tr("Le client Ã  rencontré une erreur"), message);
+    QMessageBox::warning(this, tr("Le client à rencontré une erreur"), message);
 
     if (isCritical)
         stopService();
@@ -642,7 +642,7 @@ void View::focusInEvent(QFocusEvent *event)
 
 void View::onHistoryChanged(const QList<HistoryElement> &history)
 {
-    ui->configPanel->onHistoryChanged(history);
+    ui->configPanel->getHistoryListWidget()->onHistoryChanged(history);
 }
 
 void View::showTrayMessage(const QString &message)
@@ -681,4 +681,8 @@ void View::onReceivingText(const QString &text)
 {
     if (!isVisible() || isMinimized())
         showTrayMessage(tr("Réception d'un texte : ") + text);
+}
+void View::historyElementProgressUpdated(unsigned progress)
+{
+    ui->configPanel->getHistoryListWidget()->historyElementProgressUpdated(progress);
 }

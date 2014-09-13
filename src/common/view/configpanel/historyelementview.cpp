@@ -67,28 +67,29 @@ bool HistoryElementView::isDownloading() const
     return ui->progressBar->isVisible();
 }
 
-void HistoryElementView::setIconToLabelForFilename(QLabel *label, const QString &filename)
+QIcon HistoryElementView::getIcon()
 {
     QIcon icon;
 
-    if (FileHelper::isSpreadsheet(filename)) {
+    if (FileHelper::isSpreadsheet(_text)) {
         icon = QIcon(XLSX_ICON);
-    } else if(FileHelper::isDoc(filename)) {
+    } else if(FileHelper::isDoc(_text)) {
         icon = QIcon(DOC_ICON);
-    } else if(FileHelper::isPdf(filename)) {
+    } else if(FileHelper::isPdf(_text)) {
         icon = QIcon(PDF_ICON);
-    } else if(FileHelper::isZip(filename)) {
+    } else if(FileHelper::isZip(_text)) {
         icon = QIcon(ZIP_ICON);
-    } else if(FileHelper::isMusic(filename)) {
+    } else if(FileHelper::isMusic(_text)) {
         icon = QIcon(MUSIC_ICON);
-    } else if(FileHelper::isImage(filename)) {
+    } else if(FileHelper::isImage(_text)) {
         icon = QIcon(IMG_ICON);
-    } else if(FileHelper::isMovie(filename)) {
+    } else if(FileHelper::isMovie(_text)) {
         icon = QIcon(MOVIE_ICON);
     } else {
         icon = QIcon(FILE_ICON);
     }
-    label->setPixmap(icon.pixmap(HISTORY_ICON_SIZE));
+
+    return icon;
 }
 
 void HistoryElementView::refresh()
@@ -107,7 +108,7 @@ void HistoryElementView::refresh()
         ui->stackedWidget->setCurrentIndex(0);
 
         // File icon
-        setIconToLabelForFilename(ui->fileIcon, _text);
+        ui->fileIcon->setPixmap(getIcon().pixmap(HISTORY_ICON_SIZE));
         break;
 
     case HISTORY_FOLDER_TYPE:

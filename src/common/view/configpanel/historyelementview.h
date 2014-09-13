@@ -69,6 +69,13 @@ public:
      */
     void setProgressBarEnabled(bool enabled);
 
+    /**
+     * Find the proper icon depending of the file extension
+     *
+     * @return The proper icon
+     */
+    QIcon getIcon();
+
     /// Refresh all the values of the view
     void refresh();
     /// Get the url
@@ -136,14 +143,6 @@ private:
      * @return True if the element is a file or a folder, false otherwise
      */
     bool isFileFolder();
-
-    /**
-     * Set the proper icon for a label depending of the file extension
-     *
-     * @param label Label of the icon
-     * @param filename Name of the file
-     */
-    void setIconToLabelForFilename(QLabel *label, const QString &filename);
 };
 
 #endif // HISTORYELEMENTVIEW_H

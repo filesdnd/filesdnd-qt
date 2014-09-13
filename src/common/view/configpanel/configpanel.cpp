@@ -96,6 +96,7 @@ void ConfigPanel::openDownloadFolder()
 void ConfigPanel::setMainView(View *view)
 {
     _view = view;
+    ui->historyListWidget->setView(_view);
 }
 
 void ConfigPanel::on_refreshButton_clicked()
@@ -115,21 +116,6 @@ void ConfigPanel::updateRefreshFrame(int frame)
     ui->refreshButton->setIcon(QIcon(_refreshMovie.currentPixmap()));
 }
 
-void ConfigPanel::onHistoryChanged(const QList<HistoryElement> &history)
-{
-    clearHistory();
-    foreach(HistoryElement elt, history)
-    {
-        HistoryElementView *historyViewElement = new HistoryElementView(elt.getDateTime("dd/MM/yyyy"), elt.getText(), elt.getName(), elt.getSize(), elt.getType());
-        QListWidgetItem *item = new QListWidgetItem();
-        connect(historyViewElement, SIGNAL(cancelIncomingTransfert()),
-                _view, SLOT(onCancelIncomingTransfert()));
-        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height()  - 10));
-        ui->historyListWidget->addItem(item);
-        ui->historyListWidget->setItemWidget(item, historyViewElement);
-    }
-}
-
 void ConfigPanel::clearHistory()
 {
     QListWidgetItem *item;
@@ -138,4 +124,10 @@ void ConfigPanel::clearHistory()
         item = ui->historyListWidget->takeItem(0);
         delete item;
     }
+}
+
+
+HistoryListWidget* ConfigPanel::getHistoryListWidget()
+{
+    return ui->historyListWidget;
 }

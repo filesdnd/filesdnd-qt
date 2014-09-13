@@ -83,6 +83,11 @@ Controller::Controller() :
     connect(_view, SIGNAL(cancelIncomingTransfert()),
             &_service, SLOT(deleteFileReset()));
 
+    connect(&_service, SIGNAL(historyChanged(const QList<HistoryElement>&)),
+            _view, SLOT(onHistoryChanged(const QList<HistoryElement>&)));
+    connect(&_service, SIGNAL(historyElementProgressUpdated(unsigned)),
+            _view, SLOT(historyElementProgressUpdated(unsigned)));
+
     connect(&_service, SIGNAL(serviceError(ServiceErrorState,bool)),
             _view, SLOT(onServiceError(ServiceErrorState,bool)));
     connect(&_service, SIGNAL(receivingFile(const QString&,int)),

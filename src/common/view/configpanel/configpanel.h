@@ -68,6 +68,12 @@ public:
     /// Display settings
     void triggerSettings();
 
+    /**
+     * @brief Getter of the ui element of type HistoryListWidget
+     * @return The list widget containing history elements
+     */
+    HistoryListWidget* getHistoryListWidget();
+
 private slots:
     /**
      * Refresh button clicked : refresh the devices
@@ -79,11 +85,6 @@ private slots:
     void updateRefreshFrame(int frame);
 
 public slots:
-    /**
-    * SLOT : on history changed
-    * @param history New history value
-    */
-    void onHistoryChanged(const QList<HistoryElement> &history);
 
 signals:
     /// Sent when the settings button is clicked

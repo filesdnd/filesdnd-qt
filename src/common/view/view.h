@@ -181,6 +181,12 @@ signals:
 
 public slots:
     /**
+     * SLOT : Download (on last history element) progress changed
+     *
+     * @param progress Download progress percentage
+     */
+    void historyElementProgressUpdated(unsigned progress);
+    /**
       * @overload close event to keep the program in the tray bar
       */
     void closeEvent(QCloseEvent *event);
