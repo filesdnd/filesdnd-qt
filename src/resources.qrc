@@ -30,7 +30,6 @@
         <file alias="ic_launcher_black_white">images/logo/ic_launcher_black_white.png</file>
         <file alias="ic_launcher_grey">images/logo/ic_launcher_grey.png</file>
         <file alias="ic_launcher_grey_white">images/logo/ic_launcher_grey_white.png</file>
-        <file>images/logo/ic_launcher_hd.icns</file>
         <file>images/logo/ic_launcher_hd.png</file>
         <file alias="ic_launcher_white_black">images/logo/ic_launcher_white_black.png</file>
         <file>images/logo/logo_ads.png</file>
@@ -73,6 +72,9 @@
         <file>images/devices/linux-icon-small.png</file>
         <file>images/devices/windows-icon-large.png</file>
         <file>images/devices/windows-icon-small.png</file>
+        <file>images/devices/apple-icon-large-alternative.png</file>
+        <file>images/devices/apple-icon-small-alternative.png</file>
+        <file>images/logo/mac-icon.icns</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>

@@ -299,10 +299,6 @@ private slots:
      */
     void onServiceTriggered();
     /**
-     * On settings requested from tray
-     */
-    void onSettingsActionTriggered();
-    /**
      * On tray icon disabled on the settings dialog
      */
     void onTrayDisabled();
@@ -350,6 +346,10 @@ public slots:
      * @param message Message
      */
     void onDisplayMessage(MessageType messageType, const QString &message);
+    /**
+     * On settings requested from tray
+     */
+    void onSettingsActionTriggered();
 
 private:
     /// Main GUI

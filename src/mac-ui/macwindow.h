@@ -40,6 +40,9 @@ public:
 
     void closeEvent(QCloseEvent *event);
 
+private slots:
+    void on_actionSettings_triggered();
+
 private:
     Ui::MacWindow *ui;
     QApplication *_app;
@@ -47,6 +50,8 @@ private:
     QCloseEvent _closeEvent;
     QShortcut *_cmdWShortcut;
     QShortcut *_cmdQShortcut;
+
+    void createMacMenu();
 };
 
 #endif // MACWINDOW_H

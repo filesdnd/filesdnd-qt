@@ -8,7 +8,7 @@ QT += core gui network gui-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = "files-drag-and-drop"
+TARGET = "Files Drag and Drop"
 TEMPLATE = app
 CONFIG -= console
 
@@ -19,7 +19,7 @@ TRANSLATIONS = \
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
 
-ICON = "$$PWD/images/logo/ic_launcher_hd.icns"
+ICON = images/logo/mac-icon.icns
 
 win32: QMAKE_CXXFLAGS += -W4 -DNOMINMAX
 unix: QMAKE_CXXFLAGS += -Wall

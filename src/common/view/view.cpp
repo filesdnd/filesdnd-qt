@@ -444,7 +444,7 @@ void View::createTrayActions()
 
     _trayIconMenu = new QMenu(this);
 
-    _openAction = new QAction(tr("Ouvrir Files Drag &&& Drop"), _trayIconMenu);
+    _openAction = new QAction(tr("Ouvrir Files Drag && Drop"), _trayIconMenu);
     font = _openAction->font();
     font.setBold(true);
     _openAction->setFont(font);
@@ -507,7 +507,7 @@ void View::createTrayIcon()
 #if defined(Q_OS_MACX)
     _trayIcon->setToolTip(tr("Files Drag & Drop\nAucun périphérique visible"));
 #else
-    _trayIcon->setToolTip(tr("Files Drag &&& Drop\nAucun périphérique visible"));
+    _trayIcon->setToolTip(tr("Files Drag && Drop\nAucun périphérique visible"));
 #endif
 
     // Manage Tray icon
@@ -591,7 +591,7 @@ void View::onServiceError(ServiceErrorState error, bool isCritical)
         break;
     }
 
-    QMessageBox::warning(this, tr("Le client à rencontré une erreur"), message);
+    QMessageBox::warning(this, tr("Le client Ã  rencontré une erreur"), message);
 
     if (isCritical)
         stopService();

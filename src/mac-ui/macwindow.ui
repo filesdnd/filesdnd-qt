@@ -10,9 +10,6 @@
     <height>348</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
@@ -41,7 +38,19 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuParam_tres">
+    <property name="title">
+     <string>Fichier</string>
+    </property>
+    <addaction name="actionSettings"/>
+   </widget>
+   <addaction name="menuParam_tres"/>
   </widget>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Paramètres</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

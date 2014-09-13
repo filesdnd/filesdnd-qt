@@ -35,6 +35,7 @@ MacWindow::MacWindow(QApplication *app, const int x, const int y, const int widt
     connect(view, SIGNAL(hideWindow()), this, SLOT(hide()));
 
     setWindowTitle("Files Drag & Drop");
+    //setWindowIcon(QIcon(":/images/logo/mac-icon.icns"));
     setGeometry(x, y, width, height);
     setStyleSheet(FileHelper::loadFileContent(MAC_APP_CSS));
 
@@ -45,6 +46,8 @@ MacWindow::MacWindow(QApplication *app, const int x, const int y, const int widt
 
     connect(_cmdWShortcut, SIGNAL(activated()), this, SLOT(close()));
     connect(_cmdQShortcut, SIGNAL(activated()), qApp, SLOT(quit()));
+
+    createMacMenu();
 }
 
 MacWindow::~MacWindow()
@@ -54,8 +57,17 @@ MacWindow::~MacWindow()
     delete _cmdQShortcut;
 }
 
+void MacWindow::createMacMenu() {
+    ui->actionSettings->setMenuRole(QAction::PreferencesRole);
+}
+
 void MacWindow::closeEvent(QCloseEvent *event)
 {
     _view->closeEvent(&_closeEvent);
     event->ignore();
+}
+
+void MacWindow::on_actionSettings_triggered()
+{
+    _view->onSettingsActionTriggered();
 }
