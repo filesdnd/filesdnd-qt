@@ -68,7 +68,7 @@
         <item>
          <widget class="QLabel" name="configLabel">
           <property name="text">
-           <string>Config Panel</string>
+           <string>Tableau de bord</string>
           </property>
          </widget>
         </item>
@@ -211,7 +211,7 @@
       <item>
        <widget class="QLabel" name="downloadFolderLabel">
         <property name="text">
-         <string>Download Folder</string>
+         <string>Téléchargements</string>
         </property>
        </widget>
       </item>
@@ -294,7 +294,7 @@
       <item>
        <widget class="QLabel" name="settingsLabel">
         <property name="text">
-         <string>Settings</string>
+         <string>Paramètres</string>
         </property>
        </widget>
       </item>
@@ -374,7 +374,7 @@
       <item>
        <widget class="QLabel" name="devicesLabel">
         <property name="text">
-         <string>Devices</string>
+         <string>Périphériques</string>
         </property>
        </widget>
       </item>
@@ -457,7 +457,7 @@
       <item>
        <widget class="QLabel" name="aboutLabel">
         <property name="text">
-         <string>About</string>
+         <string>À propos</string>
         </property>
        </widget>
       </item>

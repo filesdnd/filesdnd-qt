@@ -25,7 +25,6 @@
 #include "historyelement.h"
 #include "historyelementview.h"
 #include "appconfig.h"
-#include "progressindicator.h"
 
 #include <QMessageBox>
 #include <QFileInfo>

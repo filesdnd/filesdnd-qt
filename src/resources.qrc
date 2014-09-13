@@ -1,13 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/devices/android_icon_large.png</file>
-        <file>images/devices/android_icon_small.png</file>
-        <file>images/devices/apple_icon_large_2.png</file>
-        <file>images/devices/apple_icon_small.png</file>
-        <file>images/devices/linux_icon_large.png</file>
-        <file>images/devices/linux_icon_small.png</file>
-        <file>images/devices/windows_icon_large.png</file>
-        <file>images/devices/windows_icon_small.png</file>
         <file>images/icons/alert.png</file>
         <file>images/icons/arrow-circle-double.png</file>
         <file>images/icons/arrow-out.png</file>
@@ -73,6 +65,14 @@
         <file>images/flat/twitter-round-flat.png</file>
         <file>images/flat/devices-flat.png</file>
         <file>images/logo/cloud-bg.png</file>
+        <file>images/devices/android-icon-large.png</file>
+        <file>images/devices/android-icon-small.png</file>
+        <file>images/devices/apple-icon-large-black.png</file>
+        <file>images/devices/apple-icon-small-black.png</file>
+        <file>images/devices/linux-icon-large.png</file>
+        <file>images/devices/linux-icon-small.png</file>
+        <file>images/devices/windows-icon-large.png</file>
+        <file>images/devices/windows-icon-small.png</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>

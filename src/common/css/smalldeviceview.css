@@ -7,25 +7,25 @@
 #androidContainer {
     border: 2px solid #color#;
     border-radius: 7px;
-    background: url(:/images/devices/android_icon_small.png) no-repeat right top;
+    background: url(:/images/devices/android-icon-small.png) no-repeat right top;
 }
 
 #windowsContainer {
     border: 2px solid #color#;
     border-radius: 7px;
-    background: url(:/images/devices/windows_icon_small.png) no-repeat right top;
+    background: url(:/images/devices/windows-icon-small.png) no-repeat right top;
 }
 
 #macContainer {
     border: 2px solid #color#;
     border-radius: 7px;
-    background: url(:/images/devices/apple_icon_small.png) no-repeat right top;
+    background: url(:/images/devices/apple-icon-small-black.png) no-repeat right top;
 }
 
 #linuxContainer {
     border: 2px solid #color#;
     border-radius: 7px;
-    background: url(:/images/devices/linux_icon_small.png) no-repeat right top;
+    background: url(:/images/devices/linux-icon-small.png) no-repeat right top;
 }
 
 #bottomFrame {

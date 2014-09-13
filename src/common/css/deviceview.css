@@ -1,20 +1,20 @@
 #backgroundContainerWindows {
-    background: url(:/images/devices/windows_icon_large.png) no-repeat right top;
+    background: url(:/images/devices/windows-icon-large.png) no-repeat right top;
     border: none;
 }
 
 #backgroundContainerAndroid {
-    background: url(:/images/devices/android_icon_large.png) no-repeat right top;
+    background: url(:/images/devices/android-icon-large.png) no-repeat right top;
     border: none;
 }
 
 #backgroundContainerMac {
-    background: url(:/images/devices/apple_icon_large_2.png) no-repeat right top;
+    background: url(:/images/devices/apple-icon-large-black.png) no-repeat right top;
     border: none;
 }
 
 #backgroundContainerLinux {
-    background: url(:/images/devices/linux_icon_large.png) no-repeat right top;
+    background: url(:/images/devices/linux-icon-large.png) no-repeat right top;
     border: none;
 }
 

@@ -44,7 +44,6 @@
 #include "service.h"
 #include "dialogs/updatedialog.h"
 #include "overlaymessagedisplay.h"
-#include "progressindicator.h"
 
 namespace Ui {
 class View;

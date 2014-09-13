@@ -32,8 +32,8 @@ SOURCES += \
     common/view/dialogs/updatedialog.cpp \
     common/view/widgets/widget.cpp \
     common/view/widgets/smalldeviceview.cpp \
-    common/view/other/progressindicator.cpp \
-    common/view/other/view.cpp \
+    common/view/utils/progressindicator.cpp \
+    common/view/view.cpp \
     common/view/configpanel/configpanel.cpp \
     common/view/configpanel/historyelementview.cpp \
     common/view/configpanel/transparentscrollbar.cpp \
@@ -75,8 +75,8 @@ HEADERS += \
     common/view/dialogs/updatedialog.h \
     common/view/widgets/widget.h \
     common/view/widgets/smalldeviceview.h \
-    common/view/other/progressindicator.h \
-    common/view/other/view.h \
+    common/view/utils/progressindicator.h \
+    common/view/view.h \
     common/view/configpanel/configpanel.h \
     common/view/configpanel/historyelementview.h \
     common/view/configpanel/transparentscrollbar.h \
@@ -90,7 +90,7 @@ FORMS += \
     common/view/devicespanel/overlaymessagedisplay.ui \
     common/view/widgets/smalldeviceview.ui \
     common/view/dialogs/updatedialog.ui \
-    common/view/other/view.ui \
+    common/view/view.ui \
     common/view/configpanel/historyelementview.ui \
     common/view/configpanel/configpanel.ui \
     common/view/devicespanel/settingswidget.ui \
