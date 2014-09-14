@@ -22,9 +22,6 @@
     <height>16777215</height>
    </size>
   </property>
-  <property name="windowTitle">
-   <string>ConfigPanel</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
@@ -97,7 +94,7 @@
            </size>
           </property>
           <property name="toolTip">
-           <string>Refresh devices</string>
+           <string>Rafraîchir</string>
           </property>
           <property name="text">
            <string/>

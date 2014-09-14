@@ -13,8 +13,8 @@ TEMPLATE = app
 CONFIG -= console
 
 TRANSLATIONS = \
-    $$PWD/../filesdnd_fr.ts \
-    $$PWD/../filesdnd_en.ts
+    $$PWD/../linguist/filesdnd_fr.ts \
+    $$PWD/../linguist/filesdnd_en.ts
 
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
