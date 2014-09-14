@@ -36,3 +36,11 @@
 #historyListWidget::item:selected, #historyListWidget::item:selected:!active, #historyListWidget::item:selected:active {
     border: none;
 }
+
+QProgressBar:horizontal {
+    background: white;
+}
+
+QProgressBar::chunk:horizontal {
+    background: #7CB2D3;
+}

@@ -278,7 +278,7 @@ void HistoryListWidget::historyElementProgressUpdated(unsigned progress)
             else
             {
                 elt->setProgress(progress);
-                firstItem->setSizeHint(QSize(0, elt->sizeHint().height()));
+                firstItem->setSizeHint(QSize(0, elt->sizeHint().height() + 10));
             }
         }
     }
@@ -292,7 +292,7 @@ void HistoryListWidget::refreshAllHistory()
         HistoryElementView *elt = qobject_cast<HistoryElementView *>(itemWidget(listItem));
 
         elt->refresh();
-        listItem->setSizeHint(QSize(0, elt->sizeHint().height()));
+        listItem->setSizeHint(QSize(0, elt->sizeHint().height() - 5));
     }
 }
 
@@ -307,7 +307,7 @@ void HistoryListWidget::onHistoryChanged(const QList<HistoryElement> &history)
         connect(historyViewElement, SIGNAL(cancelIncomingTransfert()),
                 _view, SLOT(onCancelIncomingTransfert()));
 
-        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height()));
+        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height() - 5));
         addItem(item);
         setItemWidget(item, historyViewElement);
     }
