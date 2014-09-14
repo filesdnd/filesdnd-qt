@@ -1,0 +1,62 @@
+#mainPanel {
+    margin: 0;
+    padding: 0;
+}
+
+#systemPanel {
+    margin: 0;
+    padding: 0;
+}
+
+#centralWidget {
+    background: #fff;
+}
+
+#windowTitle {
+    font-size: 17px;
+    color: #444444;
+    font-family: "Cuprum";
+}
+
+#mainPanelScrollArea {
+    border: none;
+}
+
+/* System buttons */
+#pushButtonMaximize, #pushButtonMinimize, #pushButtonClose, #pushButtonRestore {
+    border: none;
+    width: 30px;
+    height: 26px;
+}
+
+#pushButtonMinimize {
+    image: url(:/borderless/windows-ui/images/borderless-minimize.png);
+}
+
+#pushButtonMinimize:hover {
+    image: url(:/borderless/windows-ui/images/borderless-minimize-hover.png);
+}
+
+#pushButtonClose {
+    image: url(:/borderless/windows-ui/images/borderless-close.png);
+}
+
+#pushButtonClose:hover {
+    image: url(:/borderless/windows-ui/images/borderless-close-hover.png);
+}
+
+#pushButtonRestore {
+    image: url(:/borderless/windows-ui/images/borderless-restore.png);
+} 
+
+#pushButtonRestore:hover {
+    image: url(:/borderless/windows-ui/images/borderless-restore-hover.png); 
+}
+
+#pushButtonMaximize {
+    image: url(:/borderless/windows-ui/images/borderless-maximize.png);
+} 
+
+#pushButtonMaximize:hover {
+    image: url(:/borderless/windows-ui/images/borderless-maximize-hover.png); 
+}

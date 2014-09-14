@@ -23,18 +23,18 @@ Download the [Android application][3] in order to fully use Files Drag & Drop an
 ## Build the project
 
 ### Linux version
- 1. Download the Linux version of  Qt 5.1 at least on the [Qt website][4].
+ 1. Download the Linux version of  Qt 5.3 at least on the [Qt website][4].
  2. Install the required lib **libavahi** (for example *libavahi-compat-libdnssd-dev* under Ubuntu).
  3. Download/fork the repo, and open the .pro in the source folder. 
  4. Build your Linux app !
 
 ### Windows version
- 1. Download the Windows version of  Qt 5.1 **for Windows 32-bit** at least on the [Qt website][4]. **Take care to choose the VS (2010 or higher) compiler !**
+ 1. Download the Windows version of  Qt 5.3 **for Windows 32-bit** at least on the [Qt website][4]. **Take care to choose the VS (2013 recommended) compiler !**
  3. Download/fork the repo, and open the .pro in the source folder. 
  4. Build your Windows app !
 
 ### Mac OS X version
- 1. Download the Mac version of  Qt 5.1 at least on the [Qt website][4].
+ 1. Download the Mac version of  Qt 5.3 at least on the [Qt website][4].
  3. Download/fork the repo, and open the .pro in the source folder. 
  4. Build your Mac OS X app !
  
@@ -43,10 +43,10 @@ You will be able to find many screenshots on the [Files Drag & Drop gallery][5].
 
 ## Dependencies
 
-This project is built with **Qt 5** and MSVC (2010 or higher) compiler.
+This project is built with **Qt 5.3** and MSVC 2013 compiler.
 
  - Qt is under LGPL v2.1 license. See [Qt licensing][6].
- - You can find the Qt 5.1 documentation [there][7].
+ - You can find the Qt 5 documentation [there][7].
 
 Files Drag & Drop uses the Apple Bonjour protocole.
 
@@ -69,7 +69,7 @@ Files Drag & Drop is released under [LGPL v2.1][13] license. See the bundled LIC
   [4]: http://qt-project.org/downloads
   [5]: http://www.filesdnd.com/gallery
   [6]: https://qt-project.org/products/licensing
-  [7]: http://qt-project.org/doc/qt-5.1/qtdoc/classes.html
+  [7]: http://qt-project.org/doc/qt-5/classes.html
   [8]: http://www.apple.com/support/bonjour/
   [9]: https://developer.apple.com/softwarelicensing/agreements/bonjour.php
   [10]: mailto:nitrog42@gmail.com

@@ -1,59 +1,104 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/control-power.png</file>
-        <file>images/information-octagon.png</file>
-        <file>images/wrench.png</file>
-        <file>images/android_icon_large.png</file>
-        <file>images/windows_icon_large.png</file>
-        <file>images/apple_icon_large_2.png</file>
-        <file>images/cross_gray.png</file>
-        <file>images/cross_gray_red.png</file>
-        <file>images/cross_red.png</file>
-        <file>images/apple_icon_small.png</file>
-        <file>images/windows_icon_small.png</file>
-        <file>images/android_icon_small.png</file>
-        <file>images/arrow-out_red.png</file>
-        <file>images/arrow-out.png</file>
-        <file>images/arrow-out_gray.png</file>
-        <file>images/qticon.png</file>
-        <file>images/ajax-loader.gif</file>
-        <file>images/colors_settings.png</file>
-        <file>images/general_settings.png</file>
-        <file alias="loading">images/ajax-loader_bis.gif</file>
-        <file>images/prompt.png</file>
-        <file>images/arrow-circle-double.png</file>
-        <file>images/folder-horizontal-open.png</file>
-        <file>images/alert.png</file>
-        <file alias="fileIcon">images/document.png</file>
-        <file alias="icon_tray">images/icon_tray.png</file>
-        <file>images/clear_history.png</file>
-        <file>images/launch_file.png</file>
-        <file>images/remove_history.png</file>
-        <file>images/bonjour_logo.png</file>
-        <file>images/nodevice_logo.png</file>
-        <file>images/historyArrowBitmap.jpg</file>
-        <file>images/historyArrowLeft.png</file>
-        <file>images/historyArrowRight.png</file>
-        <file alias="icon_pc">images/icon_pc.png</file>
-        <file alias="ic_launcher">images/ic_launcher.png</file>
-        <file>images/update_icon.png</file>
-        <file>images/logo_ads.png</file>
-        <file>images/widgetIcon.png</file>
-        <file>images/logo_ads_blue.png</file>
-        <file>images/exclamation.png</file>
-        <file>images/terminal.png</file>
-        <file>images/drive-download.png</file>
-        <file>images/ic_launcher_hd.icns</file>
-        <file>images/linux_icon_large.png</file>
-        <file>images/linux_icon_small.png</file>
-        <file alias="ic_launcher_grey">images/ic_launcher_grey.png</file>
-        <file alias="ic_launcher_black_white">images/ic_launcher_black_white.png</file>
-        <file alias="ic_launcher_white_black">images/ic_launcher_white_black.png</file>
-        <file alias="ic_launcher_grey_white">images/ic_launcher_grey_white.png</file>
-        <file>images/script-text.png</file>
-        <file>images/link.png</file>
-        <file>images/clipboard-paste.png</file>
-        <file>images/arrow-out_white.png</file>
-        <file>images/crosses-small.png</file>
+        <file>images/icons/alert.png</file>
+        <file>images/icons/arrow-out.png</file>
+        <file>images/icons/arrow-out_gray.png</file>
+        <file>images/icons/arrow-out_red.png</file>
+        <file>images/icons/arrow-out_white.png</file>
+        <file>images/icons/clear_history.png</file>
+        <file>images/icons/clipboard-paste.png</file>
+        <file>images/icons/control-power.png</file>
+        <file>images/icons/cross_gray.png</file>
+        <file>images/icons/cross_gray_red.png</file>
+        <file>images/icons/cross_red.png</file>
+        <file>images/icons/crosses-small.png</file>
+        <file alias="fileIcon">images/icons/document.png</file>
+        <file>images/icons/exclamation.png</file>
+        <file>images/icons/folder-horizontal-open.png</file>
+        <file>images/icons/launch_file.png</file>
+        <file>images/icons/remove_history.png</file>
+        <file>images/icons/terminal.png</file>
+        <file>images/icons/update_icon.png</file>
+        <file alias="ic_launcher">images/logo/ic_launcher.png</file>
+        <file alias="ic_launcher_black_white">images/logo/ic_launcher_black_white.png</file>
+        <file alias="ic_launcher_grey">images/logo/ic_launcher_grey.png</file>
+        <file alias="ic_launcher_grey_white">images/logo/ic_launcher_grey_white.png</file>
+        <file>images/logo/ic_launcher_hd.png</file>
+        <file alias="ic_launcher_white_black">images/logo/ic_launcher_white_black.png</file>
+        <file>images/logo/logo_ads.png</file>
+        <file>images/logo/logo_ads_blue.png</file>
+        <file>images/other/bonjour_logo.png</file>
+        <file>images/other/nodevice_logo.png</file>
+        <file>images/other/prompt.png</file>
+        <file>images/flat/contact-flat.png</file>
+        <file>images/flat/download-flat.png</file>
+        <file>images/flat/refresh-circle-flat.png</file>
+        <file>images/flat/settings-flat.png</file>
+        <file>images/flat/download-flat-v2.png</file>
+        <file>images/flat/refresh-circle-flat-animated.gif</file>
+        <file>images/flat/download-flat-v3.png</file>
+        <file alias="fileIconFlat">images/flat/file-flat.png</file>
+        <file alias="folderIconFlat">images/flat/folder-flat.png</file>
+        <file>images/flat/link-flat.png</file>
+        <file>images/flat/pencil-flat.png</file>
+        <file alias="imageIconFlat">images/flat/image-flat.png</file>
+        <file alias="zipIconFlat">images/flat/archive-flat.png</file>
+        <file alias="docIconFlat">images/flat/doc-flat.png</file>
+        <file alias="musicIconFlat">images/flat/music-flat.png</file>
+        <file alias="pdfIconFlat">images/flat/pdf-flat.png</file>
+        <file alias="xlsxIconFlat">images/flat/xlsx-flat.png</file>
+        <file alias="movieIconFlat">images/flat/video-flat.png</file>
+        <file>images/logo/waiting-logo.gif</file>
+        <file>images/other/bonjour-logo.gif</file>
+        <file>images/flat/facebook-round-flat.png</file>
+        <file>images/flat/github-round-flat.png</file>
+        <file>images/flat/google-round-flat.png</file>
+        <file>images/flat/play-round-flat.png</file>
+        <file>images/flat/twitter-round-flat.png</file>
+        <file>images/flat/devices-flat.png</file>
+        <file>images/logo/cloud-bg.png</file>
+        <file>images/devices/android-icon-large.png</file>
+        <file>images/devices/android-icon-small.png</file>
+        <file>images/devices/apple-icon-large-black.png</file>
+        <file>images/devices/apple-icon-small-black.png</file>
+        <file>images/devices/linux-icon-large.png</file>
+        <file>images/devices/linux-icon-small.png</file>
+        <file>images/devices/windows-icon-large.png</file>
+        <file>images/devices/windows-icon-small.png</file>
+        <file>images/devices/apple-icon-large-alternative.png</file>
+        <file>images/devices/apple-icon-small-alternative.png</file>
+        <file>images/logo/mac-icon.icns</file>
+    </qresource>
+    <qresource prefix="/borderless">
+        <file>windows-ui/images/borderless-close.png</file>
+        <file>windows-ui/images/borderless-close-hover.png</file>
+        <file>windows-ui/images/borderless-maximize.png</file>
+        <file>windows-ui/images/borderless-maximize-hover.png</file>
+        <file>windows-ui/images/borderless-minimize.png</file>
+        <file>windows-ui/images/borderless-minimize-hover.png</file>
+        <file>windows-ui/images/borderless-restore.png</file>
+        <file>windows-ui/images/borderless-restore-hover.png</file>
+        <file>mac-ui/images/yosemite-close.png</file>
+        <file>mac-ui/images/yosemite-close-hover.png</file>
+        <file>mac-ui/images/yosemite-inactive.png</file>
+        <file>mac-ui/images/yosemite-maximize.png</file>
+        <file>mac-ui/images/yosemite-maximize-hover.png</file>
+        <file>mac-ui/images/yosemite-minimize.png</file>
+        <file>mac-ui/images/yosemite-minimize-hover.png</file>
+    </qresource>
+    <qresource prefix="/css">
+        <file>windows-ui/application.css</file>
+        <file>common/css/configpanel.css</file>
+        <file>common/css/history.css</file>
+        <file>common/css/deviceview.css</file>
+        <file>common/css/settings.css</file>
+        <file>common/css/smalldeviceview.css</file>
+        <file>common/css/about.css</file>
+    </qresource>
+    <qresource prefix="/font">
+        <file>fonts/Roboto/Roboto-Regular.ttf</file>
+        <file>fonts/Cuprum/Cuprum-Regular.ttf</file>
+        <file>fonts/Nova_Flat/NovaFlat.ttf</file>
+        <file>fonts/Open_Sans/OpenSans-Regular.ttf</file>
     </qresource>
 </RCC>

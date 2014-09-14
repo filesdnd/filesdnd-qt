@@ -1,0 +1,82 @@
+#backgroundContainerWindows {
+    background: url(:/images/devices/windows-icon-large.png) no-repeat right top;
+    border: none;
+}
+
+#backgroundContainerAndroid {
+    background: url(:/images/devices/android-icon-large.png) no-repeat right top;
+    border: none;
+}
+
+#backgroundContainerMac {
+    background: url(:/images/devices/apple-icon-large-alternative.png) no-repeat right top;
+    border: none;
+}
+
+#backgroundContainerLinux {
+    background: url(:/images/devices/linux-icon-large.png) no-repeat right top;
+    border: none;
+}
+
+#enabledWidget, #enabledWidget:pressed {
+    background: url(:/images/icons/arrow-out.png) no-repeat right bottom;
+    border: 0px;
+}
+
+#disabledWidget, #disabledWidget:pressed {
+    background: url(:/images/icons/arrow-out_white.png) no-repeat right bottom;
+    border: 0px;
+}
+
+#dragInLeft {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(210, 210, 210,65%), stop:0.5 rgba(0, 40, 0, 65%));
+    opacity: 0.5;
+    border-top-left-radius: 6px;
+}
+
+#dragOutLeft {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(210, 210, 210, 65%), stop:0.5 rgba(0, 0, 0, 65%));
+    opacity: 0.5;
+    border-top-left-radius: 6px;
+}
+
+#dragInRight {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(210, 210, 210,65%), stop:0.5 rgba(0, 40, 0, 65%));
+    opacity: 0.5;
+    border-top-right-radius: 6px;
+}
+
+#dragOutRight {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(210, 210, 210, 65%), stop:0.5 rgba(0, 0, 0, 65%));
+    opacity: 0.5;
+    border-top-right-radius: 6px;
+}
+
+#leftLabel, #rightLabel {
+    font-weight: bold;
+    color: white;
+}
+
+#borderContainer {
+    border: 3px solid #borderColor#;
+    border-radius: 10px;
+}
+
+QProgressBar#greenProgressBar:horizontal, QProgressBar#redProgressBar:horizontal {
+    border: 1px solid gray;
+    border-radius: 3px;
+    background: white;
+}
+
+QProgressBar#cleanProgressBar:horizontal, QProgressBar#cleanProgressBar::chunk:horizontal {
+}
+
+
+QProgressBar#greenProgressBar::chunk:horizontal {
+    background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 green, stop: 1 white);
+}
+
+
+QProgressBar#redProgressBar::chunk:horizontal {
+    background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 darkred, stop: 1 white);
+}

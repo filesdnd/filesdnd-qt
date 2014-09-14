@@ -1,0 +1,41 @@
+#backgroundContainer {
+    border-radius: 13px;
+    border: 0px;
+    background-color:  rgba(220, 220, 220, #opacity#);
+}
+
+#androidContainer {
+    border: 2px solid #color#;
+    border-radius: 7px;
+    background: url(:/images/devices/android-icon-small.png) no-repeat right top;
+}
+
+#windowsContainer {
+    border: 2px solid #color#;
+    border-radius: 7px;
+    background: url(:/images/devices/windows-icon-small.png) no-repeat right top;
+}
+
+#macContainer {
+    border: 2px solid #color#;
+    border-radius: 7px;
+    background: url(:/images/devices/apple-icon-small-alternative.png) no-repeat right top;
+}
+
+#linuxContainer {
+    border: 2px solid #color#;
+    border-radius: 7px;
+    background: url(:/images/devices/linux-icon-small.png) no-repeat right top;
+}
+
+#bottomFrame {
+    background-color: rgba(0, 0, 0, 65%);
+    opacity: 0.5;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    max-height: 15px;
+}
+
+#deviceName {
+    color : white;
+}

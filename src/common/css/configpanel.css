@@ -1,0 +1,52 @@
+#downloadFolderLabel, #configLabel, #aboutLabel, #settingsLabel, #devicesLabel {
+    color: #333333;
+    font-size: 11px;
+}
+
+#downloadFolderWidget:hover, #settingsWidget:hover, #aboutWidget:hover, #devicesWidget:hover {
+    background-color: qlineargradient(spread:reflect, x1:0.498, y1:0.00568182, x2:1, y2:0.00568182, stop:0.321608 rgba(150, 150, 150, 50), stop:1 rgba(255, 255, 255, 50));
+}
+
+#downloadFolderWidget {
+    border-top: 1px solid qlineargradient(spread:reflect, x1:0.498, y1:0.00568182, x2:1, y2:0.00568182, stop:0.321608 rgba(150, 150, 150, 150), stop:1 rgba(255, 255, 255, 150));
+}
+
+#settingsWidget, #aboutWidget, #downloadFolderWidget, #configWidget, #devicesWidget {
+    border-bottom: 1px solid qlineargradient(spread:reflect, x1:0.498, y1:0.00568182, x2:1, y2:0.00568182, stop:0.321608 rgba(150, 150, 150, 150), stop:1 rgba(255, 255, 255, 150));
+    background: white;
+}
+
+#configLabel {
+    font-weight: bold;
+}
+
+#refreshButton {
+    border: none;
+}
+
+#refreshButton:pressed {
+    background: transparent;
+    border: none;
+}
+
+#historyListWidget {
+    border: none;
+}
+
+#historyListWidget QScrollBar:vertical {
+    background: transparent;
+    width: 0px;
+}
+
+#historyListWidget QScrollBar::handle:vertical {
+    background: transparent;
+    min-height: 0px;
+}
+
+#historyListWidget QScrollBar::add-line:vertical {
+    height: 0px;
+}
+
+#historyListWidget QScrollBar::sub-line:vertical {
+    height: 0px;
+}
