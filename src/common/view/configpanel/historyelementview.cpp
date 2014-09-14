@@ -200,16 +200,14 @@ void HistoryElementView::setProgress(unsigned progress)
     {
         ui->fileSize->setText(FileHelper::getFileSize(_text));
         ui->progressBar->setValue(progress);
-        ui->progressBar->setVisible(true);
-        ui->cancelButton->setVisible(true);
+        ui->fileProgressWidget->setVisible(true);
     }
 }
 
 void HistoryElementView::setProgressBarEnabled(bool enabled)
 {
     ui->progressBar->setValue(0);
-    ui->progressBar->setVisible(enabled);
-    ui->cancelButton->setVisible(enabled);
+    ui->fileProgressWidget->setVisible(enabled);
 }
 
 QString HistoryElementView::getFileSize() const

@@ -83,6 +83,10 @@ View::View(Model *model) :
 
     // SlidingWidget
     fillSlidingWidget();
+    connect(ui->configPanel->getHistoryListWidget(), SIGNAL(deleteFromHistory(int)),
+            this, SIGNAL(deleteFromHistory(int)));
+    connect(ui->configPanel->getHistoryListWidget(), SIGNAL(clearHistoryTriggered()),
+            this, SIGNAL(clearHistoryTriggered()));
 }
 
 View::~View()

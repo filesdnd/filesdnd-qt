@@ -123,6 +123,7 @@ void HistoryListWidget::onClearHistoryTriggered()
 {
     emit clearHistoryTriggered();
     clearHistory();
+    _history.clear();
 }
 
 void HistoryListWidget::onClipboardActionTriggered()
@@ -166,10 +167,11 @@ void HistoryListWidget::clearHistory()
 
     while (count() != 0)
     {
-         item = takeItem(0);
+        item = takeItem(0);
 
         delete item;
     }
+    QListWidget::resizeContents(contentSize().width(), -1);
 }
 
 void HistoryListWidget::onContextMenuRequested(const QPoint &pos)
@@ -273,32 +275,21 @@ void HistoryListWidget::historyElementProgressUpdated(unsigned progress)
 
         if (elt->getType() == HISTORY_FOLDER_TYPE || elt->getType() == HISTORY_FILE_TYPE)
         {
-            if (progress == 100)
-                refreshAllHistory();
-            else
-            {
+            if (progress == 100) {
+                onHistoryChanged(_history);
+            }
+            else {
                 elt->setProgress(progress);
-                firstItem->setSizeHint(QSize(0, elt->sizeHint().height() + 10));
+                firstItem->setSizeHint(QSize(0, elt->sizeHint().height() + 5));
             }
         }
-    }
-}
-
-void HistoryListWidget::refreshAllHistory()
-{
-    for (int i = 0; i < count(); ++i)
-    {
-        QListWidgetItem *listItem = item(i);
-        HistoryElementView *elt = qobject_cast<HistoryElementView *>(itemWidget(listItem));
-
-        elt->refresh();
-        listItem->setSizeHint(QSize(0, elt->sizeHint().height() - 5));
     }
 }
 
 void HistoryListWidget::onHistoryChanged(const QList<HistoryElement> &history)
 {
     clearHistory();
+    _history = history;
     foreach(HistoryElement elt, history)
     {
         HistoryElementView *historyViewElement = new HistoryElementView(elt.getDateTime("dd/MM - hh:mm"), elt.getText(), elt.getName(), elt.getSize(), elt.getType());
@@ -307,7 +298,7 @@ void HistoryListWidget::onHistoryChanged(const QList<HistoryElement> &history)
         connect(historyViewElement, SIGNAL(cancelIncomingTransfert()),
                 _view, SLOT(onCancelIncomingTransfert()));
 
-        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height() - 5));
+        item->setSizeHint(QSize(0,historyViewElement->sizeHint().height() + 10));
         addItem(item);
         setItemWidget(item, historyViewElement);
     }

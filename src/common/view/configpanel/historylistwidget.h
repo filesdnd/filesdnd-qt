@@ -115,16 +115,14 @@ public slots:
      */
     void historyElementProgressUpdated(unsigned progress);
     /**
-     * Refresh all the elements of the history
-     **/
-    void refreshAllHistory();
-    /**
      * SLOT : on history changed
      * @param history New history value
      */
     void onHistoryChanged(const QList<HistoryElement> &history);
 
 private:
+    /// List of displayed elements
+    QList<HistoryElement> _history;
     /// Main View
     View *_view;
     /// Context menu of the history view
