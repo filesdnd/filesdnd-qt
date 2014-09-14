@@ -52,14 +52,15 @@ public:
     void showAbout();
     
 private slots:
+    /// On play icon clicked, redirect to google play
     void on_playLinkButton_clicked();
-
+    /// On facebook icon clicked, redirect to facebook
     void on_facebookLinkButton_clicked();
-
+    /// On google+ icon clicked, redirect to google+
     void on_googleLinkButton_clicked();
-
+    /// On twitter icon clicked, redirect to twitter
     void on_twitterLinkButton_clicked();
-
+    /// On GitHub icon clicked, redirect to GitHub
     void on_githubLinkButton_clicked();
 
 private:
