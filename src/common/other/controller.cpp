@@ -69,6 +69,8 @@ Controller::Controller() :
             this, SLOT(onSendText(const QString&, const QString&, DataType)));
     connect(_view, SIGNAL(cancelTransfert(const QString&)),
             this, SLOT(onCancelTransfert(const QString&)));
+    connect(_view, SIGNAL(focused()), this, SLOT(onWindowFocused()));
+    connect(_view, SIGNAL(forceRefresh()), this, SLOT(onForceRefresh()));
 
     connect(_view, SIGNAL(registerService()),
             &_service, SLOT(serviceRegister()));
@@ -113,7 +115,6 @@ Controller::Controller() :
 
     _bonjourBrowser->browseForServiceType(QLatin1String("_fdnd._tcp."));
 
-    connect(_view, SIGNAL(focused()), this, SLOT(onWindowFocused()));
     connect(&_udpDiscoveryTimer, SIGNAL(timeout()), &_udpDiscovery, SLOT(startDiscovery()));
     _udpDiscoveryTimer.start(UDP_DISCOVERY_INTERVAL);
     _udpDiscovery.startDiscovery();
@@ -227,6 +228,7 @@ void Controller::onRevolveEnded(BonjourServiceResolver *resolver)
 
 void Controller::updateDevices(const QList<Device *> &list)
 {
+    _view->refreshEnded();
     LogManager::appendLine("[Controller] Devices updated by UDP (" + QString::number(list.size()) + ")");
     _model.cleanDetectedBy(DETECTED_BY_UDP);
     foreach(Device *device, list) {
@@ -408,6 +410,11 @@ void Controller::onWindowFocused()
         _lastTimeFocused = current;
         _udpDiscovery.startDiscovery();
     }
+}
+
+void Controller::onForceRefresh()
+{
+    _udpDiscovery.startDiscovery();
 }
 
 void Controller::onDockClicked()

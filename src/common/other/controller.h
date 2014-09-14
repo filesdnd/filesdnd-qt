@@ -149,6 +149,10 @@ signals:
 
 private slots:
     /**
+     * Force UDP to search devices on the network
+     */
+    void onForceRefresh();
+    /**
       * On bonjour records updated.
       * Create model's records and display them on the view
       *

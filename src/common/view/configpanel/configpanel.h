@@ -73,6 +73,8 @@ public:
      * @return The list widget containing history elements
      */
     HistoryListWidget* getHistoryListWidget();
+    /// Stop the refresh animation
+    void refreshEnded();
 
 private slots:
     /**

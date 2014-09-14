@@ -101,12 +101,13 @@ void ConfigPanel::setMainView(View *view)
 
 void ConfigPanel::on_refreshButton_clicked()
 {
-    if (_refreshMovie.state() == QMovie::Running) {
-        _refreshMovie.setPaused(true);
-    } else if (_refreshMovie.state() == QMovie::Paused) {
-        _refreshMovie.setPaused(false);
-    } else {
-        _refreshMovie.start();
+    if (_refreshMovie.state() != QMovie::Running) {
+        if (_refreshMovie.state() == QMovie::Paused) {
+            _refreshMovie.setPaused(false);
+        } else {
+            _refreshMovie.start();
+        }
+        emit _view->forceRefresh();
     }
 }
 
@@ -126,6 +127,10 @@ void ConfigPanel::clearHistory()
     }
 }
 
+void ConfigPanel::refreshEnded()
+{
+    _refreshMovie.setPaused(true);
+}
 
 HistoryListWidget* ConfigPanel::getHistoryListWidget()
 {

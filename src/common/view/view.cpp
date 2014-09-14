@@ -209,6 +209,11 @@ QList<QPair<unsigned, unsigned> > View::getPosition(unsigned size)
     return positions;
 }
 
+void View::refreshEnded()
+{
+    ui->configPanel->refreshEnded();
+}
+
 void View::updateDevices()
 {
     QList<Device*> devices = _model->getSortedDevices();

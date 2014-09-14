@@ -124,8 +124,14 @@ public:
      * @param message Message to display on the balloon tooltip of the tray
      */
     void showTrayMessage(const QString &message);
+    /// Stop the refresh animation
+    void refreshEnded();
 
 signals:
+    /**
+     * Notify the controller that it have to force the devices search
+     */
+    void forceRefresh();
     /**
       * Link to the controller
       *
