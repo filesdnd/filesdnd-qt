@@ -94,6 +94,8 @@
         <file>common/css/settings.css</file>
         <file>common/css/smalldeviceview.css</file>
         <file>common/css/about.css</file>
+        <file>linux-ui/application.css</file>
+        <file>mac-ui/application.css</file>
     </qresource>
     <qresource prefix="/font">
         <file>fonts/Roboto/Roboto-Regular.ttf</file>

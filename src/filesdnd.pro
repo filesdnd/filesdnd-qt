@@ -16,7 +16,7 @@ TRANSLATIONS = \
     $$PWD/../linguist/filesdnd_fr.ts \
     $$PWD/../linguist/filesdnd_en.ts
 
-CODECFORTR = UTF-8
+CODECFORTR = UTF-8#define MAC_APP_CSS ":/css/mac-ui/application.css"
 CODECFORSRC = UTF-8
 
 ICON = images/logo/mac-icon.icns

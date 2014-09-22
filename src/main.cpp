@@ -72,10 +72,12 @@ int main(int argc, char *argv[])
         return 0;
     }
 
+#if defined(Q_OS_WIN) || defined(Q_OS_OSX)
     QFontDatabase::addApplicationFont(":/font/fonts/Noce_Flat/NovaFlat.ttf");
     QFontDatabase::addApplicationFont(":/font/fonts/Cuprum/Cuprum-Regular.ttf");
     QFontDatabase::addApplicationFont(":/font/fonts/Open_Sans/OpenSans-Regular.ttf");
     QFontDatabase::addApplicationFont(":/font/fonts/Roboto/Roboto-Regular.ttf");
+#endif
 
     SettingsManager::loadSettingsFile();
     Controller controller;

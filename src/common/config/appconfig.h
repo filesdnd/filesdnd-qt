@@ -63,6 +63,7 @@
 #define CONFIG_PANEL_CSS ":/css/common/css/configpanel.css"
 #define WINDOWS_APP_CSS ":/css/windows-ui/application.css"
 #define MAC_APP_CSS ":/css/mac-ui/application.css"
+#define LINUX_APP_CSS ":/css/linux-ui/application.css"
 #define HISTORY_LIST_CSS ":/css/common/css/history.css"
 #define DEVICE_VIEW_CSS ":/css/common/css/deviceview.css"
 #define SETTINGS_CSS ":/css/common/css/settings.css"

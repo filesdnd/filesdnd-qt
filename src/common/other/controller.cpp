@@ -38,7 +38,7 @@
 #if defined(Q_OS_WIN)
 #include "borderlesswindow.h"
 #elif defined(Q_OS_LINUX)
-
+#include "linuxwindow.h"
 #elif defined(Q_OS_OSX)
 #include "macwindow.h"
 #endif
@@ -170,6 +170,15 @@ void Controller::startView(QApplication *application)
         window->show();
 
 #elif defined(Q_OS_LINUX)
+    /*LinuxWindow *window = new LinuxWindow(application,
+                                         (geometry.width() - size.width()) / 2,
+                                         (geometry.height() - size.height()) / 2,
+                                         size.width(), size.height(), _view);
+
+    window->setMinimumSize(size.width(), size.height());
+
+    if(!SettingsManager::isStartMinimizedAtlaunch())
+        window->show();*/
 
 #elif defined(Q_OS_OSX)
     MacWindow *window = new MacWindow(application,
