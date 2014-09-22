@@ -68,6 +68,8 @@
         <file>images/devices/apple-icon-large-alternative.png</file>
         <file>images/devices/apple-icon-small-alternative.png</file>
         <file>images/logo/mac-icon.icns</file>
+        <file>images/flat/previous-flat.png</file>
+        <file>images/flat/next-flat.png</file>
     </qresource>
     <qresource prefix="/borderless">
         <file>windows-ui/images/borderless-close.png</file>
@@ -102,5 +104,15 @@
         <file>fonts/Cuprum/Cuprum-Regular.ttf</file>
         <file>fonts/Nova_Flat/NovaFlat.ttf</file>
         <file>fonts/Open_Sans/OpenSans-Regular.ttf</file>
+    </qresource>
+    <qresource prefix="/howto">
+        <file>images/other/drop-device-en.png</file>
+        <file>images/other/drop-device-fr.png</file>
+        <file>images/other/help-history-en.png</file>
+        <file>images/other/help-history-fr.png</file>
+        <file>images/other/help-nav-en.png</file>
+        <file>images/other/help-nav-fr.png</file>
+        <file>images/other/help-search-en.png</file>
+        <file>images/other/help-search-fr.png</file>
     </qresource>
 </RCC>

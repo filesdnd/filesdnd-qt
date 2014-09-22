@@ -39,6 +39,9 @@
 	background: white;
 }</string>
      </property>
+     <widget class="HowToPanel" name="howToPage">
+      <layout class="QVBoxLayout" name="verticalLayout_4"/>
+     </widget>
      <widget class="QWidget" name="aboutPage">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
@@ -206,6 +209,12 @@
    <class>SlidingStackedWidget</class>
    <extends>QStackedWidget</extends>
    <header>slidingstackedwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>HowToPanel</class>
+   <extends>QWidget</extends>
+   <header>howtopanel.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

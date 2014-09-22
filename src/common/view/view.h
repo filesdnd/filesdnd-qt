@@ -44,15 +44,17 @@
 #include "service.h"
 #include "dialogs/updatedialog.h"
 #include "overlaymessagedisplay.h"
+#include "howtopanel.h"
 
 namespace Ui {
 class View;
 }
 
 enum ViewSlidingIndex {
-    VIEW_ABOUT,
-    VIEW_DEVICES,
-    VIEW_SETTINGS
+    VIEW_HOWTO = 0,
+    VIEW_ABOUT = 1,
+    VIEW_DEVICES = 2,
+    VIEW_SETTINGS = 3
 };
 
 /**
@@ -186,6 +188,10 @@ signals:
     void hideWindow();
 
 public slots:
+    /**
+     * SLOT : On help ended by user
+     */
+    void onHowToOver();
     /**
      * SLOT : Download (on last history element) progress changed
      *
@@ -410,6 +416,8 @@ private:
     void updateTrayIcon();
     /// Configure and add components to the sliding widget
     void fillSlidingWidget();
+    /// Start how to use view
+    void startHowTo();
 };
 
 #endif // VIEW_H

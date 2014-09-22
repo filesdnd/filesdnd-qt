@@ -39,7 +39,8 @@ SOURCES += \
     common/view/configpanel/transparentscrollbar.cpp \
     common/view/configpanel/transparentscrollbutton.cpp \
     common/view/configpanel/historylistwidget.cpp \
-    common/view/devicespanel/slidingstackedwidget.cpp
+    common/view/devicespanel/slidingstackedwidget.cpp \
+    common/view/devicespanel/howtopanel.cpp
 
 HEADERS += \
     common/other/controller.h \
@@ -82,7 +83,8 @@ HEADERS += \
     common/view/configpanel/transparentscrollbar.h \
     common/view/configpanel/transparentscrollbutton.h \
     common/view/configpanel/historylistwidget.h \
-    common/view/devicespanel/slidingstackedwidget.h
+    common/view/devicespanel/slidingstackedwidget.h \
+    common/view/devicespanel/howtopanel.h
 
 FORMS += \
     common/view/devicespanel/deviceview.ui \
@@ -94,7 +96,8 @@ FORMS += \
     common/view/configpanel/historyelementview.ui \
     common/view/configpanel/configpanel.ui \
     common/view/devicespanel/settingswidget.ui \
-    common/view/devicespanel/aboutwidget.ui
+    common/view/devicespanel/aboutwidget.ui \
+    common/view/devicespanel/howtopanel.ui
 
 OTHER_FILES += \
     common/configpanel.css

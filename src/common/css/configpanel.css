@@ -33,6 +33,10 @@
     border: none;
 }
 
+#historyListWidget:disabled {
+    background: transparent;
+}
+
 #historyListWidget QScrollBar:vertical {
     background: transparent;
     width: 0px;

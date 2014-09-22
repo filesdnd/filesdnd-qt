@@ -33,6 +33,7 @@ Some tray icon issue can appear on Linux due to Qt bug. There is some fix, depen
  - Press Alt + F2 and type 'dconf-editor'.
  - Navigate to desktop > unity
  - Set the systray-whitelist item to ['all'] value
+ - Log out and log back in for the changes to take effect. 
 
 ### Windows version
  1. Download the Windows version of  Qt 5.3 **for Windows 32-bit** at least on the [Qt website][4]. **Take care to choose the VS (2013 recommended) compiler !**

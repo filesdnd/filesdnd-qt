@@ -49,6 +49,7 @@
 #define SEARCH_UPDATE_ON_LAUNCH "SearchUpdateAtLaunch"
 #define START_MINIMIZED "StartMinimized"
 #define HISTORY_VERSION "HistoryVersion"
+#define FIRST_LAUNCH "FirstLaunch"
 
 #define WIDGET_DISPLAY "_DISPLAY"
 #define WIDGET_POS "_POS"
@@ -62,6 +63,7 @@ bool SettingsManager::TrayIconEnabled = true;
 bool SettingsManager::StartServiceAtLaunch = true;
 bool SettingsManager::AutoOpenFiles = true;
 bool SettingsManager::WidgetEnabled = true;
+bool SettingsManager::FirstLaunch = true;
 bool SettingsManager::SearchUpdateAtLaunch = true;
 QString SettingsManager::AvailableDeviceColor = "#008000";
 QString SettingsManager::DeviceUID = QString::number(qHash(QUuid::createUuid().toString()));
@@ -182,6 +184,11 @@ bool SettingsManager::shouldDisplayWidget(const QString &uid)
     return settings.value(uid + WIDGET_DISPLAY, true).toBool();
 }
 
+bool SettingsManager::isFirstLaunch()
+{
+    return FirstLaunch;
+}
+
 void SettingsManager::loadSettingsFile()
 {
     QFile file(FileName);
@@ -201,6 +208,7 @@ void SettingsManager::rewriteSettings()
     QSettings settings(FileName, QSettings::IniFormat);
 
     settings.setValue(HISTORY_VERSION, HistoryVersion);
+    settings.setValue(FIRST_LAUNCH, FirstLaunch);
     settings.setValue(START_MINIMIZED, StartMinimized);
     settings.setValue(MAX_DEVICES, MaxDevices);
     settings.setValue(TRAY_ICON_ENABLED, TrayIconEnabled);
@@ -238,6 +246,7 @@ void SettingsManager::loadSettings()
     DeviceUID = settings.value(DEVICE_UID, DeviceUID).toString();
     IgnoredVersion = settings.value(IGNORED_VERSION, IgnoredVersion).toString();
     SearchUpdateAtLaunch = settings.value(SEARCH_UPDATE_ON_LAUNCH, SearchUpdateAtLaunch).toBool();
+    FirstLaunch = settings.value(FIRST_LAUNCH, FirstLaunch).toBool();
 }
 
 void SettingsManager::setHistoryVersion(int version)
@@ -309,6 +318,12 @@ void SettingsManager::setMaxDevices(int maxDevices)
 {
     MaxDevices = maxDevices;
     writeSetting(MAX_DEVICES, MaxDevices);
+}
+
+void SettingsManager::setFirstLaunch(bool firstLaunch)
+{
+    FirstLaunch = firstLaunch;
+    writeSetting(FIRST_LAUNCH, FirstLaunch);
 }
 
 void SettingsManager::setLogEnabled(bool enabled)

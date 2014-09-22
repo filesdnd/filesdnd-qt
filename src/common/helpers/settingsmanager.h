@@ -89,6 +89,10 @@ public:
      */
     static bool isServiceStartedAtlaunch();
     /**
+     * Getter : FirstLaunch
+     */
+    static bool isFirstLaunch();
+    /**
      * Getter : StartMinimized
      */
     static bool isStartMinimizedAtlaunch();
@@ -203,6 +207,10 @@ public:
      */
     static void setStartServiceAtLaunch(bool enabled);
     /**
+     * Setter : FirstLaunch
+     */
+    static void setFirstLaunch(bool firstLaunch);
+    /**
      * Type correspond to the OS
      * @return The curent operating system
      */
@@ -261,8 +269,10 @@ private:
     static QString IgnoredVersion;
     /// Start minimized
     static bool StartMinimized;
-    /// HistoryVersion
+    /// History Version
     static int HistoryVersion;
+    /// Is first launch
+    static bool FirstLaunch;
 };
 
 #endif // SETTINGSMANAGER_H

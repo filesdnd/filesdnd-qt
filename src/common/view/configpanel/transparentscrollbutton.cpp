@@ -110,11 +110,13 @@ void TransparentScrollButton::thinButton()
 
 void TransparentScrollButton::fadeIn()
 {
-    _fadeAnimation->stop();
-    _fadeAnimation->setDuration(250);
-    _fadeAnimation->setStartValue(_opacityEffect->opacity());
-    _fadeAnimation->setEndValue(_maxOpacity);
-    _fadeAnimation->start();
+    if (isEnabled()) {
+        _fadeAnimation->stop();
+        _fadeAnimation->setDuration(250);
+        _fadeAnimation->setStartValue(_opacityEffect->opacity());
+        _fadeAnimation->setEndValue(_maxOpacity);
+        _fadeAnimation->start();
+    }
 }
 
 void TransparentScrollButton::fadeOut()

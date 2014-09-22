@@ -87,6 +87,9 @@ View::View(Model *model) :
             this, SIGNAL(deleteFromHistory(int)));
     connect(ui->configPanel->getHistoryListWidget(), SIGNAL(clearHistoryTriggered()),
             this, SIGNAL(clearHistoryTriggered()));
+
+    // Manage how to use
+    startHowTo();
 }
 
 View::~View()
@@ -345,7 +348,7 @@ void View::updateTrayTooltip()
     QString tooltip;
     QString devicesText;
 
-#if defined(Q_OS_MACX)
+#if defined(Q_OS_MACX) || defined(Q_OS_LINUX)
     tooltip = "Files Drag & Drop\n";
 #else
     tooltip = "Files Drag &&& Drop\n";
@@ -400,6 +403,16 @@ void View::onRefreshDevicesAvailability()
     }
 }
 
+void View::startHowTo()
+{
+    if (SettingsManager::isFirstLaunch()) {
+        ui->stackedWidget->setCurrentIndex(VIEW_HOWTO);
+        ui->configPanel->setEnabled(false);
+
+        connect(ui->howToPage, SIGNAL(howToOver()), this, SLOT(onHowToOver()));
+    }
+}
+
 void View::onDisplayMessage(MessageType messageType, const QString &message)
 {
     switch (messageType)
@@ -411,6 +424,12 @@ void View::onDisplayMessage(MessageType messageType, const QString &message)
         QMessageBox::information(this, tr("Information"), message);
         break;
     }
+}
+
+void View::onHowToOver() {
+    ui->configPanel->setEnabled(true);
+    ui->stackedWidget->slideInIdx(VIEW_DEVICES);
+    SettingsManager::setFirstLaunch(false);
 }
 
 void View::onDeviceAvailable(const QString &uid, TransfertState state)
