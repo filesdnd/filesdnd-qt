@@ -28,6 +28,12 @@ Download the [Android application][3] in order to fully use Files Drag & Drop an
  3. Download/fork the repo, and open the .pro in the source folder. 
  4. Build your Linux app !
 
+Some tray icon issue can appear on Linux due to Qt bug. There is some fix, depending on your GUI provider. For example on Unity (Ubuntu), follow the steps :
+ - sudo apt-get install dconf-tools
+ - Press Alt + F2 and type 'dconf-editor'.
+ - Navigate to desktop > unity
+ - Set the systray-whitelist item to ['all'] value
+
 ### Windows version
  1. Download the Windows version of  Qt 5.3 **for Windows 32-bit** at least on the [Qt website][4]. **Take care to choose the VS (2013 recommended) compiler !**
  3. Download/fork the repo, and open the .pro in the source folder. 
