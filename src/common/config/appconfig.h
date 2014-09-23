@@ -69,6 +69,7 @@
 #define SETTINGS_CSS ":/css/common/css/settings.css"
 #define SMALL_DEVICE_VIEW_CSS ":/css/common/css/smalldeviceview.css"
 #define ABOUT_CSS ":/css/common/css/about.css"
+#define HOWTO_PANEL_CSS ":/css/common/css/howto.css"
 
 #define HISTORY_ICON_SIZE 16
 #define FILE_ICON ":/fileIconFlat"

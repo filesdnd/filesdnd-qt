@@ -98,6 +98,7 @@
         <file>common/css/about.css</file>
         <file>linux-ui/application.css</file>
         <file>mac-ui/application.css</file>
+        <file>common/css/howto.css</file>
     </qresource>
     <qresource prefix="/font">
         <file>fonts/Roboto/Roboto-Regular.ttf</file>
@@ -114,5 +115,9 @@
         <file>images/other/help-nav-fr.png</file>
         <file>images/other/help-search-en.png</file>
         <file>images/other/help-search-fr.png</file>
+        <file>images/other/next-step-en.png</file>
+        <file>images/other/next-step-fr.png</file>
+        <file>images/other/end-step-en.png</file>
+        <file>images/other/end-step-fr.png</file>
     </qresource>
 </RCC>

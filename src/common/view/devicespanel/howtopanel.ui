@@ -32,7 +32,7 @@
    <item>
     <widget class="SlidingStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="step1">
       <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -72,7 +72,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="historyPixmap">
              <property name="layoutDirection">
               <enum>Qt::RightToLeft</enum>
              </property>
@@ -98,7 +98,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="menuPixmap">
              <property name="text">
               <string/>
              </property>
@@ -171,6 +171,16 @@
             </spacer>
            </item>
            <item>
+            <widget class="QLabel" name="discoveryPixmap">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="../../../resources.qrc">:/howto/images/other/help-search-fr.png</pixmap>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="verticalSpacer_6">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -185,16 +195,6 @@
               </size>
              </property>
             </spacer>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap resource="../../../resources.qrc">:/howto/images/other/help-search-fr.png</pixmap>
-             </property>
-            </widget>
            </item>
            <item>
             <spacer name="verticalSpacer_4">
@@ -228,6 +228,9 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
@@ -240,6 +243,16 @@
             </size>
            </property>
           </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="nextStepPixmap">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="../../../resources.qrc">:/howto/images/other/next-step-fr.png</pixmap>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="step1Next">
@@ -313,7 +326,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="dropExamplePixmap">
              <property name="text">
               <string/>
              </property>
@@ -354,6 +367,9 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QPushButton" name="step2Pev">
            <property name="font">
@@ -388,7 +404,23 @@
           </spacer>
          </item>
          <item>
+          <widget class="QLabel" name="goPixmap">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="../../../resources.qrc">:/howto/images/other/end-step-fr.png</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="step2Next">
+           <property name="maximumSize">
+            <size>
+             <width>60</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <weight>75</weight>
@@ -399,7 +431,7 @@
             <enum>Qt::RightToLeft</enum>
            </property>
            <property name="text">
-            <string>           Go</string>
+            <string>  Go</string>
            </property>
            <property name="icon">
             <iconset resource="../../../resources.qrc">
