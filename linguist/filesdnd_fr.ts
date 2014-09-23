@@ -248,14 +248,60 @@
     </message>
 </context>
 <context>
-    <name>MacWindow</name>
+    <name>HowToPanel</name>
     <message>
-        <location filename="../src/mac-ui/macwindow.ui" line="43"/>
+        <location filename="../src/common/view/devicespanel/howtopanel.ui" line="14"/>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <location filename="../src/common/view/devicespanel/howtopanel.ui" line="282"/>
+        <source>   Suivant</source>
+        <translation>   Suivant</translation>
+    </message>
+    <message>
+        <location filename="../src/common/view/devicespanel/howtopanel.ui" line="411"/>
+        <source>Précédent</source>
+        <translation>Précédent</translation>
+    </message>
+    <message>
+        <location filename="../src/common/view/devicespanel/howtopanel.ui" line="463"/>
+        <source>  Go</source>
+        <translation>  Go</translation>
+    </message>
+</context>
+<context>
+    <name>LinuxWindow</name>
+    <message>
+        <location filename="../src/linux-ui/linuxwindow.ui" line="14"/>
+        <source>Files Drag &amp; Drop</source>
+        <translation>Files Drag &amp; Drop</translation>
+    </message>
+    <message>
+        <location filename="../src/linux-ui/linuxwindow.ui" line="46"/>
         <source>Fichier</source>
         <translation>Fichier</translation>
     </message>
     <message>
-        <location filename="../src/mac-ui/macwindow.ui" line="51"/>
+        <location filename="../src/linux-ui/linuxwindow.ui" line="54"/>
+        <source>Paramètres</source>
+        <translation>Paramètres</translation>
+    </message>
+</context>
+<context>
+    <name>MacWindow</name>
+    <message>
+        <location filename="../src/mac-ui/macwindow.ui" line="14"/>
+        <source>Files Drag &amp; Drop</source>
+        <translation>Files Drag &amp; Drop</translation>
+    </message>
+    <message>
+        <location filename="../src/mac-ui/macwindow.ui" line="46"/>
+        <source>Fichier</source>
+        <translation>Fichier</translation>
+    </message>
+    <message>
+        <location filename="../src/mac-ui/macwindow.ui" line="54"/>
         <source>Paramètres</source>
         <translation>Paramètres</translation>
     </message>
@@ -509,28 +555,28 @@ Voulez vous mettre l&apos;application à jour ?</translation>
         <translation>Files Drag &amp; Drop</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="458"/>
+        <location filename="../src/common/view/view.cpp" line="482"/>
         <source>Quitter</source>
         <translation>Quitter</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="462"/>
+        <location filename="../src/common/view/view.cpp" line="486"/>
         <source>Paramètres</source>
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="350"/>
+        <location filename="../src/common/view/view.cpp" line="358"/>
         <source>Des périphérique sont visibles (</source>
         <translation>Des périphérique sont visibles (</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="352"/>
-        <location filename="../src/common/view/view.cpp" line="471"/>
+        <location filename="../src/common/view/view.cpp" line="360"/>
+        <location filename="../src/common/view/view.cpp" line="495"/>
         <source>Aucun périphérique visible</source>
         <translation>Aucun périphérique visible</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="512"/>
+        <location filename="../src/common/view/view.cpp" line="536"/>
         <source>Files Drag &amp; Drop
 Aucun périphérique visible</source>
         <oldsource>Files Drag&apos;n Drop
@@ -539,112 +585,112 @@ Aucun périphérique visible</oldsource>
 Aucun périphérique visible</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="406"/>
+        <location filename="../src/common/view/view.cpp" line="424"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="305"/>
+        <location filename="../src/common/view/view.cpp" line="313"/>
         <source>Une erreur s&apos;est produite dans le logiciel Bonjour d&apos;Apple
 La détection des périphériques risque de ne pas fonctionner</source>
         <translation>Une erreur s&apos;est produite dans le logiciel Bonjour d&apos;Apple
 La détection des périphériques risque de ne pas fonctionne</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="308"/>
+        <location filename="../src/common/view/view.cpp" line="316"/>
         <source>Le logiciel Bonjour d&apos;Apple n&apos;est pas installé
 La détection des périphériques risque de ne pas fonctionner</source>
         <translation>Le logiciel Bonjour d&apos;Apple n&apos;est pas installé
 La détection des périphériques risque de ne pas fonctionner</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="311"/>
+        <location filename="../src/common/view/view.cpp" line="319"/>
         <source>Le logiciel Bonjour d&apos;Apple n&apos;est pas lancé
 La détection des périphériques risque de ne pas fonctionner</source>
         <translation>Le logiciel Bonjour d&apos;Apple n&apos;est pas lancé
 La détection des périphériques risque de ne pas fonctionner</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="451"/>
+        <location filename="../src/common/view/view.cpp" line="475"/>
         <source>Ouvrir Files Drag &amp;&amp; Drop</source>
         <translation>Ouvrir Files Drag &amp;&amp; Drop</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="466"/>
+        <location filename="../src/common/view/view.cpp" line="490"/>
         <source>Détectable</source>
         <translation>Détectable</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="514"/>
+        <location filename="../src/common/view/view.cpp" line="538"/>
         <source>Files Drag &amp;&amp; Drop
 Aucun périphérique visible</source>
         <translation>Files Drag &amp;&amp; Drop
 Aucun périphérique visible</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="590"/>
+        <location filename="../src/common/view/view.cpp" line="614"/>
         <source>Impossible de créer le fichier reçu.
 </source>
         <translation>Impossible de créer le fichier reçu.
 </translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="591"/>
+        <location filename="../src/common/view/view.cpp" line="615"/>
         <source>Vérifiez que vous avez les droits d&apos;écrire dans le dossier de destination.</source>
         <translation>Vérifiez que vous avez les droits d&apos;écrire dans le dossier de destination.</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="594"/>
+        <location filename="../src/common/view/view.cpp" line="618"/>
         <source>Impossible de démarrer le client.</source>
         <translation>Impossible de démarrer le client.</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="598"/>
+        <location filename="../src/common/view/view.cpp" line="622"/>
         <source>Le client à rencontré une erreur</source>
         <translation>Le client à rencontré une erreur</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="606"/>
+        <location filename="../src/common/view/view.cpp" line="630"/>
         <source>Activer la réception</source>
         <translation>Activer la réception</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="616"/>
+        <location filename="../src/common/view/view.cpp" line="640"/>
         <source>Files Drag &amp; Drop est actif</source>
         <translation>Files Drag &amp; Drop est actif</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="618"/>
+        <location filename="../src/common/view/view.cpp" line="642"/>
         <source>Arrêter la réception</source>
         <translation>Arrêter la réception</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="628"/>
+        <location filename="../src/common/view/view.cpp" line="652"/>
         <source>Echec de l&apos;envoi</source>
         <translation>Echec de l&apos;envoi</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="628"/>
+        <location filename="../src/common/view/view.cpp" line="652"/>
         <source>Le fichier est trop volumineux pour le périphérique.</source>
         <translation>Le fichier est trop volumineux pour le périphérique.</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="669"/>
+        <location filename="../src/common/view/view.cpp" line="693"/>
         <source>Réception du fichier : </source>
         <translation>Réception du fichier : </translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="675"/>
+        <location filename="../src/common/view/view.cpp" line="699"/>
         <source>Réception du dossier : </source>
         <translation>Réception du dossier :</translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="681"/>
+        <location filename="../src/common/view/view.cpp" line="705"/>
         <source>Réception d&apos;une URL : </source>
         <translation>Réception d&apos;une URL : </translation>
     </message>
     <message>
-        <location filename="../src/common/view/view.cpp" line="687"/>
+        <location filename="../src/common/view/view.cpp" line="711"/>
         <source>Réception d&apos;un texte : </source>
         <translation>Réception d&apos;un texte : </translation>
     </message>
