@@ -436,6 +436,7 @@ void Service::addCurrentElementToHistory()
 
     _history.push_front(_currentHistoryElement);
     emit historyChanged(_history);
+    serializeHistory();
 }
 
 void Service::onDeleteFromHistory(int row)
