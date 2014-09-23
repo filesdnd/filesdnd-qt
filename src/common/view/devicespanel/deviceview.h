@@ -193,21 +193,21 @@ private:
     /**
      * Check if the mouse if on the device
      */
-    bool isMouseOnDevice();
+    bool isMouseOnDevice(const QPoint &mousePos);
     /**
      * Check if the mouse if on the left panel
      */
-    bool isMouseOnLeftPanel();
+    bool isMouseOnLeftPanel(const QPoint &mousePos);
     /**
      * Check if the mouse if on the right panel
      */
-    bool isMouseOnRightPanel();
+    bool isMouseOnRightPanel(const QPoint &mousePos);
     /**
      * Send the proper data to the device
      *
      * @param mimeData Data
      */
-    void sendProperData(const QMimeData *mimeData);
+    void sendProperData(const QMimeData *mimeData, const QPoint &mousePos);
     /**
      * Update the style of a widget
      *

@@ -256,7 +256,7 @@ void UdpDiscovery::processPendingDatagrams(QUdpSocket *socket, SocketType type)
                         }
                         else
                         {
-                            if (message.contains(ACTION_PING))
+                            if (message.contains(ACTION_PING) && _port != 0)
                                 pong(message, hostAdress);
                             else
                             {

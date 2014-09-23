@@ -238,10 +238,10 @@ void DeviceView::refreshPanels(const QString &left)
     ui->leftLabel->setText(left);
 }
 
-bool DeviceView::isMouseOnDevice()
+bool DeviceView::isMouseOnDevice(const QPoint &mousePos)
 {
-    QPoint topLeftDevice = mapToGlobal(QPoint(0,0));
-    QPoint cursor = QCursor::pos();
+    QPoint topLeftDevice = QPoint(0,0);
+    QPoint cursor = mousePos;
     int offset = 2;
 
     return ((cursor.x() - offset) >= topLeftDevice.x()
@@ -250,10 +250,10 @@ bool DeviceView::isMouseOnDevice()
                 && (cursor.y() + offset) <= topLeftDevice.y() + height());
 }
 
-bool DeviceView::isMouseOnLeftPanel()
+bool DeviceView::isMouseOnLeftPanel(const QPoint &mousePos)
 {
-    QPoint cursor = QCursor::pos();
-    QPoint leftPanelPos = mapToGlobal(ui->leftPanel->pos());
+    QPoint cursor = mousePos;
+    QPoint leftPanelPos = QPoint(0, 0);
 
     return !((cursor.x()) < leftPanelPos.x()
             || (cursor.x()) > leftPanelPos.x() + ui->leftPanel->width()
@@ -261,10 +261,10 @@ bool DeviceView::isMouseOnLeftPanel()
             || (cursor.y()) > leftPanelPos.y() + ui->leftPanel->height() + ui->bottomFrame->height());
 }
 
-bool DeviceView::isMouseOnRightPanel()
+bool DeviceView::isMouseOnRightPanel(const QPoint &mousePos)
 {
-    QPoint cursor = QCursor::pos();
-    QPoint rightPanelPos = mapToGlobal(ui->rightPanel->pos());
+    QPoint cursor = mousePos;
+    QPoint rightPanelPos = QPoint(ui->leftPanel->width(), 0);
 
     return !((cursor.x()) < rightPanelPos.x()
              || (cursor.x()) > rightPanelPos.x() + ui->rightPanel->width()
@@ -273,20 +273,20 @@ bool DeviceView::isMouseOnRightPanel()
 }
 
 void DeviceView::dragMoveEvent(QDragMoveEvent *event)
-{  
-    if (isMouseOnDevice())
+{
+    if (isMouseOnDevice(event->pos()))
     {
-        if (isMouseOnLeftPanel())
+        updateLabels();
+
+        if (isMouseOnLeftPanel(event->pos()))
             dragInLeftPanel();
         else
            dragOutLeftPanel();
 
-        if (isMouseOnRightPanel())
+        if (isMouseOnRightPanel(event->pos()))
             dragInRightPanel();
         else
             dragOutRightPanel();
-
-        updateLabels();
     }
     else
         setPanelsVisible(false);
@@ -310,16 +310,16 @@ void DeviceView::dragLeaveEvent(QDragLeaveEvent *event)
 void DeviceView::dropEvent(QDropEvent *event)
 {
     setPanelsVisible(false);
-    sendProperData(event->mimeData());
+    sendProperData(event->mimeData(), event->pos());
 
     AbstractDeviceView::dropEvent(event);
 }
 
-void DeviceView::sendProperData(const QMimeData *mimeData)
+void DeviceView::sendProperData(const QMimeData *mimeData, const QPoint &mousePos)
 {
     DataType type;
-    bool isOnLeftPanel = isMouseOnLeftPanel();
-    bool isOnRightPanel = isMouseOnRightPanel();
+    bool isOnLeftPanel = isMouseOnLeftPanel(mousePos);
+    bool isOnRightPanel = isMouseOnRightPanel(mousePos);
 
     switch(_dragType)
     {

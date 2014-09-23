@@ -151,7 +151,7 @@ void Controller::checkForBonjourState()
 void Controller::startView(QApplication *application)
 {
     QRect geometry = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenNumber(_view));
-    QSize size(775, 425);
+    QSize size(810, 440);
 
     if (SettingsManager::isSearchUpdateAtLaunch())
         _updater.checkForUpdate();
