@@ -1,0 +1,62 @@
+[DEBREATE-0.7.7]
+<<CTRL>>
+Package: filesdnd
+Version: 2.0
+Section: utils
+Maintainer: Files Drag & Drop <contact@filesdnd.fr>
+Homepage: www.filesdnd.com
+Priority: optional
+Architecture: all
+Depends: libavahi-common, libavahi-client, libc6
+Description: Simpler file transfer between your devices and your computer
+
+<</CTRL>>
+<<FILES>>
+1
+/home/drusy/Qt5.3.1/5.3/gcc/plugins/platforms/libqxcb.so* -> libqxcb.so -> /usr/lib/i386-linux-gnu/qt5/platforms
+/home/drusy/Qt5.3.1/5.3/gcc/plugins/imageformats/libqgif.so* -> libqgif.so -> /usr/lib/i386-linux-gnu/qt5/imageformats
+/home/drusy/Qt5.3.1/5.3/gcc/lib/libicudata.so.52.1* -> libicudata.so.52.1 -> /usr/lib/i386-linux-gnu/qt5
+/home/drusy/Qt5.3.1/5.3/gcc/lib/libicudata.so.52* -> libicudata.so.52 -> /usr/lib/i386-linux-gnu/qt5
+/home/drusy/Qt5.3.1/5.3/gcc/lib/libicui18n.so.52.1* -> libicui18n.so.52.1 -> /usr/lib/i386-linux-gnu/qt5
+/home/drusy/Qt5.3.1/5.3/gcc/lib/libicui18n.so.52* -> libicui18n.so.52 -> /usr/lib/i386-linux-gnu/qt5
+/home/drusy/Qt5.3.1/5.3/gcc/lib/libicuuc.so.52* -> libicuuc.so.52 -> /usr/lib/i386-linux-gnu/qt5
+/home/drusy/Qt5.3.1/5.3/gcc/lib/libicuuc.so.52.1* -> libicuuc.so.52.1 -> /usr/lib/i386-linux-gnu/qt5
+/home/drusy/Qt5.3.1/5.3/gcc/lib/libQt5DBus.so.5* -> libQt5DBus.so.5 -> /usr/lib/i386-linux-gnu/qt5
+/home/drusy/Qt5.3.1/5.3/gcc/lib/libQt5Core.so.5* -> libQt5Core.so.5 -> /usr/lib/i386-linux-gnu/qt5
+/home/drusy/Qt5.3.1/5.3/gcc/lib/libQt5Gui.so.5* -> libQt5Gui.so.5 -> /usr/lib/i386-linux-gnu/qt5
+/home/drusy/Qt5.3.1/5.3/gcc/lib/libQt5Network.so.5* -> libQt5Network.so.5 -> /usr/lib/i386-linux-gnu/qt5
+/home/drusy/Qt5.3.1/5.3/gcc/lib/libQt5Widgets.so.5* -> libQt5Widgets.so.5 -> /usr/lib/i386-linux-gnu/qt5
+/home/drusy/Téléchargements/filesdnd-qt/installer/linux/filesdnd.sh -> filesdnd.sh -> /usr/bin
+/home/drusy/Téléchargements/filesdnd-qt/installer/linux/filesdnd* -> filesdnd -> /usr/bin
+/home/drusy/Téléchargements/filesdnd-qt/installer/linux/filesdnd.desktop -> filesdnd.desktop -> /usr/share/applications
+/home/drusy/Téléchargements/filesdnd-qt/src/images/logo/ic_launcher.png -> ic_launcher.png -> /usr/share/pixmaps
+<</FILES>>
+<<SCRIPTS>>
+<<PREINST>>
+0
+<</PREINST>>
+<<POSTINST>>
+0
+<</POSTINST>>
+<<PRERM>>
+0
+<</PRERM>>
+<<POSTRM>>
+0
+<</POSTRM>>
+<</SCRIPTS>>
+<<CHANGELOG>>
+<<DEST>>DEFAULT<</DEST>>
+
+<</CHANGELOG>>
+<<COPYRIGHT>>
+
+<</COPYRIGHT>>
+<<MENU>>
+0
+<</MENU>>
+<<BUILD>>
+1
+1
+0
+<</BUILD>>

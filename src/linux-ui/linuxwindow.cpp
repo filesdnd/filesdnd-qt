@@ -34,7 +34,7 @@ LinuxWindow::LinuxWindow(QApplication *app, const int x, const int y, const int 
     connect(view, SIGNAL(showWindow()), this, SLOT(show()));
     connect(view, SIGNAL(hideWindow()), this, SLOT(hide()));
 
-    setWindowTitle("Files Drag & Drop");
+    //setWindowTitle("Files Drag & Drop");
     setGeometry(x, y, width, height);
     setStyleSheet(FileHelper::loadFileContent(LINUX_APP_CSS));
 
@@ -46,7 +46,8 @@ LinuxWindow::LinuxWindow(QApplication *app, const int x, const int y, const int 
     connect(_cmdWShortcut, SIGNAL(activated()), this, SLOT(close()));
     connect(_cmdQShortcut, SIGNAL(activated()), qApp, SLOT(quit()));
 
-    createLinuxMenu();
+    ui->menubar->setVisible(false);
+    //createLinuxMenu();
 }
 
 LinuxWindow::~LinuxWindow()

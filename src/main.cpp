@@ -45,6 +45,10 @@ int main(int argc, char *argv[])
         qDebug() << failures << " TESTS FAILED!";
 #endif
 
+#if defined(Q_OS_LINUX)
+    QApplication::addLibraryPath("/user/lib/i386-linux-gnu/qt5");
+#endif
+
     FDNDApplication app(argc, argv);
     QTranslator translator;
 

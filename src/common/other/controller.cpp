@@ -170,7 +170,7 @@ void Controller::startView(QApplication *application)
         window->show();
 
 #elif defined(Q_OS_LINUX)
-    /*LinuxWindow *window = new LinuxWindow(application,
+    LinuxWindow *window = new LinuxWindow(application,
                                          (geometry.width() - size.width()) / 2,
                                          (geometry.height() - size.height()) / 2,
                                          size.width(), size.height(), _view);
@@ -178,7 +178,7 @@ void Controller::startView(QApplication *application)
     window->setMinimumSize(size.width(), size.height());
 
     if(!SettingsManager::isStartMinimizedAtlaunch())
-        window->show();*/
+        window->show();
 
 #elif defined(Q_OS_OSX)
     MacWindow *window = new MacWindow(application,
