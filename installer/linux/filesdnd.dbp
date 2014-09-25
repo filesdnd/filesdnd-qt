@@ -7,12 +7,18 @@ Maintainer: Files Drag & Drop <contact@filesdnd.fr>
 Homepage: www.filesdnd.com
 Priority: optional
 Architecture: all
-Depends: libavahi-common, libavahi-client, libc6
+Depends: libavahi-compat-libdnssd-dev, libc6
 Description: Simpler file transfer between your devices and your computer
 
 <</CTRL>>
 <<FILES>>
 1
+/home/drusy/Qt5.3.1/5.3/gcc/plugins/platforms/libqoffscreen.so* -> libqoffscreen.so -> /usr/lib/i386-linux-gnu/qt5/platforms
+/home/drusy/Qt5.3.1/5.3/gcc/plugins/platforms/libqminimalegl.so* -> libqminimalegl.so -> /usr/lib/i386-linux-gnu/qt5/platforms
+/home/drusy/Qt5.3.1/5.3/gcc/plugins/platforms/libqeglfs.so* -> libqeglfs.so -> /usr/lib/i386-linux-gnu/qt5/platforms
+/home/drusy/Qt5.3.1/5.3/gcc/plugins/platforms/libqminimalegl.so* -> libqminimalegl.so -> /usr/lib/i386-linux-gnu/qt5/platforms
+/home/drusy/Qt5.3.1/5.3/gcc/plugins/platforms/libqminimal.so* -> libqminimal.so -> /usr/lib/i386-linux-gnu/qt5/platforms
+/home/drusy/Qt5.3.1/5.3/gcc/plugins/platforms/libqlinuxfb.so* -> libqlinuxfb.so -> /usr/lib/i386-linux-gnu/qt5/platforms
 /home/drusy/Qt5.3.1/5.3/gcc/plugins/platforms/libqxcb.so* -> libqxcb.so -> /usr/lib/i386-linux-gnu/qt5/platforms
 /home/drusy/Qt5.3.1/5.3/gcc/plugins/imageformats/libqgif.so* -> libqgif.so -> /usr/lib/i386-linux-gnu/qt5/imageformats
 /home/drusy/Qt5.3.1/5.3/gcc/lib/libicudata.so.52.1* -> libicudata.so.52.1 -> /usr/lib/i386-linux-gnu/qt5
