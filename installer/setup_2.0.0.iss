@@ -144,8 +144,9 @@ end;
 // Check Bonjour
 function BonjourNeedsInstall(): Boolean;
 begin;
- //not (FileExists('C:\Program Files (x86)\Bonjour\mDNSResponder.exe') or FileExists('C:\Program Files\Bonjour\mDNSResponder.exe'));
-  Result := TRUE;
+  Result := not (FileExists('C:\Program Files (x86)\Bonjour\mDNSResponder.exe') or 
+                 FileExists('C:\Program Files\Bonjour\mDNSResponder.exe'));
+  
 end;
 
 function CheckBonjourX64(): Boolean;
