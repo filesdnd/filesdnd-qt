@@ -32,8 +32,17 @@ bool dockClickHandler(id self,SEL _cmd,...)
 {
     Q_UNUSED(self)
     Q_UNUSED(_cmd)
-   ((FDNDApplication*)qApp)->onClickOnDock();
-     return true;
+    ((FDNDApplication*)qApp)->onClickOnDock();
+    return true;
+}
+
+bool FDNDApplication::event(QEvent *event)
+{
+    if (event->type() == QEvent::Close) {
+        quit();
+    }
+
+    return QApplication::event(event);
 }
 
 #endif
@@ -42,7 +51,7 @@ FDNDApplication::FDNDApplication(int argc, char *argv[]) :
     QtSingleApplication(argc, argv)
 {
 #ifdef Q_OS_MAC
-    objc_object *cls = objc_getClass("NSApplication");
+    Class cls = objc_getClass("NSApplication");
     SEL sharedApplication = sel_registerName("sharedApplication");
     objc_object *appInst = objc_msgSend((objc_object*)cls,sharedApplication);
 

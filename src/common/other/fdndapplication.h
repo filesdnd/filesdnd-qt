@@ -35,7 +35,12 @@ class FDNDApplication : public QtSingleApplication
 public:
     /// Constructor
     explicit FDNDApplication(int argc, char *argv[]);
-    
+
+#ifdef Q_OS_MACX
+    /// Lookup close event
+    bool event(QEvent *);
+#endif
+
 signals:
     /**
      * Notify that the dock was clicked

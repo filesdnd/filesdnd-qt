@@ -12,6 +12,8 @@ TARGET = "Files Drag and Drop"
 TEMPLATE = app
 CONFIG -= console
 
+mac:QMAKE_MAC_SDK = macosx10.9
+
 TRANSLATIONS = \
     $$PWD/../linguist/filesdnd_fr.ts \
     $$PWD/../linguist/filesdnd_en.ts
