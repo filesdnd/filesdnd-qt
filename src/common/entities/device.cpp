@@ -419,12 +419,13 @@ bool Device::sendNextFile()
     {
         QUrl current = _data._urls.takeFirst();
         _data._string = FileHelper::getFilePath(current.toString());
+
         LogManager::appendLine("[Server] Sending file " + _data._string);
 
         QFileInfo file(_data._string);
         if (file.isDir())
         {
-            QString dirName = file.fileName();
+            QString dirName = file.dir().dirName();
             QString tmp = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
             tmp = QDir::fromNativeSeparators(tmp);
             QString destination = tmp + "/" + dirName + ZIP_EXTENSION;
