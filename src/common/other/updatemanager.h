@@ -47,21 +47,29 @@ public:
 private:
     /// Request server
     QNetworkAccessManager _server;
-    /// Reply from server
-    QNetworkReply *_reply;
+    /// Reply from server for version
+    QNetworkReply *_versionReply;
+    /// Reply from server for release note
+    QNetworkReply *_releasenoteReply;
     /// First number of the version
     unsigned _first;
     /// Second number of the version
     unsigned _second;
     /// Last number of the version
     unsigned _third;
+    /// Update needed
+    bool _updateNeeded;
+    /// Server version
+    QString _serverVersion;
 
     /// Check if the version has a valid format
     bool isValidVersionNumber(QString version);
 
 private slots:
-    /// On server reply
-    void handleServerResponse();
+    /// On server reply for version
+    void handleServerResponseForVersion();
+    /// On server reply for release note
+    void handleServerResponseForReleasenote();
     /// On server error
     void onServerError(QNetworkReply::NetworkError error);
 

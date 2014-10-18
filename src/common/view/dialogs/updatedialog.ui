@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>354</width>
-    <height>198</height>
+    <width>382</width>
+    <height>217</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,8 +35,10 @@
       </sizepolicy>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: white;
-border-bottom: 1px solid lightgray;</string>
+      <string notr="true">QWidget#widget {
+	background-color: white;
+	border-bottom: 1px solid lightgray;
+}</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
@@ -124,7 +126,9 @@ border-bottom: 1px solid lightgray;</string>
         <item>
          <widget class="QTextEdit" name="releaseNote">
           <property name="styleSheet">
-           <string notr="true">border: 0px;</string>
+           <string notr="true">QTextEdit#releaseNote {
+	border: 0px;
+}</string>
           </property>
           <property name="readOnly">
            <bool>true</bool>

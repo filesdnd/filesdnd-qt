@@ -39,6 +39,8 @@ UpdateManager::UpdateManager()
         _second = numbers.at(1).toInt();
         _third = numbers.at(2).toInt();
     }
+
+    _updateNeeded = false;
 }
 
 void UpdateManager::checkForUpdate()
@@ -53,54 +55,77 @@ void UpdateManager::checkForUpdate()
     QUrl url(QString(website).append("/version"));
     QNetworkRequest request(url);
 
-    _reply = _server.get(request);
+    _versionReply = _server.get(request);
 
-    connect(_reply, SIGNAL(finished()), this, SLOT(handleServerResponse()));
-    connect(_reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onServerError(QNetworkReply::NetworkError)));
+    connect(_versionReply, SIGNAL(finished()), this, SLOT(handleServerResponseForVersion()));
+    connect(_versionReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onServerError(QNetworkReply::NetworkError)));
 }
 
-void UpdateManager::handleServerResponse()
+void UpdateManager::handleServerResponseForVersion()
 {
     char response[4096];
-    bool isUpdateNeeded = false;
-    QString serverVersion;
-    QString releaseNote;
+    _updateNeeded = false;
 
-    if (_reply->error() == QNetworkReply::NoError)
+    if (_versionReply->error() == QNetworkReply::NoError)
     {
-        if (_reply->readLine(response, 4096) != -1)
+        if (_versionReply->readLine(response, 4096) != -1)
         {
-            serverVersion.append(QString::fromUtf8(response)).remove("\n");
+            _serverVersion.append(QString::fromUtf8(response)).remove("\n");
             if (isValidVersionNumber(response))
             {
                 LogManager::appendLine("[UpdateManager] Server version is "
-                                       + serverVersion
+                                       + _serverVersion
                                        + " (current is "
                                        + QString(CURRENT_VERSION)
                                        + ")"
-                                       + (SettingsManager::isVersionIgnored(serverVersion) ? " Version ignored by user" : ""));
-                QStringList numbers = serverVersion.split(".");
+                                       + (SettingsManager::isVersionIgnored(_serverVersion) ? " Version ignored by user" : ""));
+                QStringList numbers = _serverVersion.split(".");
 
                 unsigned serverFirst = numbers.at(0).toInt();
                 unsigned serverSecond = numbers.at(1).toInt();
                 unsigned serverThird = numbers.at(2).toInt();
 
                 if (serverFirst > _first)
-                    isUpdateNeeded = true;
+                    _updateNeeded = true;
                 else
                     if (serverSecond > _second && serverFirst == _first)
-                        isUpdateNeeded = true;
+                        _updateNeeded = true;
                     else
                         if (serverThird > _third && serverSecond == _second && serverFirst == _first)
-                            isUpdateNeeded = true;
+                            _updateNeeded = true;
             }
 
-            while (_reply->readLine(response, 4096) > 0)
-                releaseNote.append(QString::fromUtf8(response));
 
-            if (isUpdateNeeded && !SettingsManager::isVersionIgnored(serverVersion))
-                emit updateNeeded(serverVersion, releaseNote);
+
+            if (_updateNeeded && !SettingsManager::isVersionIgnored(_serverVersion)) {
+                QString website;
+                if (QLocale::system().language() == QLocale::French)
+                    website = QString(WEB_SITE).append("/releasenote_fr");
+                else
+                    website = QString(EN_WEB_SITE).append("/releasenote_en");
+
+                QUrl url(website);
+                QNetworkRequest request(url);
+
+                _releasenoteReply = _server.get(request);
+
+                connect(_releasenoteReply, SIGNAL(finished()), this, SLOT(handleServerResponseForReleasenote()));
+                connect(_releasenoteReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onServerError(QNetworkReply::NetworkError)));
+            }
         }
+    }
+}
+
+void UpdateManager::handleServerResponseForReleasenote()
+{
+    char response[4096];
+    QString releaseNote;
+
+    if (_releasenoteReply->error() == QNetworkReply::NoError) {
+        while (_releasenoteReply->readLine(response, 4096) > 0)
+            releaseNote.append(QString::fromUtf8(response));
+
+        emit updateNeeded(_serverVersion, releaseNote);
     }
 }
 
