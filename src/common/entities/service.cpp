@@ -153,8 +153,11 @@ void Service::socketError(QAbstractSocket::SocketError)
 
 void Service::deleteFileReset()
 {
-    removeCurrentFile();
-    serializeHistory();
+    if (_bDataType && DataStruct::isFileType(DataType(_dataType))) {
+        removeCurrentFile();
+        serializeHistory();
+    }
+
     resetService();
 }
 
@@ -410,6 +413,7 @@ bool Service::readFile()
         sendACK();
     }
 
+    // Here _dataSize is the number of files (if there is remaining files, return false)
     return (--_dataSize <= 0);
 }
 
@@ -460,8 +464,10 @@ void Service::removeCurrentFile()
 
 void Service::removeCurrentFileFromHistory()
 {
-    _history.removeFirst();
-    emit historyChanged(_history);
+    if (!_history.isEmpty()) {
+        _history.removeFirst();
+        emit historyChanged(_history);
+    }
 }
 
 void Service::onClearHistory()
