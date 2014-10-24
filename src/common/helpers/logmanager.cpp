@@ -79,7 +79,9 @@ void LogManager::appendLine(const QString &logLine)
             out << dateTimeString;
             out << logLine << endl;
 
-            qDebug() << dateTimeString + logLine;
+            #ifdef QT_DEBUG
+                qDebug() << dateTimeString + logLine;
+            #endif
 
             Mutex.unlock();
         }
